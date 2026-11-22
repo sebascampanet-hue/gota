@@ -1,4 +1,4 @@
-# Gota · Cicles Fisicoesportius Artà
+# Xop · Cicles Fisicoesportius Artà
 
 App d'aprenentatge tipus joc per al mòdul de Valoració de la condició física (UF 3, el sistema nerviós), amb la Gota com a mascota.
 

@@ -9,14 +9,13 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Gota">
+<meta name="apple-mobile-web-app-title" content="Xop">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <style>*,*::before,*::after{box-sizing:border-box}html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>Gota · Cicles Artà</title>
-<title>Gota · Cicles Artà</title>
+<title>Xop · Cicles Artà</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -439,7 +438,7 @@ const REPTE_N=8, REPTE_S=90;
 function topbar(){
   recuperaVides();
   return `<header class="top gut"><div class="top-row">
-    <span class="brand">Gota</span>
+    <span class="brand">Xop</span>
     <div class="stats">
       <span class="stat st-streak" title="Dies seguits">${ICON.fire}${ratxaActual()}</span>
       <span class="stat st-xp" title="Punts">${ICON.bolt}${P.xp}</span>
@@ -590,7 +589,7 @@ async function pantallaRanking(){
   const cap=`<div class="lhead gut"><button class="x" id="surt" aria-label="Tornar">${ICON.x}</button><div style="flex:1"></div>${botoSo()}</div>`;
   if(!JO){
     $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
-      <div class="hero" style="padding:0"><img src="${IMG.pensativa}" alt=""><div class="bubble">${WEB?'Per sortir al rànquing de la classe has d\'entrar amb el compte de l\'institut.':'El rànquing només funciona a la web de la Gota, entrant amb el compte de l\'institut.'}</div></div>
+      <div class="hero" style="padding:0"><img src="${IMG.pensativa}" alt=""><div class="bubble">${WEB?'Per sortir al rànquing de la classe has d\'entrar amb el compte de l\'institut.':'El rànquing només funciona a la web d'en Xop, entrant amb el compte de l\'institut.'}</div></div>
       ${WEB?'<button class="big google" id="entrar">'+G_ICON+'<span>Entra amb Google</span></button>':''}</div></div>`;
     $('#surt').onclick=inici;const e=$('#entrar');if(e)e.onclick=async()=>{await SB.auth.signOut();pantallaEntra()};
     return;
@@ -851,7 +850,7 @@ async function arrenca(){
   const err=q.get('error_description')||q.get('error');
   const {data:{session}}=await SB.auth.getSession();
   if(location.hash||location.search)history.replaceState(null,'',location.pathname);
-  if(!session)return pantallaEntra(err?"Aquest compte no està donat d'alta a la Gota. Entra amb el correu de l'institut o parla amb el professor.":null);
+  if(!session)return pantallaEntra(err?"Aquest compte no està donat d'alta a Xop. Entra amb el correu de l'institut o parla amb el professor.":null);
   const {data,error}=await SB.rpc('gota_jo');
   if(error){JO=null;return inici()}
   if(!data)return pantallaNoAlumne(session.user.email);
@@ -859,7 +858,7 @@ async function arrenca(){
   JO={nom:data.nom,cognoms:data.cognoms,classe:data.classe,email:session.user.email};
   fusiona(data.dades);inici();
 }
-arrenca().catch(()=>{$('#app').innerHTML='<p class="gut" style="padding-block:40px">No s\'ha pogut carregar la Gota. Torna a obrir la pàgina.</p>'});
+arrenca().catch(()=>{$('#app').innerHTML='<p class="gut" style="padding-block:40px">No s\'ha pogut carregar Xop. Torna a obrir la pàgina.</p>'});
 if('serviceWorker' in navigator&&WEB)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body></html>
