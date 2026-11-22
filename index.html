@@ -265,7 +265,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 <script>
 const IMG={contenta:'mascota-contenta.png',celebrant:'mascota-celebrant.png',trista:'mascota-trista.png',pensativa:'mascota-pensativa.png',anim:'gota-celebra.webp'};
 try{new Image().src='gota-celebra.webp'}catch(e){}
-// Per afegir mòduls o temes: afegeix el fitxer JSON a aquesta llista.
+// Per afegir mòduls o temes: afegeix el fitxer JSON a fonts.json (i aquí, per a la versió sense web).
 const FONTS_CONTINGUT=['contingut.json'];
 const MAX_VIDES=5, MIN_PER_VIDA=20, XP_LLICO=10;
 const ICON={
@@ -422,7 +422,8 @@ function sumaDia(){
 /* ---------- contingut ---------- */
 let UNITATS=[];const EX={};
 async function carrega(){
-  const r=await Promise.all(FONTS_CONTINGUT.map(f=>fetch(f).then(x=>x.json())));
+  let fonts=FONTS_CONTINGUT;try{const f=await fetch('fonts.json',{cache:'no-cache'});if(f.ok)fonts=await f.json()}catch(e){}
+  const r=await Promise.all(fonts.map(f=>fetch(f).then(x=>x.json())));
   UNITATS=r.map(d=>({modul:d.modul,...d.unitat}));
   UNITATS.forEach(u=>u.seccions.forEach(s=>s.llicons.forEach(l=>l.exercicis.forEach((e,i)=>{EX[l.id+'#'+i]={e,sid:s.id}}))));
 }
