@@ -360,9 +360,9 @@ const desa=()=>{P.ts=Date.now();try{localStorage.setItem(KEY,JSON.stringify(P))}
 /* ---------- compte de Google de l'institut i núvol (Supabase) ---------- */
 const WEB=!!(window.supabase&&window.supabase.createClient);
 let SB=null, JO=null, nuvolT=null;
-function pujaNuvol(){if(!JO)return;clearTimeout(nuvolT);nuvolT=setTimeout(enviaNuvol,1500)}
+function pujaNuvol(){if(!JO||JO.profe)return;clearTimeout(nuvolT);nuvolT=setTimeout(enviaNuvol,1500)}
 async function enviaNuvol(){
-  if(!JO)return;clearTimeout(nuvolT);xpSetmanaActual();
+  if(!JO||JO.profe)return;clearTimeout(nuvolT);xpSetmanaActual();
   try{await SB.rpc('gota_desa_meu',{p_dades:{...P,jugador:null},p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp,p_llicons:Object.keys(P.fetes).length})}catch(e){}
 }
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&nuvolT)enviaNuvol()});
@@ -402,7 +402,7 @@ function pantallaNoAlumne(email){
   $('#prova').onclick=()=>{JO=null;inici()};
 }
 async function tancaSessio(){
-  await enviaNuvol();await SB.auth.signOut();JO=null;P=nouP();try{localStorage.removeItem(KEY)}catch(e){}pantallaEntra();
+  await enviaNuvol();await SB.auth.signOut();const eraProfe=JO&&JO.profe;JO=null;if(!eraProfe){P=nouP();try{localStorage.removeItem(KEY)}catch(e){}}pantallaEntra();
 }
 function recuperaVides(){
   if(P.vides>=MAX_VIDES){P.vidaTs=Date.now();return}
@@ -468,8 +468,11 @@ function moduls(){
 }
 function progres(ll){const f=ll.filter(l=>P.fetes[l.id]).length;return{f,t:ll.length,pc:ll.length?Math.round(f/ll.length*100):0}}
 const pline=(p,txt)=>`<div class="pline"><span class="pb"><i style="width:${p.pc}%"></i></span><span>${txt||`${p.f}/${p.t}`}</span></div>`;
-const salutacio=()=>JO?`Hola, ${esc(JO.nom)}! `:'Hola! ';
+const salutacio=()=>JO?(JO.profe?'Hola, profe! ':`Hola, ${esc(JO.nom)}! `):'Hola! ';
 function peu(){
+  if(JO&&JO.profe)return `<div class="foot"><span>Mode professor. El teu progrés es guarda només en aquest dispositiu i no surt al rànquing.</span>
+    <a class="linkbtn" href="https://dashboard-docent.vercel.app/gota" target="_blank" rel="noreferrer">Veure el progrés dels alumnes</a>
+    <button class="linkbtn" id="logout">Tancar la sessió</button></div>`;
   return JO?`<div class="foot"><span>Has entrat com a ${esc(JO.nom)}${JO.classe?` (${esc(JO.classe)})`:''}. El progrés es desa al teu compte.</span>
     <button class="linkbtn" id="logout">Tancar la sessió</button></div>`:
     `<div class="foot"><span>El progrés es guarda només en aquest dispositiu.</span>
@@ -593,13 +596,16 @@ async function pantallaRanking(){
     return;
   }
   xpSetmanaActual();
+  const cls=JO.profe?(JO.classes||[]):[JO.classe];if(JO.profe&&!cls.includes(JO.vista))JO.vista=cls[0];
+  const tabs=JO.profe&&cls.length>1?`<div style="display:flex;gap:8px">${cls.map(c=>`<button class="big ${c===JO.vista?'':'ghost'}" style="font-size:17px;padding:8px" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>`:'';
   $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
-    <div><h2>Rànquing de la setmana</h2><p class="sub">Classe ${esc(JO.classe||'')} · els punts es reinicien cada dilluns</p></div>
+    <div><h2>Rànquing de la setmana</h2><p class="sub">Classe ${esc((JO.profe?JO.vista:JO.classe)||'')} · els punts es reinicien cada dilluns</p></div>${tabs}
     <ol class="rlist" id="rlist"><li class="sub">Carregant…</li></ol></div></div>`;
   $('#surt').onclick=inici;
+  document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{JO.vista=b.dataset.c;pantallaRanking()});
   try{
     await enviaNuvol();
-    const {data:rows,error}=await SB.rpc('gota_ranking_meu',{p_setmana:P.setmana});if(error)throw error;
+    const {data:rows,error}=JO.profe?await SB.rpc('gota_ranking_classe',{p_classe:JO.vista,p_setmana:P.setmana}):await SB.rpc('gota_ranking_meu',{p_setmana:P.setmana});if(error)throw error;
     const el=$('#rlist');if(!el)return;
     el.innerHTML=rows.length?'':'<li class="sub">Encara no ha puntuat ningú aquesta setmana. Fes una lliçó i sigues el primer!</li>';
     rows.forEach((r,i)=>{const li=document.createElement('li');li.className='rrow'+(r.jo?' me':'');li.style.animationDelay=(i*.04)+'s';
@@ -849,6 +855,7 @@ async function arrenca(){
   const {data,error}=await SB.rpc('gota_jo');
   if(error){JO=null;return inici()}
   if(!data)return pantallaNoAlumne(session.user.email);
+  if(data.profe){JO={profe:true,classes:data.classes||[],email:session.user.email};return inici()}
   JO={nom:data.nom,cognoms:data.cognoms,classe:data.classe,email:session.user.email};
   fusiona(data.dades);inici();
 }
