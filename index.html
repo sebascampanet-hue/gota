@@ -384,8 +384,8 @@ function fusiona(srv){
 const G_ICON='<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.2C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 7l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.2C.9 16.5 0 20.1 0 24s.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
 function pantallaEntra(msg){
   window.scrollTo(0,0);
-  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.contenta}" alt="La Gota, mascota dels Cicles">
-    <h2>Hola! Sóc la Gota</h2>
+  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.contenta}" alt="En Xop, mascota dels Cicles">
+    <h2>Hola! Som en Xop</h2>
     <p style="margin:0;color:var(--muted);max-width:34ch">Entra amb el teu compte de Google de l'institut per desar el progrés i sortir al rànquing de la teva classe.</p>
     ${msg?`<p class="msg" style="max-width:34ch">${esc(msg)}</p>`:''}
     <div class="actions"><button class="big google" id="google">${G_ICON}<span>Entra amb Google</span></button></div></div>`;
@@ -394,7 +394,7 @@ function pantallaEntra(msg){
     if(error){$('#google').disabled=false;pantallaEntra('No s\'ha pogut connectar. Revisa la connexió i torna-ho a provar.')}};
 }
 function pantallaNoAlumne(email){
-  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.pensativa}" alt="La Gota pensativa">
+  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.pensativa}" alt="En Xop pensatiu">
     <h2>Aquest compte no és d'alumne</h2>
     <p style="margin:0;color:var(--muted);max-width:34ch">Has entrat com a ${esc(email)}, però no surts a cap llista de classe. Si ets alumne, entra amb el correu de l'institut. Si no, pots provar l'app sense desar res al núvol.</p>
     <div class="actions"><button class="big" id="altre">Entra amb un altre compte</button><button class="big ghost" id="prova">Prova sense compte</button></div></div>`;
@@ -487,7 +487,7 @@ function lligaPeu(){
 }
 function pantallaModuls(){
   window.scrollTo(0,0);
-  let html=topbar()+`<main class="gut"><div class="hero"><img src="${IMG.contenta}" alt="La Gota, mascota dels Cicles"><div class="bubble">${salutacio()}Quin mòdul vols practicar?</div></div>`;
+  let html=topbar()+`<main class="gut"><div class="hero"><img src="${IMG.contenta}" alt="En Xop, mascota dels Cicles"><div class="bubble">${salutacio()}Quin mòdul vols practicar?</div></div>`;
   moduls().forEach(m=>{const p=progres(m.temes.flatMap(totesLlicons));
     html+=`<button class="card modul" data-m="${esc(m.id)}"><div class="eyebrow">Mòdul · ${m.temes.length} ${m.temes.length===1?'tema':'temes'}</div><h2>${esc(m.titol)}</h2>${pline(p,`${p.f}/${p.t} lliçons`)}</button>`});
   $('#app').innerHTML=html+'</main>'+peu();
@@ -513,7 +513,7 @@ function pantallaTema(u,m){
     const fetes=ll.filter(l=>P.fetes[l.id]).length;
     const msg=!pend?'Has acabat tota la unitat! Ets una màquina!':
       fetes===0?`${salutacio()}Començam amb «${esc(pend.titol)}»?`:`Vas per ${fetes} de ${ll.length}. Seguim amb «${esc(pend.titol)}»!`;
-    html+=`<div class="hero"><img src="${IMG[pend?'contenta':'celebrant']}" alt="La Gota, mascota dels Cicles"><div class="bubble">${msg}</div></div>`;
+    html+=`<div class="hero"><img src="${IMG[pend?'contenta':'celebrant']}" alt="En Xop, mascota dels Cicles"><div class="bubble">${msg}</div></div>`;
     const ne=nErrors();
     if(ne)html+=`<button class="review" id="repas"><span class="ric">${ICON2.redo}</span><span><b>Repàs d'errors</b><small>${ne} ${ne===1?'pregunta':'preguntes'} per tornar a fer</small></span></button>`;
     const dia=diaActual(),pg=Math.min(100,Math.round(dia.n/P.objectiu*100)),fet=dia.n>=P.objectiu;
@@ -794,7 +794,7 @@ function seguent(){
 }
 function pantallaFinal(img,titol,sub,tiles,extra='',next=inici){
   const anim=img==='celebrant';
-  $('#app').innerHTML=`<div class="end gut"><img src="${anim?IMG.anim:IMG[img]}" class="${anim?'anim':''}" alt="La Gota">
+  $('#app').innerHTML=`<div class="end gut"><img src="${anim?IMG.anim:IMG[img]}" class="${anim?'anim':''}" alt="En Xop">
     <h2>${titol}</h2><p style="margin:0;color:var(--muted);max-width:34ch">${sub}</p>
     <div class="tiles">${tiles}</div>${extra}
     <div class="actions"><button class="big" id="cont">Continua</button></div></div>`;
@@ -836,7 +836,7 @@ function fiRepte(temps){
 function senseVides(){
   recuperaVides();
   const min=Math.max(1,Math.ceil((P.vidaTs+MIN_PER_VIDA*60000-Date.now())/60000));
-  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.trista}" alt="La Gota trista">
+  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.trista}" alt="En Xop trist">
     <h2>T'has quedat sense vides</h2>
     <p style="margin:0;color:var(--muted);max-width:32ch">Recuperes una vida cada ${MIN_PER_VIDA} minuts. La propera arriba d'aquí a ${min} min. Mentrestant pots fer el repàs d'errors o un repte, que no gasten vides.</p>
     <div class="actions"><button class="big" id="cont">Torna a l'inici</button></div></div>`;
