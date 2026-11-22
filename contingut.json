@@ -1,0 +1,1118 @@
+{
+ "modul": {
+  "id": "valoracio",
+  "titol": "Valoració de la condició física"
+ },
+ "unitat": {
+  "id": "uf3-part1",
+  "titol": "UF 3 · La funció reguladora (I): el sistema nerviós",
+  "seccions": [
+   {
+    "id": "s1",
+    "titol": "L'homeòstasi",
+    "llicons": [
+     {
+      "id": "s1-l1",
+      "titol": "L'equilibri del medi intern",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què és l'homeòstasi?",
+        "opcions": [
+         "El conjunt de fenòmens d'autoregulació que mantenen estable el medi intern",
+         "La capacitat del cos de fer exercici intens",
+         "La transmissió de l'impuls nerviós entre neurones",
+         "La segregació d'hormones per la mèdul·la suprarenal"
+        ],
+        "correcta": 0,
+        "explicacio": "L'homeòstasi és l'autoregulació que manté un equilibri estable del medi intern."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "L'organisme tendeix a conservar certa homogeneïtat interna per mantenir-se viu davant un ambient extern canviant.",
+        "correcta": true,
+        "explicacio": "Per exemple, quan sortim de casa un dia d'hivern i canvia la temperatura."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per mantenir l'equilibri homeostàtic, l'organisme té una doble funció. Quina és?",
+        "opcions": [
+         "Obtenir informació i interpretar-la per respondre",
+         "Respirar i bategar",
+         "Segregar hormones i produir orina",
+         "Contreure i relaxar els músculs"
+        ],
+        "correcta": 0,
+        "explicacio": "1) Obtenir informació (interna i externa) i 2) interpretar-la i respondre de manera equilibrada."
+       },
+       {
+        "tipus": "buit",
+        "frase": "El sistema nerviós regula l'homeòstasi mitjançant ___ .",
+        "opcions": [
+         "impulsos nerviosos",
+         "hormones",
+         "nutrients",
+         "glucosa"
+        ],
+        "correcta": 0,
+        "explicacio": "El sistema endocrí és el que usa hormones."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada sistema amb com regula l'homeòstasi",
+        "parelles": [
+         [
+          "Sistema nerviós",
+          "Impulsos nerviosos"
+         ],
+         [
+          "Sistema endocrí",
+          "Hormones"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin sistema regula la concentració de glucosa en sang, segons els apunts?",
+        "opcions": [
+         "El sistema endocrí",
+         "El sistema nerviós",
+         "El sistema nerviós perifèric",
+         "El cerebel"
+        ],
+        "correcta": 0,
+        "explicacio": "El sistema endocrí, per mitjà de la segregació d'hormones."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin d'aquests aspectes regula el sistema nerviós?",
+        "opcions": [
+         "La tensió arterial",
+         "La concentració de glucosa",
+         "El creixement dels ossos",
+         "El color de la pell"
+        ],
+        "correcta": 0,
+        "explicacio": "També la freqüència respiratòria i els nivells d'oxigen en sang."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "L'exercici físic és un dels principals factors que alteren l'homeòstasi.",
+        "correcta": true,
+        "explicacio": "Fa passar l'organisme del repòs a l'activitat intensa i n'eleva el ritme de funcionament."
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena com respon l'organisme per mantenir l'homeòstasi",
+        "passos": [
+         "Hi ha un canvi a l'ambient (fa fred en sortir de casa)",
+         "L'organisme obté informació de les seves condicions",
+         "Interpreta aquesta informació",
+         "Respon de manera equilibrada per evitar el desequilibri"
+        ]
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Com s'anomena el conjunt de fenòmens d'autoregulació que mantenen estable el medi intern?",
+        "respostes": [
+         "homeòstasi",
+         "homeostasi"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s2",
+    "titol": "El teixit nerviós",
+    "llicons": [
+     {
+      "id": "s2-l1",
+      "titol": "La neurona i les cèl·lules glials",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quines són les dues parts del sistema nerviós?",
+        "opcions": [
+         "Sistema nerviós central i perifèric",
+         "Cervell i cerebel",
+         "Simpàtic i parasimpàtic",
+         "Substància blanca i grisa"
+        ],
+        "correcta": 0,
+        "explicacio": "SNC (encèfal i mèdul·la espinal) i SNP (nervis cranials, raquidis i ganglis)."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada part de la neurona amb la seva funció",
+        "parelles": [
+         [
+          "Cos cel·lular (soma)",
+          "Allotja el nucli: centre d'informació"
+         ],
+         [
+          "Dendrites",
+          "Prolongacions curtes que reben informació"
+         ],
+         [
+          "Axó",
+          "Prolongació llarga per on surt l'impuls"
+         ],
+         [
+          "Botons terminals",
+          "Transmeten el senyal a la següent cèl·lula"
+         ]
+        ]
+       },
+       {
+        "tipus": "buit",
+        "frase": "L'axó està cobert per la beina de ___ , que n'accelera la transmissió.",
+        "opcions": [
+         "mielina",
+         "glucosa",
+         "dendrites",
+         "substància grisa"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El teixit nerviós està compost només per neurones.",
+        "correcta": false,
+        "explicacio": "També té cèl·lules glials."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina d'aquestes NO és una funció de les cèl·lules glials?",
+        "opcions": [
+         "Transmetre ordres als músculs",
+         "Protegir les neurones",
+         "Aportar-los nutrients",
+         "Participar en la reparació de lesions"
+        ],
+        "correcta": 0,
+        "explicacio": "Les glials protegeixen, donen estructura, nodreixen, faciliten la transmissió i participen en la regeneració, però no transmeten ordres."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Les dendrites són…",
+        "opcions": [
+         "Prolongacions curtes receptores d'informació",
+         "Prolongacions llargues per on surt l'impuls",
+         "Cèl·lules que protegeixen les neurones",
+         "El nucli de la neurona"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "img": "img-neurona.jpg",
+        "pregunta": "Relaciona cada número amb la part de la neurona",
+        "parelles": [
+         [
+          "1",
+          "Dendrites"
+         ],
+         [
+          "2",
+          "Cos cel·lular (soma)"
+         ],
+         [
+          "3",
+          "Axó"
+         ],
+         [
+          "4",
+          "Beina de mielina"
+         ],
+         [
+          "5",
+          "Botons terminals"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "img": "img-neurona.jpg",
+        "pregunta": "Per quina part, marcada amb un número, surt l'impuls nerviós?",
+        "opcions": [
+         "3",
+         "1",
+         "2",
+         "6"
+        ],
+        "correcta": 0,
+        "explicacio": "El 3 és l'axó, la prolongació llarga per on surt l'impuls."
+       },
+       {
+        "tipus": "test",
+        "img": "img-neurona.jpg",
+        "pregunta": "Quin número assenyala el nucli de la neurona?",
+        "opcions": [
+         "6",
+         "2",
+         "4",
+         "5"
+        ],
+        "correcta": 0,
+        "explicacio": "El nucli és dins el cos cel·lular (2)."
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Com s'anomena la prolongació llarga de la neurona per on surt l'impuls nerviós?",
+        "respostes": [
+         "axó",
+         "axo",
+         "l'axó"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "s2-l2",
+      "titol": "Tipus de neurones i substàncies",
+      "exercicis": [
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada tipus de neurona amb la seva funció",
+        "parelles": [
+         [
+          "Sensitives o aferents",
+          "Reben senyals"
+         ],
+         [
+          "Motores o eferents",
+          "Transmeten ordres"
+         ],
+         [
+          "Interneurones",
+          "Connecten neurones entre si"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "On es troben les interneurones?",
+        "opcions": [
+         "Al sistema nerviós central",
+         "Al sistema nerviós perifèric",
+         "Als músculs",
+         "A les glàndules"
+        ],
+        "correcta": 0,
+        "explicacio": "Les sensitives i les motores es troben al SNP."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Les neurones motores també s'anomenen eferents.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "De què està formada la substància grisa?",
+        "opcions": [
+         "De cossos neuronals",
+         "D'axons i beines de mielina",
+         "De cèl·lules glials",
+         "De teixit conjuntiu"
+        ],
+        "correcta": 0,
+        "explicacio": "Processa la informació i elabora respostes."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina és la funció de la substància blanca?",
+        "opcions": [
+         "Conduir la informació",
+         "Processar la informació",
+         "Produir hormones",
+         "Protegir l'encèfal"
+        ],
+        "correcta": 0,
+        "explicacio": "Està formada per axons i beines de mielina."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "A la mèdul·la espinal, la substància blanca es troba a la part externa.",
+        "correcta": true,
+        "explicacio": "Al cervell i al cerebel passa al revés: la grisa és a l'escorça (fora)."
+       },
+       {
+        "tipus": "buit",
+        "frase": "La substància grisa es troba a l'___ del cervell i del cerebel.",
+        "opcions": [
+         "escorça",
+         "interior profund",
+         "axó",
+         "bulb raquidi"
+        ],
+        "correcta": 0
+       }
+      ]
+     },
+     {
+      "id": "s2-l3",
+      "titol": "L'impuls nerviós i la sinapsi",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quantes neurones té aproximadament el sistema nerviós humà?",
+        "opcions": [
+         "Uns deu mil milions",
+         "Un milió",
+         "Unes cent mil",
+         "Uns deu mil"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què són els impulsos nerviosos?",
+        "opcions": [
+         "Senyals electroquímics",
+         "Hormones",
+         "Cèl·lules glials",
+         "Vasos sanguinis"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "El pas de l'impuls nerviós d'una neurona a la següent s'anomena ___ .",
+        "opcions": [
+         "sinapsi",
+         "homeòstasi",
+         "plasticitat",
+         "mielinització"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "A la sinapsi, les neurones es toquen entre elles per passar-se l'impuls.",
+        "correcta": false,
+        "explicacio": "No es toquen: la connexió es fa mitjançant neurotransmissors."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com s'anomenen les molècules que fan possible la sinapsi?",
+        "opcions": [
+         "Neurotransmissors",
+         "Hormones",
+         "Enzims",
+         "Glials"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Les fibres mielinitzades condueixen l'impuls fins a…",
+        "opcions": [
+         "50 vegades més ràpid",
+         "2 vegades més ràpid",
+         "10 vegades més lent",
+         "Igual de ràpid"
+        ],
+        "correcta": 0,
+        "explicacio": "…que les fibres no mielinitzades."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La substància blanca s'anomena així pel color de la mielina.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Cap a on porten finalment els senyals els centres nerviosos?",
+        "opcions": [
+         "Als òrgans executors: músculs i glàndules",
+         "Als ossos",
+         "A la pell",
+         "Al cor exclusivament"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena el recorregut de l'impuls nerviós",
+        "passos": [
+         "Les dendrites reben la informació",
+         "El cos cel·lular la processa",
+         "L'impuls surt per l'axó",
+         "Els botons terminals alliberen neurotransmissors",
+         "La neurona següent rep el senyal (sinapsi)"
+        ]
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Com s'anomena el pas de l'impuls nerviós d'una neurona a la següent?",
+        "respostes": [
+         "sinapsi"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "s2-l4",
+      "titol": "La plasticitat neuronal",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què és la plasticitat neuronal?",
+        "opcions": [
+         "La capacitat del sistema nerviós de canviar estructura i funcionament per adaptar-se",
+         "La flexibilitat dels músculs",
+         "La velocitat de l'impuls nerviós",
+         "La capa de mielina de l'axó"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La plasticitat neuronal permet que cèl·lules danyades formin noves connexions sinàptiques.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "En quines dues situacions és especialment important l'activitat física per a la plasticitat?",
+        "opcions": [
+         "Infància i rehabilitació",
+         "Vellesa i competició",
+         "Estiu i hivern",
+         "Dieta i descans"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "A la infància, la ___ estimula els processos neurogènics i sinàptics.",
+        "opcions": [
+         "psicomotricitat",
+         "dieta",
+         "son",
+         "hidratació"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "L'estudi de Hillman et al. (2014) mostra més activació cerebral en nens que van fer un programa d'exercici físic.",
+        "correcta": true
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Com s'anomena la capacitat del sistema nerviós per canviar i adaptar-se als canvis i a les pèrdues?",
+        "respostes": [
+         "plasticitat neuronal",
+         "plasticitat"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s3",
+    "titol": "El sistema nerviós central",
+    "llicons": [
+     {
+      "id": "s3-l1",
+      "titol": "L'encèfal i el cervell",
+      "exercicis": [
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada centre del SNC amb on s'allotja",
+        "parelles": [
+         [
+          "Encèfal",
+          "Crani"
+         ],
+         [
+          "Mèdul·la espinal",
+          "Columna vertebral"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quines són les tres parts de l'encèfal?",
+        "opcions": [
+         "Cervell, cerebel i tronc encefàlic",
+         "Cervell, mèdul·la i nervis",
+         "Tàlam, hipotàlem i bulb",
+         "Lòbul frontal, parietal i occipital"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin és l'òrgan més voluminós de l'encèfal?",
+        "opcions": [
+         "El cervell",
+         "El cerebel",
+         "El tronc encefàlic",
+         "El tàlam"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina d'aquestes NO és una funció del cervell?",
+        "opcions": [
+         "Mantenir el to muscular i l'equilibri",
+         "La memòria",
+         "El llenguatge",
+         "El raonament"
+        ],
+        "correcta": 0,
+        "explicacio": "Mantenir el to muscular i l'equilibri és funció del cerebel."
+       },
+       {
+        "tipus": "buit",
+        "frase": "Els dos hemisferis estan units pel ___ .",
+        "opcions": [
+         "cos callós",
+         "tàlam",
+         "bulb raquidi",
+         "cerebel"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Els plecs de l'escorça cerebral s'anomenen circumvolucions.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com s'anomena la fissura que separa els dos hemisferis?",
+        "opcions": [
+         "Cissura interhemisfèrica",
+         "Cos callós",
+         "Canal espinal",
+         "Solc central"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "img": "img-encefal.jpg",
+        "pregunta": "Relaciona cada número amb la part de l'encèfal",
+        "parelles": [
+         [
+          "1",
+          "Cervell"
+         ],
+         [
+          "2",
+          "Cerebel"
+         ],
+         [
+          "3",
+          "Tronc encefàlic"
+         ]
+        ]
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Quina estructura uneix els dos hemisferis cerebrals?",
+        "respostes": [
+         "cos callós",
+         "cos callos"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "s3-l2",
+      "titol": "Escorça i diencèfal",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quins són els quatre lòbuls de cada hemisferi?",
+        "opcions": [
+         "Frontal, parietal, temporal i occipital",
+         "Frontal, central, lateral i posterior",
+         "Superior, inferior, dret i esquerre",
+         "Tàlam, hipotàlem, bulb i protuberància"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Cada funció de l'escorça es duu a terme en una àrea concreta.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "On es troba l'àrea motora voluntària?",
+        "opcions": [
+         "A la regió postfrontal",
+         "A la regió frontal intermèdia",
+         "Al lòbul occipital",
+         "Al cerebel"
+        ],
+        "correcta": 0,
+        "explicacio": "L'àrea motora involuntària (premotora) és a la regió frontal intermèdia."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada estructura del diencèfal amb la seva funció",
+        "parelles": [
+         [
+          "Tàlam",
+          "Filtra la informació sensorial i es relaciona amb l'estat d'ànim"
+         ],
+         [
+          "Hipotàlem",
+          "Coordina gana, set, temperatura i sistema endocrí"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina estructura coordina la temperatura corporal i el sistema endocrí?",
+        "opcions": [
+         "L'hipotàlem",
+         "El tàlam",
+         "El cerebel",
+         "La protuberància"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El diencèfal es troba a la part més alta del crani.",
+        "correcta": false,
+        "explicacio": "Està allotjat a la base del crani."
+       },
+       {
+        "tipus": "parelles",
+        "img": "img-lobuls.jpg",
+        "pregunta": "Relaciona cada número amb el seu lòbul",
+        "parelles": [
+         [
+          "1",
+          "Frontal"
+         ],
+         [
+          "2",
+          "Parietal"
+         ],
+         [
+          "3",
+          "Temporal"
+         ],
+         [
+          "4",
+          "Occipital"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "img": "img-lobuls.jpg",
+        "pregunta": "Quin número és el lòbul occipital?",
+        "opcions": [
+         "4",
+         "1",
+         "2",
+         "3"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Quina estructura del diencèfal coordina la gana, la set, la temperatura i el sistema endocrí?",
+        "respostes": [
+         "hipotàlem",
+         "hipotalem"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "s3-l3",
+      "titol": "Cerebel, tronc i mèdul·la",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quina d'aquestes és una funció del cerebel?",
+        "opcions": [
+         "Coordinar activitats complexes ja apreses, com anar en bicicleta",
+         "Regir la respiració",
+         "Coordinar la gana i la set",
+         "Unir els dos hemisferis"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El cerebel manté el to muscular i l'equilibri.",
+        "correcta": true
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada zona del tronc encefàlic amb la seva funció",
+        "parelles": [
+         [
+          "Mesencèfal",
+          "Visió, audició i alerta general"
+         ],
+         [
+          "Protuberància",
+          "Connecta bulb i mèdul·la amb hemisferis i cerebel"
+         ],
+         [
+          "Bulb raquidi",
+          "Respiració i batec del cor"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina zona del tronc encefàlic regeix la respiració i el batec del cor?",
+        "opcions": [
+         "El bulb raquidi",
+         "El mesencèfal",
+         "La protuberància",
+         "El tàlam"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quant mesura aproximadament la mèdul·la espinal?",
+        "opcions": [
+         "0,5 m",
+         "5 cm",
+         "1,5 m",
+         "2 m"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "De la mèdul·la espinal surten ___ parells de nervis raquidis.",
+        "opcions": [
+         "31",
+         "12",
+         "10",
+         "50"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Enretirar la mà quan ens cremam és un acte reflex que té la base a la mèdul·la espinal.",
+        "correcta": true,
+        "explicacio": "Igual que l'efecte rotular: respostes automàtiques i inconscients."
+       },
+       {
+        "tipus": "parelles",
+        "img": "img-tronc.jpg",
+        "pregunta": "Relaciona cada número amb la zona del tronc encefàlic",
+        "parelles": [
+         [
+          "1",
+          "Mesencèfal"
+         ],
+         [
+          "2",
+          "Protuberància"
+         ],
+         [
+          "3",
+          "Bulb raquidi"
+         ]
+        ]
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena les zones del tronc encefàlic de dalt a baix",
+        "passos": [
+         "Mesencèfal",
+         "Protuberància",
+         "Bulb raquidi"
+        ]
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Quina zona del tronc encefàlic regeix la respiració i el batec del cor?",
+        "respostes": [
+         "bulb raquidi",
+         "bulb"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s4",
+    "titol": "Perifèric i respostes",
+    "llicons": [
+     {
+      "id": "s4-l1",
+      "titol": "Els nervis",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quins són els òrgans que componen el sistema nerviós perifèric?",
+        "opcions": [
+         "Els nervis",
+         "L'encèfal i la mèdul·la",
+         "Les glàndules",
+         "Els músculs"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què són els nervis?",
+        "opcions": [
+         "Cordons d'axons protegits per teixit conjuntiu",
+         "Cèl·lules glials",
+         "Grups de cossos neuronals dins el crani",
+         "Hormones"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada tipus de nervi amb la direcció de la informació",
+        "parelles": [
+         [
+          "Nervis motors",
+          "Del sistema central als músculs i glàndules"
+         ],
+         [
+          "Nervis sensitius",
+          "Dels receptors al sistema central"
+         ],
+         [
+          "Nervis mixts",
+          "En els dos sentits"
+         ]
+        ]
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La majoria dels nervis són mixts.",
+        "correcta": true
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada tipus de nervi amb el nombre de parells",
+        "parelles": [
+         [
+          "Nervis cranials",
+          "12 parells"
+         ],
+         [
+          "Nervis raquidis",
+          "31 parells"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "D'on surten els nervis cranials?",
+        "opcions": [
+         "De la base del cervell i del tronc encefàlic",
+         "De la mèdul·la espinal",
+         "Del cerebel",
+         "Del cor"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena el camí de la informació, de l'estímul a la resposta",
+        "passos": [
+         "Un receptor capta l'estímul",
+         "Un nervi sensitiu porta la informació al sistema central",
+         "El sistema central elabora la resposta",
+         "Un nervi motor porta l'ordre al múscul"
+        ]
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Quants parells de nervis cranials tenim? (escriu el número)",
+        "respostes": [
+         "12",
+         "dotze"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "s4-l2",
+      "titol": "Somàtic i autònom",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quin sistema controla les respostes voluntàries i conscients?",
+        "opcions": [
+         "El somàtic",
+         "L'autònom o vegetatiu",
+         "El parasimpàtic",
+         "L'endocrí"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina d'aquestes respostes depèn del sistema autònom?",
+        "opcions": [
+         "La sudoració",
+         "Córrer",
+         "Saltar",
+         "Copejar una pilota"
+        ],
+        "correcta": 0,
+        "explicacio": "També la freqüència cardíaca o el reflex medul·lar d'evacuació."
+       },
+       {
+        "tipus": "buit",
+        "frase": "Les respostes voluntàries s'elaboren bàsicament a l'___ cerebral.",
+        "opcions": [
+         "escorça",
+         "hipotàlem",
+         "bulb",
+         "mèdul·la"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Durant l'exercici físic només intervé el sistema somàtic.",
+        "correcta": false,
+        "explicacio": "Hi intervenen tots dos: el somàtic i el vegetatiu."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Classifica cada acció",
+        "parelles": [
+         [
+          "Accelerar en un sprint",
+          "Somàtic"
+         ],
+         [
+          "Augment de la freqüència cardíaca",
+          "Autònom"
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "id": "s4-l3",
+      "titol": "Simpàtic i parasimpàtic",
+      "exercicis": [
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada sistema amb com actua",
+        "parelles": [
+         [
+          "Simpàtic",
+          "Per estimulació"
+         ],
+         [
+          "Parasimpàtic",
+          "Per inhibició"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin sistema activa l'organisme davant l'exercici intens o una situació d'estrès?",
+        "opcions": [
+         "El simpàtic",
+         "El parasimpàtic",
+         "El somàtic",
+         "El cerebel"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin d'aquests efectes és del sistema simpàtic durant l'esport?",
+        "opcions": [
+         "Augmenta la freqüència cardíaca",
+         "Disminueix la pressió arterial",
+         "Augmenta la motilitat digestiva",
+         "Augmenta la producció d'orina"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "La mèdul·la suprarenal segrega ___ , que reforça els efectes del simpàtic.",
+        "opcions": [
+         "adrenalina",
+         "insulina",
+         "mielina",
+         "glucosa"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Amb el simpàtic actiu, el fetge allibera més glucosa.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina és la funció principal del parasimpàtic?",
+        "opcions": [
+         "Restaurar la situació prèvia a l'alarma",
+         "Preparar el cos per a l'esforç",
+         "Segregar adrenalina",
+         "Accelerar el cor"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Simpàtic o parasimpàtic?",
+        "parelles": [
+         [
+          "Dilata els vasos dels músculs",
+          "Simpàtic"
+         ],
+         [
+          "Afavoreix la digestió",
+          "Parasimpàtic"
+         ],
+         [
+          "Augmenta la tensió arterial",
+          "Simpàtic"
+         ],
+         [
+          "Disminueix la freqüència cardíaca",
+          "Parasimpàtic"
+         ]
+        ]
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El simpàtic i el parasimpàtic s'activen alhora sobre el mateix òrgan, com si trepitjàssim accelerador i fre.",
+        "correcta": false,
+        "explicacio": "Mai no s'activen a l'hora: actua l'un o l'altre segons les necessitats."
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Quina hormona segrega la mèdul·la suprarenal per reforçar els efectes del simpàtic?",
+        "respostes": [
+         "adrenalina"
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14C8C8">
+<link rel="icon" href="mascota-contenta.png">
+<link rel="apple-touch-icon" href="mascota-contenta.png">
+<style>*,*::before,*::after{box-sizing:border-box}html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Gota · Cicles Artà</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@500;600;700&display=swap">
+<style>
+/* Layout: one-column phone app; home = zigzag path of lesson stones on a running-track lane, lesson = full-screen card + bottom check bar */
+:root{
+  --bg:#F4FAFA; --surface:#FFFFFF; --ink:#10292B; --muted:#5B7275; --line:#D5E6E7;
+  --accent:#14C8C8; --accent-deep:#0A9A9C; --accent-soft:#D6F5F5;
+  --ok:#2FB35A; --ok-soft:#E1F6E7; --ok-deep:#1E8A42;
+  --bad:#E5484D; --bad-soft:#FDE6E7; --bad-deep:#B4262B;
+  --gold:#F5B014; --locked:#C9D6D7; --locked-deep:#A7B8B9;
+  --chal:#7C5CE6; --chal-deep:#5A3DC0; --chal-soft:#E8E1FC;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C1A1B; --surface:#132628; --ink:#E6F4F4; --muted:#93AEB0; --line:#25403F;
+  --accent:#22D3D3; --accent-deep:#0E8F91; --accent-soft:#123A3B;
+  --ok:#3CC66A; --ok-soft:#12301D; --ok-deep:#2C9A50;
+  --bad:#F0626A; --bad-soft:#3A1719; --bad-deep:#B83A40;
+  --gold:#F7BD3A; --locked:#2E4547; --locked-deep:#21393A; --chal:#9A80F2; --chal-deep:#6A4FD0; --chal-soft:#2A2350; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1A1B; --surface:#132628; --ink:#E6F4F4; --muted:#93AEB0; --line:#25403F;
+  --accent:#22D3D3; --accent-deep:#0E8F91; --accent-soft:#123A3B;
+  --ok:#3CC66A; --ok-soft:#12301D; --ok-deep:#2C9A50;
+  --bad:#F0626A; --bad-soft:#3A1719; --bad-deep:#B83A40;
+  --gold:#F7BD3A; --locked:#2E4547; --locked-deep:#21393A; --chal:#9A80F2; --chal-deep:#6A4FD0; --chal-soft:#2A2350; color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.4;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.app{max-width:520px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:2px solid var(--line);padding-block:10px}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.02em;text-transform:uppercase;color:var(--accent-deep)}
+.stats{display:flex;gap:14px}
+.stat{display:flex;align-items:center;gap:4px;font-family:var(--display);font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.stat svg{width:22px;height:22px}
+.st-streak{color:var(--gold)} .st-xp{color:var(--accent-deep)} .st-lives{color:var(--bad)}
+
+.sound{background:none;border:0;padding:2px;color:var(--muted);display:grid;place-items:center}
+.sound svg{width:24px;height:24px}
+.sound.on{color:var(--accent-deep)}
+/* home */
+.hero{display:flex;align-items:flex-end;gap:12px;padding-block:18px 6px}
+.hero img{width:96px;flex:none}
+.bubble{position:relative;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:10px 14px;font-weight:600;margin-bottom:28px;min-width:0}
+.bubble::after{content:"";position:absolute;left:-9px;bottom:16px;width:14px;height:14px;background:var(--surface);border-left:2px solid var(--line);border-bottom:2px solid var(--line);transform:rotate(45deg)}
+.unit-head{margin-top:14px;border-radius:16px;background:var(--accent);color:#06292A;padding:14px 16px}
+.unit-head .eyebrow{font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:14px;opacity:.8}
+.unit-head h1{font-family:var(--display);font-weight:800;font-size:28px;line-height:1.05;margin:2px 0 0;text-wrap:balance}
+.section{margin-top:26px}
+.sec-label{display:flex;align-items:center;gap:10px;color:var(--muted);font-family:var(--display);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:15px}
+.sec-label::before,.sec-label::after{content:"";flex:1;height:2px;background:var(--line)}
+.path{display:flex;flex-direction:column;align-items:center;gap:18px;padding-block:18px 6px}
+.node{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0}
+.stone{width:76px;height:70px;border-radius:50%;display:grid;place-items:center;background:var(--accent);box-shadow:0 7px 0 var(--accent-deep);transition:transform .08s}
+.stone svg{width:34px;height:34px;color:#fff}
+.node:active .stone{transform:translateY(5px);box-shadow:0 2px 0 var(--accent-deep)}
+.node.done .stone{background:var(--gold);box-shadow:0 7px 0 #C68A06}
+.node.locked .stone{background:var(--locked);box-shadow:0 7px 0 var(--locked-deep)}
+.node.locked{cursor:not-allowed}
+.node.current .stone{outline:5px solid var(--accent-soft);outline-offset:4px}
+.node .lbl{font-weight:700;font-size:15px;max-width:180px;text-align:center;text-wrap:balance}
+.node.locked .lbl{color:var(--muted)}
+.foot{color:var(--muted);font-size:14px;text-align:center;padding-block:30px 40px;display:flex;flex-direction:column;gap:10px;align-items:center}
+.linkbtn{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:14px}
+
+/* lesson */
+.lesson{display:flex;flex-direction:column;min-height:100%;flex:1}
+.lhead{display:flex;align-items:center;gap:12px;padding-block:14px}
+.x{background:none;border:0;padding:4px;color:var(--muted)}
+.x svg{width:26px;height:26px;display:block}
+.bar{flex:1;height:16px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .35s ease}
+.lbody{flex:1;display:flex;flex-direction:column;gap:18px;padding-block:8px 24px}
+.kind{font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:14px;color:var(--accent-deep)}
+.q{display:flex;gap:10px;align-items:flex-end}
+.q img{width:84px;flex:none}
+.q .bubble{margin-bottom:22px;font-size:19px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:var(--surface);border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:13px 14px;font-weight:600;font-size:17px}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.vf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vf .opt{text-align:center;font-family:var(--display);font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding-block:18px}
+.sentence{font-size:20px;font-weight:600;line-height:1.7}
+.blank{display:inline-block;min-width:110px;border-bottom:3px solid var(--accent);text-align:center;color:var(--accent-deep);padding:0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips .opt{padding:10px 14px}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pairs .col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pairs .opt{font-size:15px;padding:11px 10px;min-height:56px;text-align:center}
+.pairs .opt.gone{opacity:.35;border-color:var(--line);background:transparent}
+.pairs .opt.miss{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.check{position:sticky;bottom:0;background:var(--bg);border-top:2px solid var(--line);padding-block:14px calc(14px + env(safe-area-inset-bottom,0px))}
+.check.ok{background:var(--ok-soft);border-color:transparent}
+.check.bad{background:var(--bad-soft);border-color:transparent}
+.fb{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.fb img{width:62px;flex:none}
+.fb h3{margin:0;font-family:var(--display);font-weight:800;font-size:24px}
+.check.ok .fb h3{color:var(--ok-deep)} .check.bad .fb h3{color:var(--bad-deep)}
+.fb p{margin:2px 0 0;font-size:15px}
+.big{width:100%;border:0;border-radius:14px;padding:14px;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:#06292A;box-shadow:0 4px 0 var(--accent-deep)}
+.big:disabled{background:var(--locked);box-shadow:0 4px 0 var(--locked-deep);color:var(--muted);cursor:default}
+.check.ok .big{background:var(--ok);box-shadow:0 4px 0 var(--ok-deep);color:#fff}
+.check.bad .big{background:var(--bad);box-shadow:0 4px 0 var(--bad-deep);color:#fff}
+.big.ghost{background:transparent;box-shadow:none;border:2px solid var(--line);color:var(--muted)}
+
+/* end */
+.end{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding-block:30px}
+.end img{width:190px}
+.end h2{font-family:var(--display);font-weight:800;font-size:34px;margin:0;text-wrap:balance}
+.tiles{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.tile{border:2px solid var(--line);border-radius:14px;min-width:120px;overflow:hidden;background:var(--surface)}
+.tile b{display:block;font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:13px;padding:5px;color:#fff}
+.tile span{display:block;font-family:var(--display);font-weight:800;font-size:28px;padding:8px;font-variant-numeric:tabular-nums}
+.t-xp b{background:var(--gold)} .t-acc b{background:var(--ok)}
+.end .actions{width:100%;display:flex;flex-direction:column;gap:12px;margin-top:10px}
+/* repàs, repte i tipus nous */
+.review{display:flex;align-items:center;gap:12px;width:100%;margin-top:14px;text-align:left;background:var(--surface);border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;padding:12px 14px}
+.review .ric{width:44px;height:44px;border-radius:50%;background:var(--bad);color:#fff;display:grid;place-items:center;flex:none}
+.review .ric svg{width:24px;height:24px}
+.review b{display:block;font-family:var(--display);font-size:20px;text-transform:uppercase;letter-spacing:.03em}
+.review small{color:var(--muted);font-size:14px}
+.node.repte .stone{border-radius:22px;background:var(--chal);box-shadow:0 7px 0 var(--chal-deep)}
+.node.repte.open .stone{animation:pulse 1.5s ease-in-out infinite;outline:5px solid var(--chal-soft);outline-offset:4px}
+.node.repte.done .stone{background:var(--gold);box-shadow:0 7px 0 #C68A06}
+.node.repte.locked .stone{background:var(--locked);box-shadow:0 7px 0 var(--locked-deep)}
+.node .lbl small{display:block;font-weight:600;color:var(--muted);font-size:13px}
+.st-clock{color:var(--chal)} .st-clock.hurry{color:var(--bad);animation:pick .5s infinite}
+.st-redo{color:var(--bad)}
+.bar.repte i{background-color:var(--chal)}
+.fig{display:block;width:100%;max-width:100%;border-radius:14px;border:2px solid var(--line);background:#fff}
+.slots{display:flex;flex-direction:column;gap:8px;min-height:64px;padding:10px;border:2px dashed var(--line);border-radius:14px}
+.slots .ph{color:var(--muted);font-size:15px;margin:auto}
+.bank{display:flex;flex-direction:column;gap:8px}
+.opt.placed{display:flex;gap:10px;align-items:flex-start;font-size:15px;padding:10px 12px}
+.opt .num{flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#06292A;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:15px}
+.bank .opt{font-size:15px;padding:10px 12px}
+.inp{width:100%;font:inherit;font-size:20px;font-weight:600;padding:14px;border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;background:var(--surface);color:var(--ink)}
+.inp:focus{outline:none;border-color:var(--accent)}
+.inp.right{border-color:var(--ok);background:var(--ok-soft)} .inp.wrong{border-color:var(--bad);background:var(--bad-soft);animation:shake .4s}
+/* medalles i objectiu diari */
+.goal{display:flex;gap:14px;align-items:center;margin-top:14px;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px 14px}
+.ring{--p:0;width:58px;height:58px;flex:none;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--line) 0)}
+.ring span{width:44px;height:44px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
+.goal.fet .ring span{background:var(--gold);color:#3A2600}
+.goal b{display:block;font-family:var(--display);font-size:19px;text-transform:uppercase;letter-spacing:.03em}
+.goal small{display:block;color:var(--muted);font-size:14px}
+.goalpick{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:13px;color:var(--muted)}
+.goalpick button{width:30px;height:28px;border-radius:8px;border:2px solid var(--line);background:var(--bg);font-weight:700;font-size:14px}
+.goalpick button.on{border-color:var(--gold);background:var(--gold);color:#3A2600}
+.medals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.medal{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:12px;font-weight:600;color:var(--muted);min-width:0}
+.medal svg{width:52px;height:60px}
+.medal:not(.got) svg{filter:grayscale(1);opacity:.35}
+.medal.got{color:var(--ink)}
+.medal.got svg{animation:popin .5s cubic-bezier(.2,1.6,.4,1) backwards}
+.bigmedal svg{width:170px;height:196px;animation:medalin 1s cubic-bezier(.2,1.4,.4,1) backwards}
+@keyframes medalin{0%{transform:scale(.2) rotate(-200deg);opacity:0}100%{transform:none;opacity:1}}
+.goalbanner{display:flex;gap:10px;align-items:center;background:var(--gold);color:#3A2600;border-radius:14px;padding:10px 14px;font-weight:700;animation:popin .5s cubic-bezier(.2,1.6,.4,1) backwards .6s}
+.goalbanner svg{width:24px;height:24px;flex:none}
+/* rànquing */
+.rankbtn{background:none;border:0;padding:2px;color:var(--gold);display:grid;place-items:center}
+.rankbtn svg{width:24px;height:24px}
+.rank{flex:1;display:flex;flex-direction:column;gap:14px;padding-block:18px 30px}
+.rank h2{font-family:var(--display);font-weight:800;font-size:30px;margin:0}
+.rank .sub{color:var(--muted);margin:0}
+.rlist{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.rrow{display:flex;align-items:center;gap:12px;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:10px 14px;animation:popin .35s backwards}
+.rrow.me{border-color:var(--accent);background:var(--accent-soft)}
+.rpos{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;background:var(--line);flex:none}
+.rrow:nth-child(1) .rpos{background:#F5B014;color:#3A2600}.rrow:nth-child(2) .rpos{background:#C9D3D6;color:#23393B}.rrow:nth-child(3) .rpos{background:#D98E4A;color:#3A1E00}
+.rname{flex:1;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rxp{font-family:var(--display);font-weight:800;font-size:20px;color:var(--accent-deep);font-variant-numeric:tabular-nums}
+.field{display:flex;flex-direction:column;gap:6px;font-weight:700}
+.field small{font-weight:500;color:var(--muted)}
+.msg{color:var(--bad-deep);font-weight:600;margin:0}
+/* animacions */
+.hero img,.q img{transform-origin:50% 100%;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-7px) rotate(-3deg)}60%{transform:translateY(-3px) rotate(2deg)}}
+.bubble{animation:bubblein .45s cubic-bezier(.2,1.6,.4,1) backwards .15s;transform-origin:0 100%}
+@keyframes bubblein{from{opacity:0;transform:scale(.6)}}
+.path .node{animation:popin .45s cubic-bezier(.2,1.5,.4,1) backwards}
+.path .node:nth-child(2){animation-delay:.07s}.path .node:nth-child(3){animation-delay:.14s}.path .node:nth-child(4){animation-delay:.21s}
+@keyframes popin{from{opacity:0;scale:.5}}
+.node.current .stone{animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{outline-offset:4px;scale:1}50%{outline-offset:10px;scale:1.06}}
+.node.current .stone svg{animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,80%,100%{transform:rotate(0)}88%{transform:rotate(25deg) scale(1.2)}94%{transform:rotate(-15deg)}}
+.lbody{animation:slidein .35s ease-out}
+@keyframes slidein{from{opacity:0;transform:translateX(40px)}}
+.opts .opt,.chips .opt,.vf .opt,.pairs .opt{animation:popin .35s cubic-bezier(.2,1.5,.4,1) backwards}
+.opts .opt:nth-child(2),.chips .opt:nth-child(2),.vf .opt:nth-child(2),.pairs .opt:nth-child(2){animation-delay:.06s}
+.opts .opt:nth-child(3),.chips .opt:nth-child(3),.pairs .opt:nth-child(3){animation-delay:.12s}
+.opts .opt:nth-child(4),.chips .opt:nth-child(4),.pairs .opt:nth-child(4){animation-delay:.18s}
+.opt{transition:transform .1s,background-color .15s,border-color .15s}
+.opt:active{transform:scale(.96)}
+.opt.sel{animation:pick .25s ease-out}
+@keyframes pick{50%{transform:scale(1.04)}}
+.opt.right{animation:pick .35s ease-out}
+.opt.wrong{animation:shake .4s}
+.check.ok .fb,.check.bad .fb{animation:up .3s ease-out}
+@keyframes up{from{opacity:0;transform:translateY(24px)}}
+.check.ok .fb img{animation:jump .7s cubic-bezier(.3,1.6,.5,1)}
+@keyframes jump{0%{transform:translateY(20px) scale(.8)}50%{transform:translateY(-14px) rotate(-6deg)}100%{transform:none}}
+.check.bad .fb img{animation:shake .5s}
+.st-lives.lost svg{animation:heartbreak .6s ease-out}
+@keyframes heartbreak{30%{transform:scale(1.5)}60%{transform:scale(.7) rotate(-15deg)}}
+.bar i{background-image:linear-gradient(to bottom,rgba(255,255,255,.35) 0 35%,transparent 35%)}
+.end img{animation:hop 1.1s ease-in-out infinite}
+@keyframes hop{0%,100%{transform:translateY(0)}40%{transform:translateY(-22px) rotate(-4deg)}60%{transform:translateY(-22px) rotate(4deg)}}
+.end h2{animation:popin .5s cubic-bezier(.2,1.6,.4,1) backwards .1s}
+.tile{animation:popin .45s cubic-bezier(.2,1.6,.4,1) backwards .3s}.tile+.tile{animation-delay:.45s}
+.end img.anim{animation:none;width:230px}
+.confeti{position:fixed;inset:0;pointer-events:none;z-index:20;width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="app" id="app"></div>
+
+<script>
+const IMG={contenta:'mascota-contenta.png',celebrant:'mascota-celebrant.png',trista:'mascota-trista.png',pensativa:'mascota-pensativa.png',anim:'gota-celebra.webp'};
+try{new Image().src='gota-celebra.webp'}catch(e){}
+// Per afegir mòduls o temes: afegeix el fitxer JSON a aquesta llista.
+const FONTS_CONTINGUT=['contingut.json'];
+const MAX_VIDES=5, MIN_PER_VIDA=20, XP_LLICO=10;
+const ICON={
+  fire:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.5 5 5.6 5 10.5A5 5 0 0 1 12 22a5 5 0 0 1-5-5.2c0-2.6 1.6-4 2.4-5.6.4 1.6 1.2 2.4 2.2 2.6C10.8 10.7 11 6 12 2z"/></svg>',
+  bolt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 2.8C20 15.8 12 21 12 21z"/></svg>',
+  star:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.2 1.3-6.6L2.5 9.3l6.6-.8z"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>'
+};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const avui=()=>new Date().toLocaleDateString('sv');
+
+/* ---------- música i sons (generats al moment, sense fitxers) ---------- */
+const SO={ctx:null,on:true,music:null,master:null};
+try{SO.on=localStorage.getItem('gota-so')!=='0'}catch(e){}
+function audio(){
+  if(!SO.ctx){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;
+    SO.ctx=new C();SO.master=SO.ctx.createGain();SO.master.gain.value=.5;SO.master.connect(SO.ctx.destination);}
+  if(SO.ctx.state==='suspended')SO.ctx.resume();
+  return SO.ctx;
+}
+const hz=m=>440*Math.pow(2,(m-69)/12);
+function nota(f,t,d,tipus,vol){
+  const c=SO.ctx,o=c.createOscillator(),g=c.createGain();
+  o.type=tipus;o.frequency.value=f;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  o.connect(g);g.connect(SO.master);o.start(t);o.stop(t+d+.05);
+}
+const PROG=[[48,60,64,67],[45,57,60,64],[41,53,57,60],[43,55,59,62]];
+const MEL=[[76,0,79,0,81,79,76,0],[72,0,76,0,79,0,76,74],[72,0,77,0,81,0,79,77],[74,0,79,0,83,81,79,0]];
+function musicaOn(){
+  if(!SO.on||SO.music||!audio())return;
+  const pas=60/112/2;let n=0,t=SO.ctx.currentTime+.1;
+  SO.music=setInterval(()=>{
+    if(t<SO.ctx.currentTime)t=SO.ctx.currentTime+.05;
+    while(t<SO.ctx.currentTime+.3){
+      const c=Math.floor(n/8)%4,s=n%8,ch=PROG[c];
+      if(s%4===0)nota(hz(ch[0]),t,pas*3,'triangle',.12);
+      nota(hz(ch[1+(s%3)]),t,pas*.8,'square',.022);
+      const m=MEL[c][s];if(m)nota(hz(m),t,pas*1.6,'triangle',.07);
+      n++;t+=pas;
+    }
+  },100);
+}
+function musicaOff(){clearInterval(SO.music);SO.music=null}
+
+/* ---------- confeti i comptador ---------- */
+function confeti(){
+  document.querySelectorAll('.count').forEach(el=>{const n=+el.dataset.n;let i=0;const t=setInterval(()=>{i++;el.textContent='+'+i;if(i>=n)clearInterval(t)},45);el.textContent='+0'});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const cv=document.createElement('canvas');cv.className='confeti';document.body.appendChild(cv);
+  const dpr=Math.min(2,devicePixelRatio||1),W=innerWidth,H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;
+  const g=cv.getContext('2d');g.scale(dpr,dpr);
+  const cols=['#14C8C8','#F5B014','#2FB35A','#E5484D','#4C7CF0','#B25CE6'];
+  const ps=Array.from({length:140},()=>({x:W/2+(Math.random()-.5)*60,y:H*.35,vx:(Math.random()-.5)*11,vy:-Math.random()*13-4,r:Math.random()*6,vr:(Math.random()-.5)*.3,w:6+Math.random()*6,h:4+Math.random()*4,c:cols[Math.floor(Math.random()*cols.length)]}));
+  const t0=performance.now();
+  (function f(now){
+    g.clearRect(0,0,W,H);
+    ps.forEach(p=>{p.vy+=.32;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;g.save();g.translate(p.x,p.y);g.rotate(p.r);g.fillStyle=p.c;g.fillRect(-p.w/2,-p.h/2,p.w,p.h);g.restore()});
+    if(now-t0<3200)requestAnimationFrame(f);else cv.remove();
+  })(t0);
+}
+function fx(k){
+  if(!SO.on||!audio())return;const t=SO.ctx.currentTime;
+  if(k==='ok'){nota(hz(79),t,.12,'square',.08);nota(hz(84),t+.1,.28,'square',.08)}
+  else if(k==='bad'){nota(hz(52),t,.18,'sawtooth',.06);nota(hz(48),t+.16,.32,'sawtooth',.06)}
+  else if(k==='fi'){[72,76,79,84,88].forEach((m,i)=>nota(hz(m),t+i*.1,.4,'square',.07))}
+}
+const ICON_SO={on:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  off:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'};
+const botoSo=()=>`<button class="sound ${SO.on?'on':''}" id="so" aria-label="${SO.on?'Silenciar la música':'Activar la música'}" title="Música">${SO.on?ICON_SO.on:ICON_SO.off}</button>`;
+document.addEventListener('click',ev=>{
+  const b=ev.target.closest('#so');
+  if(b){SO.on=!SO.on;try{localStorage.setItem('gota-so',SO.on?'1':'0')}catch(e){}
+    if(SO.on)musicaOn();else musicaOff();
+    b.outerHTML=botoSo();return;}
+  musicaOn();
+});
+document.addEventListener('visibilitychange',()=>{if(SO.ctx){document.hidden?SO.ctx.suspend():SO.ctx.resume()}});
+
+/* ---------- progrés (només en aquest mòbil) ---------- */
+const KEY='gota-progres-v1';
+const nouP=()=>({fetes:{},xp:0,ratxa:0,darrerDia:null,vides:MAX_VIDES,vidaTs:Date.now(),errors:{},reptes:{},medalles:{},objectiu:2,avui:{d:null,n:0},setmana:null,xpSetmana:0,jugador:null});
+let P=nouP();
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s)P={...nouP(),...s}}catch(e){}
+const desa=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
+function recuperaVides(){
+  if(P.vides>=MAX_VIDES){P.vidaTs=Date.now();return}
+  const n=Math.floor((Date.now()-P.vidaTs)/(MIN_PER_VIDA*60000));
+  if(n>0){P.vides=Math.min(MAX_VIDES,P.vides+n);P.vidaTs+=n*MIN_PER_VIDA*60000;desa()}
+}
+function ratxaActual(){
+  if(!P.darrerDia)return 0;
+  const d=(new Date(avui())-new Date(P.darrerDia))/864e5;
+  return d<=1?P.ratxa:0;
+}
+function sumaDia(){
+  const a=avui();if(P.darrerDia===a)return;
+  P.ratxa=ratxaActual()+1;P.darrerDia=a;
+}
+
+/* ---------- contingut ---------- */
+let UNITATS=[];const EX={};
+async function carrega(){
+  const r=await Promise.all(FONTS_CONTINGUT.map(f=>fetch(f).then(x=>x.json())));
+  UNITATS=r.map(d=>({modul:d.modul,...d.unitat}));
+  UNITATS.forEach(u=>u.seccions.forEach(s=>s.llicons.forEach(l=>l.exercicis.forEach((e,i)=>{EX[l.id+'#'+i]={e,sid:s.id}}))));
+}
+const totesLlicons=u=>u.seccions.flatMap(s=>s.llicons);
+
+/* ---------- pantalla inicial ---------- */
+const ICON2={
+  trophy:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V5h3zm0 4H6v1a2 2 0 0 0 1 1.7zm10 0v2.7A2 2 0 0 0 18 8V7z"/></svg>',
+  redo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>'
+};
+const REPTE_N=8, REPTE_S=90;
+function topbar(){
+  recuperaVides();
+  return `<header class="top gut"><div class="top-row">
+    <span class="brand">Gota</span>
+    <div class="stats">
+      <span class="stat st-streak" title="Dies seguits">${ICON.fire}${ratxaActual()}</span>
+      <span class="stat st-xp" title="Punts">${ICON.bolt}${P.xp}</span>
+      <span class="stat st-lives" title="Vides">${ICON.heart}${P.vides}</span>
+      <button class="rankbtn" id="rank" aria-label="Rànquing de la classe" title="Rànquing">${ICON2.trophy}</button>${botoSo()}
+    </div></div></header>`;
+}
+const nErrors=()=>Object.keys(P.errors).filter(k=>EX[k]).length;
+function inici(){
+  clearInterval(L&&L.timer);L=null;
+  let html=topbar()+'<main class="gut">';
+  UNITATS.forEach(u=>{
+    const ll=totesLlicons(u);
+    const pend=ll.find(l=>!P.fetes[l.id]);
+    const fetes=ll.filter(l=>P.fetes[l.id]).length;
+    const msg=!pend?'Has acabat tota la unitat! Ets una màquina!':
+      fetes===0?`Hola! Començam amb «${esc(pend.titol)}»?`:`Vas per ${fetes} de ${ll.length}. Seguim amb «${esc(pend.titol)}»!`;
+    html+=`<div class="hero"><img src="${IMG[pend?'contenta':'celebrant']}" alt="La Gota, mascota dels Cicles"><div class="bubble">${msg}</div></div>`;
+    const ne=nErrors();
+    if(ne)html+=`<button class="review" id="repas"><span class="ric">${ICON2.redo}</span><span><b>Repàs d'errors</b><small>${ne} ${ne===1?'pregunta':'preguntes'} per tornar a fer</small></span></button>`;
+    const dia=diaActual(),pg=Math.min(100,Math.round(dia.n/P.objectiu*100)),fet=dia.n>=P.objectiu;
+    html+=`<div class="goal ${fet?'fet':''}"><div class="ring" style="--p:${pg}"><span>${Math.min(dia.n,P.objectiu)}/${P.objectiu}</span></div>
+      <div><b>Objectiu d'avui</b><small>${fet?'Complet! Torna demà per mantenir la ratxa.':`Fes ${P.objectiu-dia.n} ${P.objectiu-dia.n===1?'activitat':'activitats'} més (lliçó, repàs o repte).`}</small>
+      <div class="goalpick">Objectiu diari:${[1,2,3,5].map(g=>`<button data-g="${g}" class="${g===P.objectiu?'on':''}" aria-label="Objectiu de ${g} activitats">${g}</button>`).join('')}</div></div></div>
+    <div class="medals">${u.seccions.map((s,si)=>`<div class="medal ${P.medalles[s.id]?'got':''}" title="${esc(s.titol)}">${medalSVG(si+1)}<span>${esc(s.titol)}</span></div>`).join('')}</div>`;
+    html+=`<div class="unit-head"><div class="eyebrow">${esc(u.modul.titol)}</div><h1>${esc(u.titol)}</h1></div>`;
+    let desbloquejada=true;
+    u.seccions.forEach((s,si)=>{
+      html+=`<section class="section"><div class="sec-label">${si+1} · ${esc(s.titol)}</div><div class="path">`;
+      let k=0;
+      s.llicons.forEach(l=>{
+        const feta=!!P.fetes[l.id];
+        const actual=!feta&&desbloquejada;
+        const estat=feta?'done':actual?'current':'locked';
+        const off=[0,-60,-90,-60,0,60,90,60][(k+si*2)%8];k++;
+        html+=`<button class="node ${estat}" style="transform:translateX(${off}px)" data-l="${l.id}" ${estat==='locked'?'aria-disabled="true"':''}>
+          <span class="stone">${feta?ICON.check:actual?ICON.star:ICON.lock}</span><span class="lbl">${esc(l.titol)}</span></button>`;
+        if(!feta)desbloquejada=false;
+      });
+      const obert=s.llicons.every(l=>P.fetes[l.id]);
+      const millor=P.reptes[s.id];
+      const off=[0,-60,-90,-60,0,60,90,60][(k+si*2)%8];
+      html+=`<button class="node repte ${obert?(millor!=null?'done':'open'):'locked'}" style="transform:translateX(${off}px)" data-r="${s.id}" ${obert?'':'aria-disabled="true"'}>
+        <span class="stone">${obert?ICON2.trophy:ICON.lock}</span><span class="lbl">Repte contra rellotge${millor!=null?`<small>Millor: ${millor}/${REPTE_N}</small>`:obert?'<small>Desbloquejat!</small>':''}</span></button>`;
+      html+='</div></section>';
+    });
+  });
+  html+=`<div class="foot"><span>El progrés es guarda només en aquest dispositiu.</span>
+    <button class="linkbtn" id="reset">Esborrar el meu progrés</button></div></main>`;
+  $('#app').innerHTML=html;
+  document.querySelectorAll('.node').forEach(b=>b.onclick=()=>{
+    if(b.classList.contains('locked'))return;
+    if(b.dataset.r)return obreRepte(b.dataset.r);
+    const l=UNITATS.flatMap(totesLlicons).find(x=>x.id===b.dataset.l);
+    obreLlico(l);
+  });
+  const rp=$('#repas');if(rp)rp.onclick=obreRepas;
+  $('#rank').onclick=pantallaRanking;
+  document.querySelectorAll('.goalpick button').forEach(b=>b.onclick=()=>{P.objectiu=+b.dataset.g;desa();inici()});
+  const r=$('#reset');let arm=false;
+  r.onclick=()=>{ if(!arm){arm=true;r.textContent='Toca un altre cop per confirmar';setTimeout(()=>{arm=false;r.textContent='Esborrar el meu progrés'},3000);return}
+    P=nouP();desa();inici()};
+  const cur=document.querySelector('.node.current')||document.querySelector('.node.repte.open');
+  if(cur)cur.scrollIntoView({block:'center'});
+}
+
+
+/* ---------- medalles i objectiu diari ---------- */
+const MEDAL_COLS=['#14C8C8','#F5B014','#E5484D','#7C5CE6','#2FB35A','#4C7CF0'];
+function medalSVG(n){
+  const c=MEDAL_COLS[(n-1)%MEDAL_COLS.length];
+  return `<svg viewBox="0 0 52 60" aria-hidden="true"><path d="M14 0h10l6 18H20z" fill="${c}"/><path d="M38 0H28l-6 18h10z" fill="${c}" opacity=".75"/><circle cx="26" cy="38" r="19" fill="#F5B014" stroke="#C68A06" stroke-width="3"/><circle cx="26" cy="38" r="13" fill="none" stroke="#FFE08A" stroke-width="2"/><text x="26" y="44" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="800" font-size="18" fill="#7A4D00">${n}</text></svg>`;
+}
+function diaActual(){const a=avui();if(P.avui.d!==a)P.avui={d:a,n:0};return P.avui}
+function sumaActivitat(){const d=diaActual();d.n++;if(d.n===P.objectiu){afegeixXP(10);return true}return false}
+const bannerObjectiu=ok=>ok?`<div class="goalbanner">${ICON.fire}<span>Objectiu d'avui complet! +10 punts</span></div>`:'';
+function pantallaMedalla(s,num){
+  fx('fi');setTimeout(confeti,60);
+  $('#app').innerHTML=`<div class="end gut"><div class="bigmedal">${medalSVG(num)}</div>
+    <h2>Medalla guanyada!</h2><p style="margin:0;color:var(--muted);max-width:34ch">Has completat la secció «${esc(s.titol)}». Ara tens desbloquejat el seu repte contra rellotge.</p>
+    <div class="actions"><button class="big" id="cont">Genial!</button></div></div>`;
+  $('#cont').onclick=inici;
+}
+
+
+/* ---------- rànquing de la classe (Supabase) ---------- */
+const SB_URL='https://layekidfagxljjdtmgyo.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxheWVraWRmYWd4bGpqZHRtZ3lvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxMTY5MzksImV4cCI6MjEwODY5MjkzOX0.qOyD-MHagpn3AOS3PrIqL5u67YSI_izra1jGsgh3eo8';
+async function rpc(fn,args){
+  const r=await fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+SB_KEY},body:JSON.stringify(args)});
+  if(!r.ok)throw new Error('http '+r.status);return r.json();
+}
+function setmanaISO(d=new Date()){
+  const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const dia=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-dia);
+  const y=t.getUTCFullYear(),w=Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7);return y+'-W'+String(w).padStart(2,'0');
+}
+function xpSetmanaActual(){const w=setmanaISO();if(P.setmana!==w){P.setmana=w;P.xpSetmana=0}return P.xpSetmana}
+let pujaT=null;
+function pujaRanking(){
+  if(!P.jugador)return;clearTimeout(pujaT);
+  pujaT=setTimeout(()=>{const j=P.jugador;rpc('gota_desa',{p_id:j.id,p_token:j.token,p_classe:j.classe,p_sobrenom:j.sobrenom,p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp}).catch(()=>{})},600);
+}
+function afegeixXP(n){P.xp+=n;xpSetmanaActual();P.xpSetmana+=n;pujaRanking()}
+const uuid=()=>crypto.randomUUID?crypto.randomUUID():'10000000-1000-4000-8000-100000000000'.replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16));
+async function pantallaRanking(){
+  clearInterval(L&&L.timer);L=null;window.scrollTo(0,0);
+  const cap=`<div class="lhead gut"><button class="x" id="surt" aria-label="Tornar">${ICON.x}</button><div style="flex:1"></div>${botoSo()}</div>`;
+  if(!P.jugador){
+    $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
+      <div class="hero" style="padding:0"><img src="${IMG.contenta}" alt=""><div class="bubble">Entra al rànquing de la teva classe i competeix cada setmana!</div></div>
+      <label class="field">Codi de la classe<small>Te'l dona el professor (per exemple 1AFD31).</small><input class="inp" id="codi" autocomplete="off" autocapitalize="characters"></label>
+      <label class="field">El teu sobrenom<small>Entre 2 i 20 lletres. No posis el teu nom complet.</small><input class="inp" id="sobrenom" maxlength="20" autocomplete="off"></label>
+      <p class="msg" id="msg" hidden></p>
+      <button class="big" id="entra">Entra al rànquing</button></div></div>`;
+    $('#surt').onclick=inici;
+    $('#entra').onclick=async()=>{
+      const codi=$('#codi').value.trim().toUpperCase(), nom=$('#sobrenom').value.trim(), m=$('#msg');m.hidden=true;
+      if(nom.length<2){m.textContent='El sobrenom ha de tenir com a mínim 2 lletres.';m.hidden=false;return}
+      $('#entra').disabled=true;
+      try{
+        const classe=await rpc('gota_classe',{p_codi:codi});
+        if(!classe){m.textContent='Aquest codi de classe no existeix. Revisa-lo amb el professor.';m.hidden=false;$('#entra').disabled=false;return}
+        P.jugador={id:uuid(),token:uuid()+uuid(),classe:codi,sobrenom:nom,nomClasse:classe};xpSetmanaActual();desa();
+        await rpc('gota_desa',{p_id:P.jugador.id,p_token:P.jugador.token,p_classe:codi,p_sobrenom:nom,p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp});
+        pantallaRanking();
+      }catch(e){m.textContent='No hi ha connexió amb el rànquing. Prova-ho més tard.';m.hidden=false;$('#entra').disabled=false}
+    };
+    return;
+  }
+  const j=P.jugador;xpSetmanaActual();
+  $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
+    <div><h2>Rànquing de la setmana</h2><p class="sub">${esc(j.nomClasse||j.classe)} · els punts es reinicien cada dilluns</p></div>
+    <ol class="rlist" id="rlist"><li class="sub">Carregant…</li></ol>
+    <p class="sub">Jugues com a <b>${esc(j.sobrenom)}</b>. <button class="linkbtn" id="surtr">Sortir del rànquing</button></p></div></div>`;
+  $('#surt').onclick=inici;
+  let arm=false;$('#surtr').onclick=e=>{if(!arm){arm=true;e.target.textContent='Toca un altre cop per confirmar';return}P.jugador=null;desa();inici()};
+  try{
+    await rpc('gota_desa',{p_id:j.id,p_token:j.token,p_classe:j.classe,p_sobrenom:j.sobrenom,p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp});
+    const rows=await rpc('gota_ranking',{p_classe:j.classe,p_setmana:P.setmana});
+    const el=$('#rlist');if(!el)return;
+    el.innerHTML=rows.length?'':'<li class="sub">Encara no ha puntuat ningú aquesta setmana. Fes una lliçó i sigues el primer!</li>';
+    rows.forEach((r,i)=>{const li=document.createElement('li');li.className='rrow'+(r.id===j.id?' me':'');li.style.animationDelay=(i*.04)+'s';
+      li.innerHTML=`<span class="rpos">${i+1}</span><span class="rname"></span><span class="rxp">${r.xp}</span>`;
+      li.querySelector('.rname').textContent=r.sobrenom+(r.id===j.id?' (tu)':'');el.appendChild(li)});
+  }catch(e){const el=$('#rlist');if(el)el.innerHTML='<li class="msg">No es pot connectar amb el rànquing ara mateix. Si obres l\'app des de Claude, el rànquing només funciona a la web de la Gota.</li>'}
+}
+
+/* ---------- lliçó, repàs i repte ---------- */
+let L=null;
+function comença(mode,titol,items,extra){
+  L={mode,titol,items,cua:items.map((e,i)=>i),total:items.length,encerts:0,primers:0,intents:{},estat:'resp',...extra};
+  window.scrollTo(0,0);exercici();
+}
+function obreLlico(llico){
+  recuperaVides();
+  if(P.vides<=0){senseVides();return}
+  comença('llico',llico.titol,llico.exercicis.map((e,i)=>({e,key:llico.id+'#'+i})),{llico});
+}
+function obreRepas(){
+  const keys=shuffle(Object.keys(P.errors).filter(k=>EX[k])).slice(0,10);
+  if(!keys.length)return inici();
+  comença('repas',"Repàs d'errors",keys.map(k=>({e:EX[k].e,key:k})));
+}
+function obreRepte(sid){
+  const s=UNITATS.flatMap(u=>u.seccions).find(x=>x.id===sid);
+  const tots=s.llicons.flatMap(l=>l.exercicis.map((e,i)=>({e,key:l.id+'#'+i})));
+  comença('repte','Repte: '+s.titol,shuffle(tots).slice(0,REPTE_N),{sid,fi:Date.now()+REPTE_S*1000});
+  L.timer=setInterval(()=>{
+    const t=Math.max(0,Math.ceil((L.fi-Date.now())/1000));
+    const el=$('#clock');if(el)el.innerHTML=ICON2.clock+t;
+    if(el&&t<=10)el.classList.add('hurry');
+    if(t<=0){clearInterval(L.timer);fiRepte(true)}
+  },250);
+}
+const NOMS={test:'Tria la resposta correcta',vf:'Vertader o fals?',buit:'Completa la frase',parelles:'Fes les parelles',ordre:'Ordena els passos',escriu:'Escriu la resposta'};
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim()
+  .replace(/^(l'|l’|el |la |els |les |un |una )/,'').replace(/[·.\-'’]/g,'').replace(/\s+/g,' ').trim();
+function capçal(){
+  const pct=Math.round(L.encerts/L.total*100);
+  let dreta='';
+  if(L.mode==='repte'){const t=Math.max(0,Math.ceil((L.fi-Date.now())/1000));dreta=`<span class="stat st-clock" id="clock">${ICON2.clock}${t}</span>`}
+  else if(L.mode==='llico')dreta=`<span class="stat st-lives">${ICON.heart}${P.vides}</span>`;
+  else dreta=`<span class="stat st-redo">${ICON2.redo}${L.cua.length}</span>`;
+  return `<div class="lhead gut"><button class="x" id="surt" aria-label="Sortir">${ICON.x}</button>
+      <div class="bar ${L.mode}"><i style="width:${pct}%"></i></div>${dreta}${botoSo()}</div>`;
+}
+function exercici(){
+  const e=L.items[L.cua[0]].e;
+  L.e=e;L.resposta=null;L.estat='resp';
+  let cos='';
+  const fig=e.img?`<img class="fig" src="${esc(e.img)}" alt="Figura de l'exercici">`:'';
+  const bombolla=t=>`<div class="q"><img src="${IMG.pensativa}" alt=""><div class="bubble">${esc(t)}</div></div>`;
+  if(e.tipus==='test'){
+    L.ord=shuffle(e.opcions.map((o,i)=>i));
+    cos=`${bombolla(e.pregunta)}${fig}<div class="opts">${L.ord.map(i=>`<button class="opt" data-v="${i}">${esc(e.opcions[i])}</button>`).join('')}</div>`;
+  }else if(e.tipus==='vf'){
+    cos=`${bombolla(e.afirmacio)}${fig}<div class="vf"><button class="opt" data-v="1">Vertader</button><button class="opt" data-v="0">Fals</button></div>`;
+  }else if(e.tipus==='buit'){
+    L.ord=shuffle(e.opcions.map((o,i)=>i));
+    const [a,b]=e.frase.split('___');
+    cos=`${fig}<p class="sentence">${esc(a)}<span class="blank" id="blank">&nbsp;</span>${esc(b??'')}</p>
+    <div class="chips">${L.ord.map(i=>`<button class="opt" data-v="${i}">${esc(e.opcions[i])}</button>`).join('')}</div>`;
+  }else if(e.tipus==='parelles'){
+    const esq=shuffle(e.parelles.map((p,i)=>i)), dre=shuffle(e.parelles.map((p,i)=>i));
+    L.par={fetes:0,esq:null,errors:0};
+    cos=`<p class="sentence" style="font-size:18px">${esc(e.pregunta)}</p>${fig}
+    <div class="pairs"><div class="col">${esq.map(i=>`<button class="opt" data-s="e" data-i="${i}">${esc(e.parelles[i][0])}</button>`).join('')}</div>
+    <div class="col">${dre.map(i=>`<button class="opt" data-s="d" data-i="${i}">${esc(e.parelles[i][1])}</button>`).join('')}</div></div>`;
+  }else if(e.tipus==='ordre'){
+    L.seq=[];
+    cos=`${bombolla(e.pregunta)}${fig}<div class="slots" id="slots"><span class="ph">Toca els passos en l'ordre correcte</span></div>
+    <div class="bank" id="bank">${shuffle(e.passos.map((p,i)=>i)).map(i=>`<button class="opt" data-p="${i}">${esc(e.passos[i])}</button>`).join('')}</div>`;
+  }else if(e.tipus==='escriu'){
+    cos=`${bombolla(e.pregunta)}${fig}<input class="inp" id="resp" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escriu aquí la resposta" aria-label="Resposta">`;
+  }
+  $('#app').innerHTML=`<div class="lesson">${capçal()}
+    <div class="lbody gut"><div class="kind">${e.img?'Observa la imatge · ':''}${NOMS[e.tipus]}</div>${cos}</div>
+    <div class="check gut" id="check"><div class="fb" id="fb" hidden></div>
+      <button class="big" id="go" ${e.tipus==='parelles'?'hidden':'disabled'}>Comprova</button></div>
+  </div>`;
+  $('#surt').onclick=()=>inici();
+  const go=$('#go');
+  if(e.tipus==='parelles')muntaParelles();
+  else if(e.tipus==='ordre')muntaOrdre();
+  else if(e.tipus==='escriu'){
+    const inp=$('#resp');inp.focus();
+    inp.oninput=()=>{go.disabled=!inp.value.trim()};
+    inp.onkeydown=ev=>{if(ev.key==='Enter'&&inp.value.trim()&&L.estat==='resp')comprova()};
+  }
+  else document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    if(L.estat!=='resp')return;
+    document.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');L.resposta=+b.dataset.v;go.disabled=false;
+    if(e.tipus==='buit')$('#blank').textContent=b.textContent;
+  });
+  go.onclick=()=>L.estat==='resp'?comprova():seguent();
+}
+function muntaOrdre(){
+  const e=L.e,slots=$('#slots'),bank=$('#bank');
+  const pinta=()=>{
+    slots.innerHTML=L.seq.length?L.seq.map((i,n)=>`<button class="opt placed" data-p="${i}"><span class="num">${n+1}</span>${esc(e.passos[i])}</button>`).join(''):'<span class="ph">Toca els passos en l\'ordre correcte</span>';
+    bank.querySelectorAll('.opt').forEach(b=>b.hidden=L.seq.includes(+b.dataset.p));
+    slots.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(L.estat!=='resp')return;L.seq=L.seq.filter(x=>x!==+b.dataset.p);pinta()});
+    $('#go').disabled=L.seq.length!==e.passos.length;
+  };
+  bank.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(L.estat!=='resp')return;L.seq.push(+b.dataset.p);pinta()});
+  pinta();
+}
+function muntaParelles(){
+  const e=L.e;
+  document.querySelectorAll('.pairs .opt').forEach(b=>b.onclick=()=>{
+    if(L.estat!=='resp'||b.disabled)return;
+    if(b.dataset.s==='e'){
+      document.querySelectorAll('.pairs .opt[data-s="e"]').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');L.par.esq=b;return;
+    }
+    if(!L.par.esq)return;
+    const i=+L.par.esq.dataset.i, j=+b.dataset.i;
+    if(e.parelles[i][1]===e.parelles[j][1]){
+      [L.par.esq,b].forEach(x=>{x.classList.remove('sel');x.classList.add('right');setTimeout(()=>{x.classList.remove('right');x.classList.add('gone')},300);x.disabled=true});
+      L.par.esq=null;L.par.fetes++;
+      if(L.par.fetes===e.parelles.length){if(L.par.errors)L.intents[L.cua[0]]=1;resol(L.mode==='repte'?L.par.errors===0:true,L.par.errors?'Les has fetes totes, però amb algun error.':null);}
+    }else{
+      L.par.errors++;
+      [L.par.esq,b].forEach(x=>{x.classList.add('miss');setTimeout(()=>x.classList.remove('miss'),400)});
+    }
+  });
+}
+function correcta(e){
+  if(e.tipus==='vf')return e.correcta?'Vertader':'Fals';
+  if(e.tipus==='ordre')return e.passos.map((p,i)=>`${i+1}) ${p}`).join('  ');
+  if(e.tipus==='escriu')return e.respostes[0];
+  return e.opcions[e.correcta];
+}
+function comprova(){
+  const e=L.e;let ok;
+  if(e.tipus==='escriu'){
+    const inp=$('#resp');ok=e.respostes.map(norm).includes(norm(inp.value));
+    inp.disabled=true;inp.classList.add(ok?'right':'wrong');
+  }else if(e.tipus==='ordre'){
+    ok=L.seq.every((v,i)=>v===i);
+    document.querySelectorAll('#slots .opt').forEach((b,n)=>{b.disabled=true;b.classList.add(+b.dataset.p===n?'right':'wrong')});
+  }else{
+    ok=e.tipus==='vf'?(L.resposta===1)===e.correcta:L.resposta===e.correcta;
+    document.querySelectorAll('.opt').forEach(b=>{
+      b.disabled=true;
+      const v=+b.dataset.v;
+      const esCorr=e.tipus==='vf'?(v===1)===e.correcta:v===e.correcta;
+      if(esCorr)b.classList.add('right');else if(b.classList.contains('sel'))b.classList.add('wrong');
+    });
+  }
+  resol(ok,ok?null:(e.tipus==='ordre'?'Ordre correcte: ':'Resposta correcta: ')+correcta(e));
+}
+function resol(ok,detall){
+  const e=L.e;L.estat='fet';
+  const idx=L.cua.shift(), key=L.items[idx].key;
+  if(ok){L.encerts++; if(!L.intents[idx])L.primers++;}
+  else L.intents[idx]=1;
+  if(L.mode==='llico'){
+    if(!ok){L.cua.push(idx);P.errors[key]=1;P.vides=Math.max(0,P.vides-1);if(P.vides===MAX_VIDES-1)P.vidaTs=Date.now();}
+    else if(L.intents[idx])P.errors[key]=1;
+  }else if(L.mode==='repas'){
+    if(ok&&!L.intents[idx])delete P.errors[key];
+    if(!ok)L.cua.push(idx);
+  }else if(L.mode==='repte'){
+    if(!ok)P.errors[key]=1;
+  }
+  desa();
+  const frasesOk=['Molt bé!','Perfecte!','Així es fa!','Genial!','Exacte!'];
+  const fb=$('#fb');fb.hidden=false;
+  const exp=e.explicacio?`<p>${esc(e.explicacio)}</p>`:'';
+  fb.innerHTML=`<img src="${IMG[ok?'celebrant':'trista']}" alt=""><div><h3>${ok?frasesOk[Math.floor(Math.random()*frasesOk.length)]:'Ui, no és aquesta'}</h3>${detall?`<p><b>${esc(detall)}</b></p>`:''}${exp}</div>`;
+  const c=$('#check');c.classList.add(ok?'ok':'bad');fx(ok?'ok':'bad');
+  const g=$('#go');g.hidden=false;g.disabled=false;g.textContent='Continua';g.focus();
+  const tot=L.mode==='repte'?L.total-L.cua.length:L.encerts;
+  $('.bar i').style.width=Math.round(tot/L.total*100)+'%';
+  const lv=document.querySelector('.lhead .st-lives');
+  if(lv){lv.innerHTML=ICON.heart+P.vides;if(!ok)lv.classList.add('lost')}
+  const rd=document.querySelector('.lhead .st-redo');if(rd)rd.innerHTML=ICON2.redo+L.cua.length;
+}
+function seguent(){
+  if(L.cua.length===0)return L.mode==='repte'?fiRepte(false):final();
+  if(L.mode==='llico'&&P.vides<=0)return senseVides();
+  exercici();
+}
+function pantallaFinal(img,titol,sub,tiles,extra='',next=inici){
+  const anim=img==='celebrant';
+  $('#app').innerHTML=`<div class="end gut"><img src="${anim?IMG.anim:IMG[img]}" class="${anim?'anim':''}" alt="La Gota">
+    <h2>${titol}</h2><p style="margin:0;color:var(--muted);max-width:34ch">${sub}</p>
+    <div class="tiles">${tiles}</div>${extra}
+    <div class="actions"><button class="big" id="cont">Continua</button></div></div>`;
+  $('#cont').onclick=next;
+}
+function final(){
+  const acc=Math.round(L.primers/L.total*100);
+  if(L.mode==='repas'){
+    const xp=5;afegeixXP(xp);sumaDia();const meta=sumaActivitat();desa();fx('fi');setTimeout(confeti,60);
+    const queden=nErrors();
+    pantallaFinal('celebrant','Repàs fet!',queden?`Encara et queden ${queden} preguntes per repassar.`:'Has corregit tots els errors. Molt bé!',
+      `<div class="tile t-xp"><b>Punts</b><span class="count" data-n="${xp}">+${xp}</span></div><div class="tile t-acc"><b>A la primera</b><span>${acc}%</span></div>`,bannerObjectiu(meta));
+  }else{
+    const xp=XP_LLICO+(acc===100?5:0);
+    P.fetes[L.llico.id]=true;afegeixXP(xp);sumaDia();const meta=sumaActivitat();
+    let next=inici;
+    UNITATS.forEach(u=>u.seccions.forEach((s,si)=>{
+      if(s.llicons.some(l=>l.id===L.llico.id)&&!P.medalles[s.id]&&s.llicons.every(l=>P.fetes[l.id])){P.medalles[s.id]=avui();next=()=>pantallaMedalla(s,si+1)}
+    }));
+    desa();fx('fi');setTimeout(confeti,60);
+    pantallaFinal('celebrant','Lliçó completada!',esc(L.titol),
+      `<div class="tile t-xp"><b>Punts</b><span class="count" data-n="${xp}">+${xp}</span></div><div class="tile t-acc"><b>Encerts</b><span>${acc}%</span></div>`,bannerObjectiu(meta),next);
+  }
+  L=null;
+}
+function fiRepte(temps){
+  clearInterval(L.timer);
+  const n=L.encerts, xp=n*2, prev=P.reptes[L.sid];
+  const rec=prev==null||n>prev;
+  if(rec)P.reptes[L.sid]=n;
+  afegeixXP(xp);if(n)sumaDia();const meta=sumaActivitat();desa();
+  const bo=n>=REPTE_N*0.75;
+  if(bo){fx('fi');setTimeout(confeti,60)}else fx('bad');
+  pantallaFinal(bo?'celebrant':n>=REPTE_N/2?'contenta':'trista',temps?'Temps esgotat!':'Repte acabat!',
+    (rec&&prev!=null?'Nou rècord! ':'')+(bo?'Ho domines!':'Repassa aquesta secció i torna-ho a provar.'),
+    `<div class="tile t-acc"><b>Encerts</b><span>${n}/${REPTE_N}</span></div><div class="tile t-xp"><b>Punts</b><span class="count" data-n="${xp}">+${xp}</span></div>`,bannerObjectiu(meta));
+  L=null;
+}
+function senseVides(){
+  recuperaVides();
+  const min=Math.max(1,Math.ceil((P.vidaTs+MIN_PER_VIDA*60000-Date.now())/60000));
+  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.trista}" alt="La Gota trista">
+    <h2>T'has quedat sense vides</h2>
+    <p style="margin:0;color:var(--muted);max-width:32ch">Recuperes una vida cada ${MIN_PER_VIDA} minuts. La propera arriba d'aquí a ${min} min. Mentrestant pots fer el repàs d'errors o un repte, que no gasten vides.</p>
+    <div class="actions"><button class="big" id="cont">Torna a l'inici</button></div></div>`;
+  L=null;$('#cont').onclick=inici;
+}
+
+carrega().then(inici).catch(()=>{$('#app').innerHTML='<p class="gut" style="padding-block:40px">No s\'ha pogut carregar el contingut. Torna a obrir la pàgina.</p>'});
+</script>
+
+</body>
+</html>
