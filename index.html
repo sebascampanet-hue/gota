@@ -4,11 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#14C8C8">
-<link rel="icon" href="mascota-contenta.png">
-<link rel="apple-touch-icon" href="mascota-contenta.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icona-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Gota">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <style>*,*::before,*::after{box-sizing:border-box}html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<title>Gota · Cicles Artà</title>
 <title>Gota · Cicles Artà</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,6 +205,20 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .field{display:flex;flex-direction:column;gap:6px;font-weight:700}
 .field small{font-weight:500;color:var(--muted)}
 .msg{color:var(--bad-deep);font-weight:600;margin:0}
+.back{display:inline-flex;align-items:center;gap:4px;background:none;border:0;padding:10px 0 0;color:var(--muted);font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase}
+.back svg{width:18px;height:18px}
+.card{display:block;width:100%;text-align:left;margin-top:12px;background:var(--surface);color:var(--ink);border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;padding:14px 16px;transition:transform .1s}
+.card:active{transform:scale(.98)}
+.card .eyebrow{font-family:var(--display);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px;color:var(--muted)}
+.card h2{font-family:var(--display);font-weight:800;font-size:24px;line-height:1.1;margin:2px 0 10px;text-wrap:balance}
+.card.modul{background:var(--accent);border-color:var(--accent-deep);color:#06292A}
+.card.modul .eyebrow{color:#06292A;opacity:.75}
+.pline{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.pline .pb{flex:1;height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.card.modul .pline .pb{background:rgba(255,255,255,.45)}
+.pline .pb i{display:block;height:100%;background:var(--ok);border-radius:99px}
+.google{display:flex;align-items:center;justify-content:center;gap:10px}
+.google svg{width:24px;height:24px;background:#fff;border-radius:50%;padding:3px}
 /* animacions */
 .hero img,.q img{transform-origin:50% 100%;animation:bob 2.6s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-7px) rotate(-3deg)}60%{transform:translateY(-3px) rotate(2deg)}}
@@ -331,10 +352,58 @@ document.addEventListener('visibilitychange',()=>{if(SO.ctx){document.hidden?SO.
 
 /* ---------- progrés (només en aquest mòbil) ---------- */
 const KEY='gota-progres-v1';
-const nouP=()=>({fetes:{},xp:0,ratxa:0,darrerDia:null,vides:MAX_VIDES,vidaTs:Date.now(),errors:{},reptes:{},medalles:{},objectiu:2,avui:{d:null,n:0},setmana:null,xpSetmana:0,jugador:null});
+const nouP=()=>({compte:null,modul:null,tema:null,fallades:{},ts:0,fetes:{},xp:0,ratxa:0,darrerDia:null,vides:MAX_VIDES,vidaTs:Date.now(),errors:{},reptes:{},medalles:{},objectiu:2,avui:{d:null,n:0},setmana:null,xpSetmana:0,jugador:null});
 let P=nouP();
 try{const s=JSON.parse(localStorage.getItem(KEY));if(s)P={...nouP(),...s}}catch(e){}
-const desa=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
+const desa=()=>{P.ts=Date.now();try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}pujaNuvol()};
+
+/* ---------- compte de Google de l'institut i núvol (Supabase) ---------- */
+const WEB=!!(window.supabase&&window.supabase.createClient);
+let SB=null, JO=null, nuvolT=null;
+function pujaNuvol(){if(!JO)return;clearTimeout(nuvolT);nuvolT=setTimeout(enviaNuvol,1500)}
+async function enviaNuvol(){
+  if(!JO)return;clearTimeout(nuvolT);xpSetmanaActual();
+  try{await SB.rpc('gota_desa_meu',{p_dades:{...P,jugador:null},p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp,p_llicons:Object.keys(P.fetes).length})}catch(e){}
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&nuvolT)enviaNuvol()});
+function fusiona(srv){
+  const loc=P, email=JO.email;
+  if(srv&&Object.keys(srv).length){
+    if(loc.compte===email&&(loc.ts||0)>(srv.ts||0))P=loc;
+    else if(!loc.compte&&Object.keys(loc.fetes).length){
+      P={...nouP(),...srv};
+      P.fetes={...loc.fetes,...srv.fetes};P.medalles={...loc.medalles,...srv.medalles};P.errors={...loc.errors,...srv.errors};
+      for(const k in loc.reptes)P.reptes[k]=Math.max(loc.reptes[k],srv.reptes&&srv.reptes[k]!=null?srv.reptes[k]:-1);
+      for(const k in loc.fallades)P.fallades[k]=Math.max(loc.fallades[k],P.fallades[k]||0);
+      P.xp=Math.max(loc.xp,srv.xp||0);
+      if(loc.setmana===P.setmana)P.xpSetmana=Math.max(loc.xpSetmana,P.xpSetmana||0);
+    }else P={...nouP(),...srv};
+  }else if(loc.compte&&loc.compte!==email)P=nouP();
+  P.compte=email;P.jugador=null;desa();enviaNuvol();
+}
+const G_ICON='<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.2C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 7l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.2C.9 16.5 0 20.1 0 24s.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
+function pantallaEntra(msg){
+  window.scrollTo(0,0);
+  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.contenta}" alt="La Gota, mascota dels Cicles">
+    <h2>Hola! Sóc la Gota</h2>
+    <p style="margin:0;color:var(--muted);max-width:34ch">Entra amb el teu compte de Google de l'institut per desar el progrés i sortir al rànquing de la teva classe.</p>
+    ${msg?`<p class="msg" style="max-width:34ch">${esc(msg)}</p>`:''}
+    <div class="actions"><button class="big google" id="google">${G_ICON}<span>Entra amb Google</span></button></div></div>`;
+  $('#google').onclick=async()=>{$('#google').disabled=true;
+    const {error}=await SB.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname,queryParams:{prompt:'select_account'}}});
+    if(error){$('#google').disabled=false;pantallaEntra('No s\'ha pogut connectar. Revisa la connexió i torna-ho a provar.')}};
+}
+function pantallaNoAlumne(email){
+  $('#app').innerHTML=`<div class="end gut"><img src="${IMG.pensativa}" alt="La Gota pensativa">
+    <h2>Aquest compte no és d'alumne</h2>
+    <p style="margin:0;color:var(--muted);max-width:34ch">Has entrat com a ${esc(email)}, però no surts a cap llista de classe. Si ets alumne, entra amb el correu de l'institut. Si no, pots provar l'app sense desar res al núvol.</p>
+    <div class="actions"><button class="big" id="altre">Entra amb un altre compte</button><button class="big ghost" id="prova">Prova sense compte</button></div></div>`;
+  $('#altre').onclick=async()=>{await SB.auth.signOut();pantallaEntra()};
+  $('#prova').onclick=()=>{JO=null;inici()};
+}
+async function tancaSessio(){
+  await enviaNuvol();await SB.auth.signOut();JO=null;P=nouP();try{localStorage.removeItem(KEY)}catch(e){}pantallaEntra();
+}
 function recuperaVides(){
   if(P.vides>=MAX_VIDES){P.vidaTs=Date.now();return}
   const n=Math.floor((Date.now()-P.vidaTs)/(MIN_PER_VIDA*60000));
@@ -383,13 +452,63 @@ function inici(){
   for(const u of UNITATS)for(const [si,s] of u.seccions.entries()){
     if(!P.medalles[s.id]&&s.llicons.every(l=>P.fetes[l.id])){P.medalles[s.id]=avui();desa();return pantallaMedalla(s,si+1)}
   }
-  let html=topbar()+'<main class="gut">';
-  UNITATS.forEach(u=>{
+  const mods=moduls();
+  if(!mods.find(m=>m.id===P.modul))P.modul=null;
+  if(!P.modul)return pantallaModuls();
+  const m=mods.find(x=>x.id===P.modul);
+  const u=m.temes.find(t=>t.id===P.tema);
+  if(!u)return pantallaTemes(m);
+  P.tema=u.id;
+  pantallaTema(u,m);
+}
+const ICON_BACK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg>';
+function moduls(){
+  const ms=[];UNITATS.forEach(u=>{let m=ms.find(x=>x.id===u.modul.id);if(!m){m={...u.modul,temes:[]};ms.push(m)}m.temes.push(u)});return ms;
+}
+function progres(ll){const f=ll.filter(l=>P.fetes[l.id]).length;return{f,t:ll.length,pc:ll.length?Math.round(f/ll.length*100):0}}
+const pline=(p,txt)=>`<div class="pline"><span class="pb"><i style="width:${p.pc}%"></i></span><span>${txt||`${p.f}/${p.t}`}</span></div>`;
+const salutacio=()=>JO?`Hola, ${esc(JO.nom)}! `:'Hola! ';
+function peu(){
+  return JO?`<div class="foot"><span>Has entrat com a ${esc(JO.nom)}${JO.classe?` (${esc(JO.classe)})`:''}. El progrés es desa al teu compte.</span>
+    <button class="linkbtn" id="logout">Tancar la sessió</button></div>`:
+    `<div class="foot"><span>El progrés es guarda només en aquest dispositiu.</span>
+    <button class="linkbtn" id="reset">Esborrar el meu progrés</button></div>`;
+}
+function lligaPeu(){
+  $('#rank').onclick=pantallaRanking;
+  const lo=$('#logout');if(lo)lo.onclick=tancaSessio;
+  const r=$('#reset');if(!r)return;let arm=false;
+  r.onclick=()=>{ if(!arm){arm=true;r.textContent='Toca un altre cop per confirmar';setTimeout(()=>{arm=false;r.textContent='Esborrar el meu progrés'},3000);return}
+    P=nouP();desa();inici()};
+}
+function pantallaModuls(){
+  window.scrollTo(0,0);
+  let html=topbar()+`<main class="gut"><div class="hero"><img src="${IMG.contenta}" alt="La Gota, mascota dels Cicles"><div class="bubble">${salutacio()}Quin mòdul vols practicar?</div></div>`;
+  moduls().forEach(m=>{const p=progres(m.temes.flatMap(totesLlicons));
+    html+=`<button class="card modul" data-m="${esc(m.id)}"><div class="eyebrow">Mòdul · ${m.temes.length} ${m.temes.length===1?'tema':'temes'}</div><h2>${esc(m.titol)}</h2>${pline(p,`${p.f}/${p.t} lliçons`)}</button>`});
+  $('#app').innerHTML=html+'</main>'+peu();
+  document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{P.modul=b.dataset.m;P.tema=null;desa();inici()});
+  lligaPeu();
+}
+function pantallaTemes(m){
+  window.scrollTo(0,0);
+  let html=topbar()+`<main class="gut"><button class="back" id="amods">${ICON_BACK}Mòduls</button>
+    <div class="unit-head"><div class="eyebrow">Mòdul</div><h1>${esc(m.titol)}</h1></div>`;
+  m.temes.forEach(u=>{const p=progres(totesLlicons(u));
+    html+=`<button class="card" data-t="${esc(u.id)}"><div class="eyebrow">${p.f===p.t?'Tema acabat':p.f?'En marxa':'Per començar'}</div><h2>${esc(u.titol)}</h2>${pline(p,`${p.f}/${p.t} lliçons`)}</button>`});
+  $('#app').innerHTML=html+'</main>'+peu();
+  $('#amods').onclick=()=>{P.modul=null;P.tema=null;desa();inici()};
+  document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{P.tema=b.dataset.t;desa();inici()});
+  lligaPeu();
+}
+function pantallaTema(u,m){
+  let html=topbar()+`<main class="gut"><button class="back" id="atemes">${ICON_BACK}Temes de ${esc(m.titol)}</button>`;
+  {
     const ll=totesLlicons(u);
     const pend=ll.find(l=>!P.fetes[l.id]);
     const fetes=ll.filter(l=>P.fetes[l.id]).length;
     const msg=!pend?'Has acabat tota la unitat! Ets una màquina!':
-      fetes===0?`Hola! Començam amb «${esc(pend.titol)}»?`:`Vas per ${fetes} de ${ll.length}. Seguim amb «${esc(pend.titol)}»!`;
+      fetes===0?`${salutacio()}Començam amb «${esc(pend.titol)}»?`:`Vas per ${fetes} de ${ll.length}. Seguim amb «${esc(pend.titol)}»!`;
     html+=`<div class="hero"><img src="${IMG[pend?'contenta':'celebrant']}" alt="La Gota, mascota dels Cicles"><div class="bubble">${msg}</div></div>`;
     const ne=nErrors();
     if(ne)html+=`<button class="review" id="repas"><span class="ric">${ICON2.redo}</span><span><b>Repàs d'errors</b><small>${ne} ${ne===1?'pregunta':'preguntes'} per tornar a fer</small></span></button>`;
@@ -419,10 +538,9 @@ function inici(){
         <span class="stone">${obert?ICON2.trophy:ICON.lock}</span><span class="lbl">Repte contra rellotge${millor!=null?`<small>Millor: ${millor}/${REPTE_N}</small>`:obert?'<small>Desbloquejat!</small>':''}</span></button>`;
       html+='</div></section>';
     });
-  });
-  html+=`<div class="foot"><span>El progrés es guarda només en aquest dispositiu.</span>
-    <button class="linkbtn" id="reset">Esborrar el meu progrés</button></div></main>`;
-  $('#app').innerHTML=html;
+  }
+  $('#app').innerHTML=html+'</main>'+peu();
+  $('#atemes').onclick=()=>{P.tema=null;desa();inici()};
   document.querySelectorAll('.node').forEach(b=>b.onclick=()=>{
     if(b.classList.contains('locked'))return;
     if(b.dataset.r)return obreRepte(b.dataset.r);
@@ -430,11 +548,8 @@ function inici(){
     obreLlico(l);
   });
   const rp=$('#repas');if(rp)rp.onclick=obreRepas;
-  $('#rank').onclick=pantallaRanking;
   document.querySelectorAll('.goalpick button').forEach(b=>b.onclick=()=>{P.objectiu=+b.dataset.g;desa();inici()});
-  const r=$('#reset');let arm=false;
-  r.onclick=()=>{ if(!arm){arm=true;r.textContent='Toca un altre cop per confirmar';setTimeout(()=>{arm=false;r.textContent='Esborrar el meu progrés'},3000);return}
-    P=nouP();desa();inici()};
+  lligaPeu();
   const cur=document.querySelector('.node.current')||document.querySelector('.node.repte.open');
   if(cur)cur.scrollIntoView({block:'center'});
 }
@@ -460,63 +575,36 @@ function pantallaMedalla(s,num){
 
 /* ---------- rànquing de la classe (Supabase) ---------- */
 const SB_URL='https://layekidfagxljjdtmgyo.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxheWVraWRmYWd4bGpqZHRtZ3lvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxMTY5MzksImV4cCI6MjEwODY5MjkzOX0.qOyD-MHagpn3AOS3PrIqL5u67YSI_izra1jGsgh3eo8';
-async function rpc(fn,args){
-  const r=await fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+SB_KEY},body:JSON.stringify(args)});
-  if(!r.ok)throw new Error('http '+r.status);return r.json();
-}
 function setmanaISO(d=new Date()){
   const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const dia=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-dia);
   const y=t.getUTCFullYear(),w=Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7);return y+'-W'+String(w).padStart(2,'0');
 }
 function xpSetmanaActual(){const w=setmanaISO();if(P.setmana!==w){P.setmana=w;P.xpSetmana=0}return P.xpSetmana}
-let pujaT=null;
-function pujaRanking(){
-  if(!P.jugador)return;clearTimeout(pujaT);
-  pujaT=setTimeout(()=>{const j=P.jugador;rpc('gota_desa',{p_id:j.id,p_token:j.token,p_classe:j.classe,p_sobrenom:j.sobrenom,p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp}).catch(()=>{})},600);
-}
-function afegeixXP(n){P.xp+=n;xpSetmanaActual();P.xpSetmana+=n;pujaRanking()}
-const uuid=()=>crypto.randomUUID?crypto.randomUUID():'10000000-1000-4000-8000-100000000000'.replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16));
+function afegeixXP(n){P.xp+=n;xpSetmanaActual();P.xpSetmana+=n}
 async function pantallaRanking(){
   clearInterval(L&&L.timer);L=null;window.scrollTo(0,0);
   const cap=`<div class="lhead gut"><button class="x" id="surt" aria-label="Tornar">${ICON.x}</button><div style="flex:1"></div>${botoSo()}</div>`;
-  if(!P.jugador){
+  if(!JO){
     $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
-      <div class="hero" style="padding:0"><img src="${IMG.contenta}" alt=""><div class="bubble">Entra al rànquing de la teva classe i competeix cada setmana!</div></div>
-      <label class="field">Codi de la classe<small>Te'l dona el professor (per exemple 1AFD31).</small><input class="inp" id="codi" autocomplete="off" autocapitalize="characters"></label>
-      <label class="field">El teu sobrenom<small>Entre 2 i 20 lletres. No posis el teu nom complet.</small><input class="inp" id="sobrenom" maxlength="20" autocomplete="off"></label>
-      <p class="msg" id="msg" hidden></p>
-      <button class="big" id="entra">Entra al rànquing</button></div></div>`;
-    $('#surt').onclick=inici;
-    $('#entra').onclick=async()=>{
-      const codi=$('#codi').value.trim().toUpperCase(), nom=$('#sobrenom').value.trim(), m=$('#msg');m.hidden=true;
-      if(nom.length<2){m.textContent='El sobrenom ha de tenir com a mínim 2 lletres.';m.hidden=false;return}
-      $('#entra').disabled=true;
-      try{
-        const classe=await rpc('gota_classe',{p_codi:codi});
-        if(!classe){m.textContent='Aquest codi de classe no existeix. Revisa-lo amb el professor.';m.hidden=false;$('#entra').disabled=false;return}
-        P.jugador={id:uuid(),token:uuid()+uuid(),classe:codi,sobrenom:nom,nomClasse:classe};xpSetmanaActual();desa();
-        await rpc('gota_desa',{p_id:P.jugador.id,p_token:P.jugador.token,p_classe:codi,p_sobrenom:nom,p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp});
-        pantallaRanking();
-      }catch(e){m.textContent='No hi ha connexió amb el rànquing. Prova-ho més tard.';m.hidden=false;$('#entra').disabled=false}
-    };
+      <div class="hero" style="padding:0"><img src="${IMG.pensativa}" alt=""><div class="bubble">${WEB?'Per sortir al rànquing de la classe has d\'entrar amb el compte de l\'institut.':'El rànquing només funciona a la web de la Gota, entrant amb el compte de l\'institut.'}</div></div>
+      ${WEB?'<button class="big google" id="entrar">'+G_ICON+'<span>Entra amb Google</span></button>':''}</div></div>`;
+    $('#surt').onclick=inici;const e=$('#entrar');if(e)e.onclick=async()=>{await SB.auth.signOut();pantallaEntra()};
     return;
   }
-  const j=P.jugador;xpSetmanaActual();
+  xpSetmanaActual();
   $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
-    <div><h2>Rànquing de la setmana</h2><p class="sub">${esc(j.nomClasse||j.classe)} · els punts es reinicien cada dilluns</p></div>
-    <ol class="rlist" id="rlist"><li class="sub">Carregant…</li></ol>
-    <p class="sub">Jugues com a <b>${esc(j.sobrenom)}</b>. <button class="linkbtn" id="surtr">Sortir del rànquing</button></p></div></div>`;
+    <div><h2>Rànquing de la setmana</h2><p class="sub">Classe ${esc(JO.classe||'')} · els punts es reinicien cada dilluns</p></div>
+    <ol class="rlist" id="rlist"><li class="sub">Carregant…</li></ol></div></div>`;
   $('#surt').onclick=inici;
-  let arm=false;$('#surtr').onclick=e=>{if(!arm){arm=true;e.target.textContent='Toca un altre cop per confirmar';return}P.jugador=null;desa();inici()};
   try{
-    await rpc('gota_desa',{p_id:j.id,p_token:j.token,p_classe:j.classe,p_sobrenom:j.sobrenom,p_setmana:P.setmana,p_xp_setmana:P.xpSetmana,p_xp_total:P.xp});
-    const rows=await rpc('gota_ranking',{p_classe:j.classe,p_setmana:P.setmana});
+    await enviaNuvol();
+    const {data:rows,error}=await SB.rpc('gota_ranking_meu',{p_setmana:P.setmana});if(error)throw error;
     const el=$('#rlist');if(!el)return;
     el.innerHTML=rows.length?'':'<li class="sub">Encara no ha puntuat ningú aquesta setmana. Fes una lliçó i sigues el primer!</li>';
-    rows.forEach((r,i)=>{const li=document.createElement('li');li.className='rrow'+(r.id===j.id?' me':'');li.style.animationDelay=(i*.04)+'s';
+    rows.forEach((r,i)=>{const li=document.createElement('li');li.className='rrow'+(r.jo?' me':'');li.style.animationDelay=(i*.04)+'s';
       li.innerHTML=`<span class="rpos">${i+1}</span><span class="rname"></span><span class="rxp">${r.xp}</span>`;
-      li.querySelector('.rname').textContent=r.sobrenom+(r.id===j.id?' (tu)':'');el.appendChild(li)});
-  }catch(e){const el=$('#rlist');if(el)el.innerHTML='<li class="msg">No es pot connectar amb el rànquing ara mateix. Si obres l\'app des de Claude, el rànquing només funciona a la web de la Gota.</li>'}
+      li.querySelector('.rname').textContent=r.nom+(r.jo?' (tu)':'');el.appendChild(li)});
+  }catch(e){const el=$('#rlist');if(el)el.innerHTML='<li class="msg">No es pot connectar amb el rànquing ara mateix. Prova-ho més tard.</li>'}
 }
 
 /* ---------- lliçó, repàs i repte ---------- */
@@ -671,13 +759,13 @@ function resol(ok,detall){
   if(ok){L.encerts++; if(!L.intents[idx])L.primers++;}
   else L.intents[idx]=1;
   if(L.mode==='llico'){
-    if(!ok){L.cua.push(idx);P.errors[key]=1;P.vides=Math.max(0,P.vides-1);if(P.vides===MAX_VIDES-1)P.vidaTs=Date.now();}
+    if(!ok){P.fallades[key]=(P.fallades[key]||0)+1;L.cua.push(idx);P.errors[key]=1;P.vides=Math.max(0,P.vides-1);if(P.vides===MAX_VIDES-1)P.vidaTs=Date.now();}
     else if(L.intents[idx])P.errors[key]=1;
   }else if(L.mode==='repas'){
     if(ok&&!L.intents[idx])delete P.errors[key];
-    if(!ok)L.cua.push(idx);
+    if(!ok){L.cua.push(idx);P.fallades[key]=(P.fallades[key]||0)+1}
   }else if(L.mode==='repte'){
-    if(!ok)P.errors[key]=1;
+    if(!ok){P.errors[key]=1;P.fallades[key]=(P.fallades[key]||0)+1}
   }
   desa();
   const frasesOk=['Molt bé!','Perfecte!','Així es fa!','Genial!','Exacte!'];
@@ -748,8 +836,22 @@ function senseVides(){
   L=null;$('#cont').onclick=inici;
 }
 
-carrega().then(inici).catch(()=>{$('#app').innerHTML='<p class="gut" style="padding-block:40px">No s\'ha pogut carregar el contingut. Torna a obrir la pàgina.</p>'});
+async function arrenca(){
+  await carrega();
+  if(!WEB)return inici();
+  SB=window.supabase.createClient(SB_URL,SB_KEY,{auth:{flowType:'implicit',detectSessionInUrl:true,persistSession:true}});
+  const q=new URLSearchParams(location.search+'&'+location.hash.slice(1));
+  const err=q.get('error_description')||q.get('error');
+  const {data:{session}}=await SB.auth.getSession();
+  if(location.hash||location.search)history.replaceState(null,'',location.pathname);
+  if(!session)return pantallaEntra(err?"Aquest compte no està donat d'alta a la Gota. Entra amb el correu de l'institut o parla amb el professor.":null);
+  const {data,error}=await SB.rpc('gota_jo');
+  if(error){JO=null;return inici()}
+  if(!data)return pantallaNoAlumne(session.user.email);
+  JO={nom:data.nom,cognoms:data.cognoms,classe:data.classe,email:session.user.email};
+  fusiona(data.dades);inici();
+}
+arrenca().catch(()=>{$('#app').innerHTML='<p class="gut" style="padding-block:40px">No s\'ha pogut carregar la Gota. Torna a obrir la pàgina.</p>'});
+if('serviceWorker' in navigator&&WEB)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
-
-</body>
-</html>
+</body></html>
