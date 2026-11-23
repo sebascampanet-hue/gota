@@ -1,5 +1,5 @@
 // Gota: funciona sense connexió amb el que ja s'ha carregat. Les dades del núvol (Supabase) no es guarden aquí.
-const CACHE = 'xop-v3';
+const CACHE = 'xop-v4';
 const BASE = ['./', 'index.html', 'contingut.json', 'fonts.json', 'manifest.webmanifest', 'mascota-contenta.png', 'mascota-celebrant.png',
   'mascota-trista.png', 'mascota-pensativa.png', 'gota-celebra.webp', 'icona-192.png'];
 self.addEventListener('install', e => {

@@ -194,6 +194,42 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .rank{flex:1;display:flex;flex-direction:column;gap:14px;padding-block:18px 30px}
 .rank h2{font-family:var(--display);font-weight:800;font-size:30px;margin:0}
 .rank .sub{color:var(--muted);margin:0}
+.app.wide{max-width:1180px}
+.livebanner{display:flex;align-items:center;gap:12px;width:100%;margin-top:14px;text-align:left;background:var(--chal);color:#fff;border:0;border-bottom:4px solid var(--chal-deep);border-radius:16px;padding:14px 16px}
+.livebanner b{display:block;font-family:var(--display);font-size:22px;text-transform:uppercase;letter-spacing:.04em}
+.livebanner small{font-size:15px;opacity:.9}
+.livedot{width:14px;height:14px;border-radius:50%;background:#FF5A5F;box-shadow:0 0 0 4px rgba(255,255,255,.35);flex:none;animation:livepulse 1.2s ease-in-out infinite}
+@keyframes livepulse{50%{transform:scale(.7);opacity:.6}}
+.st-live{color:var(--chal)}
+.picks{display:flex;flex-wrap:wrap;gap:8px}
+.pick{border:2px solid var(--line);border-bottom-width:4px;border-radius:12px;background:var(--surface);color:var(--ink);padding:10px 14px;font-weight:700;font-size:16px;min-height:44px}
+.pick.on{border-color:var(--chal-deep);background:var(--chal);color:#fff}
+.seclist{display:flex;flex-direction:column;gap:8px}
+.seclist label{display:flex;align-items:center;gap:12px;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:600}
+.seclist input{width:22px;height:22px;accent-color:var(--chal)}
+.seclist small{display:block;color:var(--muted);font-weight:500}
+.proj{flex:1;display:flex;flex-direction:column;gap:18px;padding-block:22px 40px}
+.proj-head{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.proj-head h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,4vw,52px);line-height:1;margin:0;flex:1;min-width:260px}
+.proj-head .tag{display:inline-flex;align-items:center;gap:8px;background:var(--chal);color:#fff;border-radius:99px;padding:6px 14px;font-family:var(--display);font-weight:800;letter-spacing:.06em;font-size:18px}
+.proj-info{color:var(--muted);font-size:clamp(16px,1.6vw,22px);margin:0}
+.proj-info b{color:var(--ink)}
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:10px;margin:0;padding:0;list-style:none}
+.prow{display:grid;grid-template-columns:44px minmax(0,1fr) 64px;align-items:center;gap:6px 12px;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:10px 14px}
+.prow.off{opacity:.5}
+.prow.fi{border-color:var(--ok)}
+.prow .rpos{width:36px;height:36px;font-size:18px}
+.prow .pn{font-weight:800;font-size:clamp(17px,1.6vw,22px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prow .pe{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.4vw,32px);text-align:right;color:var(--ok-deep);font-variant-numeric:tabular-nums}
+.prow .pb{grid-column:2/4;height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.prow .pb i{display:block;height:100%;background:var(--chal);border-radius:99px;transition:width .6s ease}
+.prow.fi .pb i{background:var(--ok)}
+.prow .ps{grid-column:2/4;font-size:14px;color:var(--muted);margin-top:-2px}
+.podi{display:flex;align-items:flex-end;justify-content:center;gap:14px;margin-top:10px}
+.podi div{display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:800;font-size:clamp(18px,2vw,26px);text-align:center;width:min(30%,240px)}
+.podi span{display:grid;place-items:center;width:100%;border-radius:14px 14px 0 0;font-family:var(--display);font-size:clamp(34px,4vw,56px);color:#fff}
+.projbtns{display:flex;gap:12px;flex-wrap:wrap}
+.projbtns .big{width:auto;flex:1;min-width:200px}
 .rlist{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
 .rrow{display:flex;align-items:center;gap:12px;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:10px 14px;animation:popin .35s backwards}
 .rrow.me{border-color:var(--accent);background:var(--accent-soft)}
@@ -358,7 +394,7 @@ const desa=()=>{P.ts=Date.now();try{localStorage.setItem(KEY,JSON.stringify(P))}
 
 /* ---------- compte de Google de l'institut i núvol (Supabase) ---------- */
 const WEB=!!(window.supabase&&window.supabase.createClient);
-let SB=null, JO=null, nuvolT=null;
+let SB=null, JO=null, nuvolT=null, DIRECTE=null, directeT=null;
 function pujaNuvol(){if(!JO||JO.profe)return;clearTimeout(nuvolT);nuvolT=setTimeout(enviaNuvol,1500)}
 async function enviaNuvol(){
   if(!JO||JO.profe)return;clearTimeout(nuvolT);xpSetmanaActual();
@@ -484,28 +520,54 @@ function lligaPeu(){
   r.onclick=()=>{ if(!arm){arm=true;r.textContent='Toca un altre cop per confirmar';setTimeout(()=>{arm=false;r.textContent='Esborrar el meu progrés'},3000);return}
     P=nouP();desa();inici()};
 }
+function bannerDirecte(){
+  if(JO&&JO.profe)return `<button class="livebanner" id="livenou"><span class="livedot" aria-hidden="true"></span><span><b>${JO.obert?'Repte en directe obert':'Repte en directe'}</b><small>${JO.obert?'Torna a la pantalla per projectar':'Llança un repte a una classe i projecta com avancen'}</small></span></button>`;
+  if(!DIRECTE||DIRECTE.acabat)return '';
+  return `<button class="livebanner" id="livego"><span class="livedot" aria-hidden="true"></span><span><b>Repte en directe!</b><small>${esc(DIRECTE.titol)} · ${DIRECTE.fetes?`vas per ${DIRECTE.fetes}/${DIRECTE.preguntes.length}`:'toca per entrar'}</small></span></button>`;
+}
+function lligaDirecte(){
+  const a=$('#livego');if(a)a.onclick=obreDirecte;
+  const b=$('#livenou');if(b)b.onclick=()=>JO.obert?pantallaProjecta(JO.obert):pantallaDirecteNou();
+}
+function enInici(){return !L&&!!document.querySelector('#app .top')}
+async function miraDirecte(){
+  if(!JO||!SB)return;
+  try{
+    if(JO.profe){
+      const {data}=await SB.from('gota_directe').select('id,titol,preguntes,created_at,grups(codi)').eq('estat','obert').gte('created_at',new Date(Date.now()-3*3600e3).toISOString()).order('created_at',{ascending:false}).limit(1);
+      const d=data&&data[0];const nou=d?{id:d.id,titol:d.titol,n:d.preguntes.length,classe:d.grups&&d.grups.codi}:null;
+      const canvi=JSON.stringify(nou)!==JSON.stringify(JO.obert||null);JO.obert=nou;
+      if(canvi&&enInici())inici();
+    }else{
+      const {data}=await SB.rpc('gota_directe_actiu');
+      const canvi=JSON.stringify(data||null)!==JSON.stringify(DIRECTE);DIRECTE=data||null;
+      if(canvi&&enInici())inici();
+    }
+  }catch(e){}
+}
+function vigilaDirecte(){clearInterval(directeT);miraDirecte();directeT=setInterval(()=>{if(!document.hidden)miraDirecte()},10000)}
 function pantallaModuls(){
   window.scrollTo(0,0);
-  let html=topbar()+`<main class="gut"><div class="hero"><img src="${IMG.contenta}" alt="En Xop, mascota dels Cicles"><div class="bubble">${salutacio()}Quin mòdul vols practicar?</div></div>`;
+  let html=topbar()+`<main class="gut">${bannerDirecte()}<div class="hero"><img src="${IMG.contenta}" alt="En Xop, mascota dels Cicles"><div class="bubble">${salutacio()}Quin mòdul vols practicar?</div></div>`;
   moduls().forEach(m=>{const p=progres(m.temes.flatMap(totesLlicons));
     html+=`<button class="card modul" data-m="${esc(m.id)}"><div class="eyebrow">Mòdul · ${m.temes.length} ${m.temes.length===1?'tema':'temes'}</div><h2>${esc(m.titol)}</h2>${pline(p,`${p.f}/${p.t} lliçons`)}</button>`});
   $('#app').innerHTML=html+'</main>'+peu();
   document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{P.modul=b.dataset.m;P.tema=null;desa();inici()});
-  lligaPeu();
+  lligaPeu();lligaDirecte();
 }
 function pantallaTemes(m){
   window.scrollTo(0,0);
   let html=topbar()+`<main class="gut"><button class="back" id="amods">${ICON_BACK}Mòduls</button>
-    <div class="unit-head"><div class="eyebrow">Mòdul</div><h1>${esc(m.titol)}</h1></div>`;
+    ${bannerDirecte()}<div class="unit-head"><div class="eyebrow">Mòdul</div><h1>${esc(m.titol)}</h1></div>`;
   m.temes.forEach(u=>{const p=progres(totesLlicons(u));
     html+=`<button class="card" data-t="${esc(u.id)}"><div class="eyebrow">${p.f===p.t?'Tema acabat':p.f?'En marxa':'Per començar'}</div><h2>${esc(u.titol)}</h2>${pline(p,`${p.f}/${p.t} lliçons`)}</button>`});
   $('#app').innerHTML=html+'</main>'+peu();
   $('#amods').onclick=()=>{P.modul=null;P.tema=null;desa();inici()};
   document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{P.tema=b.dataset.t;desa();inici()});
-  lligaPeu();
+  lligaPeu();lligaDirecte();
 }
 function pantallaTema(u,m){
-  let html=topbar()+`<main class="gut"><button class="back" id="atemes">${ICON_BACK}Temes de ${esc(m.titol)}</button>`;
+  let html=topbar()+`<main class="gut"><button class="back" id="atemes">${ICON_BACK}Temes de ${esc(m.titol)}</button>${bannerDirecte()}`;
   {
     const ll=totesLlicons(u);
     const pend=ll.find(l=>!P.fetes[l.id]);
@@ -543,7 +605,7 @@ function pantallaTema(u,m){
     });
   }
   $('#app').innerHTML=html+'</main>'+peu();
-  $('#atemes').onclick=()=>{P.tema=null;desa();inici()};
+  $('#atemes').onclick=()=>{P.tema=null;desa();inici()};lligaDirecte();
   document.querySelectorAll('.node').forEach(b=>b.onclick=()=>{
     if(b.classList.contains('locked'))return;
     if(b.dataset.r)return obreRepte(b.dataset.r);
@@ -646,7 +708,8 @@ const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').tr
 function capçal(){
   const pct=Math.round(L.encerts/L.total*100);
   let dreta='';
-  if(L.mode==='repte'){const t=Math.max(0,Math.ceil((L.fi-Date.now())/1000));dreta=`<span class="stat st-clock" id="clock">${ICON2.clock}${t}</span>`}
+  if(L.directe)dreta=`<span class="stat st-live"><span class="livedot" style="width:10px;height:10px" aria-hidden="true"></span>${L.total-L.cua.length}/${L.total}</span>`;
+  else if(L.mode==='repte'){const t=Math.max(0,Math.ceil((L.fi-Date.now())/1000));dreta=`<span class="stat st-clock" id="clock">${ICON2.clock}${t}</span>`}
   else if(L.mode==='llico')dreta=`<span class="stat st-lives">${ICON.heart}${P.vides}</span>`;
   else dreta=`<span class="stat st-redo">${ICON2.redo}${L.cua.length}</span>`;
   return `<div class="lhead gut"><button class="x" id="surt" aria-label="Sortir">${ICON.x}</button>
@@ -782,12 +845,14 @@ function resol(ok,detall){
   const g=$('#go');g.hidden=false;g.disabled=false;g.textContent='Continua';g.focus();
   const tot=L.mode==='repte'?L.total-L.cua.length:L.encerts;
   $('.bar i').style.width=Math.round(tot/L.total*100)+'%';
+  if(L.directe){const sl=document.querySelector('.lhead .st-live');if(sl)sl.lastChild.textContent=(L.total-L.cua.length)+'/'+L.total;
+    enviaDirecte(false);}
   const lv=document.querySelector('.lhead .st-lives');
   if(lv){lv.innerHTML=ICON.heart+P.vides;if(!ok)lv.classList.add('lost')}
   const rd=document.querySelector('.lhead .st-redo');if(rd)rd.innerHTML=ICON2.redo+L.cua.length;
 }
 function seguent(){
-  if(L.cua.length===0)return L.mode==='repte'?fiRepte(false):final();
+  if(L.cua.length===0)return L.directe?fiDirecte():L.mode==='repte'?fiRepte(false):final();
   if(L.mode==='llico'&&P.vides<=0)return senseVides();
   exercici();
 }
@@ -832,6 +897,104 @@ function fiRepte(temps){
     `<div class="tile t-acc"><b>Encerts</b><span>${n}/${REPTE_N}</span></div><div class="tile t-xp"><b>Punts</b><span class="count" data-n="${xp}">+${xp}</span></div>`,bannerObjectiu(meta));
   L=null;
 }
+function obreDirecte(){
+  const d=DIRECTE;if(!d)return inici();
+  const items=d.preguntes.map(k=>EX[k]?{e:EX[k].e,key:k}:null);
+  if(items.some(x=>!x)){$('#app').innerHTML='<div class="end gut"><h2>No es pot obrir el repte</h2><p>Tanca l\'app i torna-la a obrir per carregar els temes nous.</p><div class="actions"><button class="big" id="cont">Torna</button></div></div>';$('#cont').onclick=inici;return}
+  L={mode:'repte',titol:d.titol,items,cua:items.map((e,i)=>i).slice(Math.min(d.fetes,items.length)),total:items.length,encerts:d.encerts,primers:d.encerts,intents:{},estat:'resp',directe:d.id};
+  window.scrollTo(0,0);
+  if(!L.cua.length)return fiDirecte();
+  exercici();
+}
+function enviaDirecte(acabat){
+  if(!L||!L.directe)return Promise.resolve();
+  const fetes=L.total-L.cua.length;
+  if(DIRECTE&&DIRECTE.id===L.directe){DIRECTE.fetes=fetes;DIRECTE.encerts=L.encerts;if(acabat)DIRECTE.acabat=true}
+  return SB.rpc('gota_directe_respon',{p_id:L.directe,p_fetes:fetes,p_encerts:L.encerts,p_acabat:!!acabat}).then(()=>{},()=>{});
+}
+function fiDirecte(){
+  enviaDirecte(true);
+  const n=L.encerts,tot=L.total,xp=n*2;
+  afegeixXP(xp);if(n)sumaDia();const meta=sumaActivitat();desa();
+  const bo=n>=tot*0.7;if(bo){fx('fi');setTimeout(confeti,60)}else fx('ok');
+  pantallaFinal(bo?'celebrant':'contenta','Repte acabat!','Mira la pantalla de la classe per veure com van els altres.',
+    `<div class="tile t-acc"><b>Encerts</b><span>${n}/${tot}</span></div><div class="tile t-xp"><b>Punts</b><span class="count" data-n="${xp}">+${xp}</span></div>`,bannerObjectiu(meta));
+  L=null;
+}
+
+/* ---------- repte en directe: professor ---------- */
+const DIR_NS=[5,10,15,20];
+function pantallaDirecteNou(){
+  window.scrollTo(0,0);
+  const cls=JO.classes||[];let cl=cls[0],n=10;const sel=new Set();
+  const temes=UNITATS;
+  const pinta=()=>{
+    const disp=temes.flatMap(u=>u.seccions).filter(s=>sel.has(s.id)).flatMap(s=>s.llicons.flatMap(l=>l.exercicis)).length;
+    $('#app').innerHTML=`<div class="lesson"><div class="lhead gut"><button class="x" id="surt" aria-label="Tornar">${ICON.x}</button><div style="flex:1"></div></div>
+    <div class="rank gut"><div><h2>Repte en directe</h2><p class="sub">Tots els alumnes de la classe fan les mateixes preguntes. Tu projectes com avancen.</p></div>
+    <div><b>Classe</b><div class="picks" style="margin-top:8px">${cls.map(c=>`<button class="pick ${c===cl?'on':''}" data-cl="${esc(c)}">${esc(c)}</button>`).join('')}</div></div>
+    <div><b>Seccions</b><div class="seclist" style="margin-top:8px">${temes.map(u=>u.seccions.map(s=>{const ne=s.llicons.reduce((a,l)=>a+l.exercicis.length,0);
+      return `<label><input type="checkbox" data-s="${esc(s.id)}" ${sel.has(s.id)?'checked':''}><span>${esc(s.titol)}<small>${esc(u.titol)} · ${ne} preguntes</small></span></label>`}).join('')).join('')}</div></div>
+    <div><b>Nombre de preguntes</b><div class="picks" style="margin-top:8px">${DIR_NS.map(x=>`<button class="pick ${x===n?'on':''}" data-n="${x}">${x}</button>`).join('')}</div></div>
+    <p class="msg" id="msg" hidden></p>
+    <button class="big" id="llança" ${sel.size&&cl?'':'disabled'}>Llança el repte${sel.size?` (${Math.min(n,disp)} preguntes)`:''}</button></div></div>`;
+    $('#surt').onclick=inici;
+    document.querySelectorAll('[data-cl]').forEach(b=>b.onclick=()=>{cl=b.dataset.cl;pinta()});
+    document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{n=+b.dataset.n;pinta()});
+    document.querySelectorAll('[data-s]').forEach(b=>b.onchange=()=>{b.checked?sel.add(b.dataset.s):sel.delete(b.dataset.s);pinta()});
+    $('#llança').onclick=async()=>{
+      const secs=temes.flatMap(u=>u.seccions).filter(s=>sel.has(s.id));
+      const keys=shuffle(secs.flatMap(s=>s.llicons.flatMap(l=>l.exercicis.map((e,i)=>l.id+'#'+i)))).slice(0,n);
+      const titol=secs.length===1?secs[0].titol:secs.map(s=>s.titol).join(' + ').slice(0,118);
+      $('#llança').disabled=true;
+      const {data:id,error}=await SB.rpc('gota_directe_crea',{p_classe:cl,p_titol:titol,p_preguntes:keys});
+      if(error||!id){const m=$('#msg');m.textContent='No s\'ha pogut crear el repte. Revisa la connexió.';m.hidden=false;$('#llança').disabled=false;return}
+      JO.obert={id,titol,n:keys.length,classe:cl};pantallaProjecta(JO.obert);
+    };
+  };
+  pinta();
+}
+let projT=null;
+function surtProjecta(){clearInterval(projT);projT=null;$('#app').classList.remove('wide');inici()}
+function pantallaProjecta(r){
+  window.scrollTo(0,0);musicaOff();clearInterval(projT);
+  $('#app').classList.add('wide');
+  $('#app').innerHTML=`<div class="proj gut">
+    <div class="proj-head"><span class="tag"><span class="livedot" aria-hidden="true"></span>EN DIRECTE</span><h1>${esc(r.titol)}</h1></div>
+    <p class="proj-info">Classe <b>${esc(r.classe||'')}</b> · ${r.n} preguntes · Entrau a <b>Xop</b> amb el compte de l'institut i tocau <b>Repte en directe</b>. <span id="pcon"></span></p>
+    <ol class="plist" id="plist"><li class="proj-info">Carregant…</li></ol>
+    <div class="projbtns"><button class="big" id="pfi">Acabar el repte</button><button class="big ghost" id="psurt">Sortir sense acabar</button></div></div>`;
+  $('#psurt').onclick=surtProjecta;
+  let arm=false;
+  $('#pfi').onclick=async e=>{if(!arm){arm=true;e.target.textContent='Toca un altre cop per acabar';setTimeout(()=>{arm=false;const b=$('#pfi');if(b)b.textContent='Acabar el repte'},3000);return}
+    clearInterval(projT);const rows=await estatDirecte(r);await SB.rpc('gota_directe_tanca',{p_id:r.id});JO.obert=null;podi(r,rows||[])};
+  const tick=async()=>{const rows=await estatDirecte(r);if(rows)pintaProjecta(r,rows)};
+  tick();projT=setInterval(()=>{if(!document.hidden)tick()},2000);
+}
+async function estatDirecte(r){try{const {data,error}=await SB.rpc('gota_directe_estat',{p_id:r.id});if(error)throw error;return data}catch(e){return null}}
+const mmss=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+function pintaProjecta(r,rows){
+  const el=$('#plist');if(!el)return clearInterval(projT);
+  const con=rows.filter(x=>x.connectat).length,fi=rows.filter(x=>x.acabat).length;
+  $('#pcon').innerHTML=`<b>${con}/${rows.length}</b> connectats${fi?` · <b>${fi}</b> han acabat`:''}.`;
+  el.innerHTML=rows.map((x,i)=>`<li class="prow ${x.connectat?'':'off'} ${x.acabat?'fi':''}"><span class="rpos">${x.connectat?i+1:'–'}</span>
+    <span class="pn"></span><span class="pe">${x.encerts}</span>
+    <span class="pb"><i style="width:${Math.round(x.fetes/r.n*100)}%"></i></span>
+    <span class="ps">${x.acabat?`Acabat en ${mmss(x.segons)}`:x.connectat?`${x.fetes}/${r.n} preguntes`:'Encara no ha entrat'}</span></li>`).join('');
+  el.querySelectorAll('.pn').forEach((s,i)=>s.textContent=rows[i].nom);
+}
+function podi(r,rows){
+  const top=rows.filter(x=>x.connectat).slice(0,3);
+  const col=['#F5B014','#9AA9AD','#D98E4A'],alt=[220,160,120],ord=[1,0,2];
+  fx('fi');setTimeout(confeti,60);
+  $('#app').innerHTML=`<div class="proj gut" style="align-items:center;text-align:center">
+    <div class="proj-head" style="justify-content:center"><h1 style="flex:none">Repte acabat!</h1></div>
+    <p class="proj-info">${esc(r.titol)} · Classe ${esc(r.classe||'')}</p>
+    <div class="podi" style="width:100%">${ord.filter(i=>top[i]).map(i=>`<div><b class="pnom"></b><small style="font-weight:600;color:var(--muted)">${top[i].encerts}/${r.n} encerts</small><span style="height:${alt[i]}px;background:${col[i]}">${i+1}</span></div>`).join('')}</div>
+    <div class="projbtns" style="width:100%;max-width:520px"><button class="big" id="pfora">Tornar a l'inici</button></div></div>`;
+  const noms=document.querySelectorAll('.pnom');ord.filter(i=>top[i]).forEach((i,k)=>noms[k].textContent=top[i].nom);
+  $('#pfora').onclick=surtProjecta;
+}
 function senseVides(){
   recuperaVides();
   const min=Math.max(1,Math.ceil((P.vidaTs+MIN_PER_VIDA*60000-Date.now())/60000));
@@ -854,9 +1017,9 @@ async function arrenca(){
   const {data,error}=await SB.rpc('gota_jo');
   if(error){JO=null;return inici()}
   if(!data)return pantallaNoAlumne(session.user.email);
-  if(data.profe){JO={profe:true,classes:data.classes||[],email:session.user.email};return inici()}
+  if(data.profe){JO={profe:true,classes:data.classes||[],email:session.user.email};inici();return vigilaDirecte()}
   JO={nom:data.nom,cognoms:data.cognoms,classe:data.classe,email:session.user.email};
-  fusiona(data.dades);inici();
+  fusiona(data.dades);inici();vigilaDirecte();
 }
 arrenca().catch(()=>{$('#app').innerHTML='<p class="gut" style="padding-block:40px">No s\'ha pogut carregar Xop. Torna a obrir la pàgina.</p>'});
 if('serviceWorker' in navigator&&WEB)navigator.serviceWorker.register('sw.js').catch(()=>{});
