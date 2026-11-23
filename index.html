@@ -589,7 +589,7 @@ async function pantallaRanking(){
   const cap=`<div class="lhead gut"><button class="x" id="surt" aria-label="Tornar">${ICON.x}</button><div style="flex:1"></div>${botoSo()}</div>`;
   if(!JO){
     $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
-      <div class="hero" style="padding:0"><img src="${IMG.pensativa}" alt=""><div class="bubble">${WEB?'Per sortir al rànquing de la classe has d\'entrar amb el compte de l\'institut.':'El rànquing només funciona a la web d'en Xop, entrant amb el compte de l\'institut.'}</div></div>
+      <div class="hero" style="padding:0"><img src="${IMG.pensativa}" alt=""><div class="bubble">${WEB?'Per sortir al rànquing de la classe has d\'entrar amb el compte de l\'institut.':'El rànquing només funciona a la web d\'en Xop, entrant amb el compte de l\'institut.'}</div></div>
       ${WEB?'<button class="big google" id="entrar">'+G_ICON+'<span>Entra amb Google</span></button>':''}</div></div>`;
     $('#surt').onclick=inici;const e=$('#entrar');if(e)e.onclick=async()=>{await SB.auth.signOut();pantallaEntra()};
     return;
