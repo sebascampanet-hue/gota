@@ -230,6 +230,10 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .podi span{display:grid;place-items:center;width:100%;border-radius:14px 14px 0 0;font-family:var(--display);font-size:clamp(34px,4vw,56px);color:#fff}
 .projbtns{display:flex;gap:12px;flex-wrap:wrap}
 .projbtns .big{width:auto;flex:1;min-width:200px}
+.rtabs{display:flex;gap:6px;background:var(--line);padding:4px;border-radius:14px}
+.rtabs button{flex:1;border:0;border-radius:10px;padding:10px 6px;background:none;color:var(--muted);font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.04em;text-transform:uppercase;min-height:44px}
+.rtabs button.on{background:var(--surface);color:var(--ink);box-shadow:0 2px 0 var(--line)}
+.rxp small{font-size:14px;font-weight:700;color:var(--muted);margin-left:3px}
 .rlist{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
 .rrow{display:flex;align-items:center;gap:12px;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:10px 14px;animation:popin .35s backwards}
 .rrow.me{border-color:var(--accent);background:var(--accent-soft)}
@@ -387,7 +391,7 @@ document.addEventListener('visibilitychange',()=>{if(SO.ctx){document.hidden?SO.
 
 /* ---------- progrés (només en aquest mòbil) ---------- */
 const KEY='gota-progres-v1';
-const nouP=()=>({compte:null,modul:null,tema:null,fallades:{},ts:0,fetes:{},xp:0,ratxa:0,darrerDia:null,vides:MAX_VIDES,vidaTs:Date.now(),errors:{},reptes:{},medalles:{},objectiu:2,avui:{d:null,n:0},setmana:null,xpSetmana:0,jugador:null});
+const nouP=()=>({xpTema:null,compte:null,modul:null,tema:null,fallades:{},ts:0,fetes:{},xp:0,ratxa:0,darrerDia:null,vides:MAX_VIDES,vidaTs:Date.now(),errors:{},reptes:{},medalles:{},objectiu:2,avui:{d:null,n:0},setmana:null,xpSetmana:0,jugador:null});
 let P=nouP();
 try{const s=JSON.parse(localStorage.getItem(KEY));if(s)P={...nouP(),...s}}catch(e){}
 const desa=()=>{P.ts=Date.now();try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}pujaNuvol()};
@@ -411,10 +415,11 @@ function fusiona(srv){
       for(const k in loc.reptes)P.reptes[k]=Math.max(loc.reptes[k],srv.reptes&&srv.reptes[k]!=null?srv.reptes[k]:-1);
       for(const k in loc.fallades)P.fallades[k]=Math.max(loc.fallades[k],P.fallades[k]||0);
       P.xp=Math.max(loc.xp,srv.xp||0);
+      if(loc.xpTema){P.xpTema=P.xpTema||{};for(const k in loc.xpTema)P.xpTema[k]=Math.max(loc.xpTema[k],P.xpTema[k]||0)}
       if(loc.setmana===P.setmana)P.xpSetmana=Math.max(loc.xpSetmana,P.xpSetmana||0);
     }else P={...nouP(),...srv};
   }else if(loc.compte&&loc.compte!==email)P=nouP();
-  P.compte=email;P.jugador=null;desa();enviaNuvol();
+  P.compte=email;P.jugador=null;omplXpTema();desa();enviaNuvol();
 }
 const G_ICON='<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.2C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 7l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.2C.9 16.5 0 20.1 0 24s.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
 function pantallaEntra(msg){
@@ -455,12 +460,13 @@ function sumaDia(){
 }
 
 /* ---------- contingut ---------- */
-let UNITATS=[];const EX={};
+let UNITATS=[];const EX={},TEMA_DE={};
+const temaDeKey=k=>TEMA_DE[String(k).split('#')[0]];
 async function carrega(){
   let fonts=FONTS_CONTINGUT;try{const f=await fetch('fonts.json',{cache:'no-cache'});if(f.ok)fonts=await f.json()}catch(e){}
   const r=await Promise.all(fonts.map(f=>fetch(f).then(x=>x.json())));
   UNITATS=r.map(d=>({modul:d.modul,...d.unitat}));
-  UNITATS.forEach(u=>u.seccions.forEach(s=>s.llicons.forEach(l=>l.exercicis.forEach((e,i)=>{EX[l.id+'#'+i]={e,sid:s.id}}))));
+  UNITATS.forEach(u=>u.seccions.forEach(s=>s.llicons.forEach(l=>{TEMA_DE[l.id]=u.id;l.exercicis.forEach((e,i)=>{EX[l.id+'#'+i]={e,sid:s.id}})})));
 }
 const totesLlicons=u=>u.seccions.flatMap(s=>s.llicons);
 
@@ -645,7 +651,13 @@ function setmanaISO(d=new Date()){
   const y=t.getUTCFullYear(),w=Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7);return y+'-W'+String(w).padStart(2,'0');
 }
 function xpSetmanaActual(){const w=setmanaISO();if(P.setmana!==w){P.setmana=w;P.xpSetmana=0}return P.xpSetmana}
-function afegeixXP(n){P.xp+=n;xpSetmanaActual();P.xpSetmana+=n}
+function afegeixXP(n){P.xp+=n;xpSetmanaActual();P.xpSetmana+=n;
+  const t=(L&&L.items&&L.items[0]&&temaDeKey(L.items[0].key))||P.tema;
+  if(t){omplXpTema();P.xpTema[t]=(P.xpTema[t]||0)+n}}
+function omplXpTema(){
+  if(P.xpTema)return;P.xpTema={};
+  UNITATS.forEach(u=>{let v=0;u.seccions.forEach(s=>{v+=s.llicons.filter(l=>P.fetes[l.id]).length*XP_LLICO;if(P.reptes[s.id]>0)v+=P.reptes[s.id]*2});if(v)P.xpTema[u.id]=v});
+}
 async function pantallaRanking(){
   clearInterval(L&&L.timer);L=null;window.scrollTo(0,0);
   const cap=`<div class="lhead gut"><button class="x" id="surt" aria-label="Tornar">${ICON.x}</button><div style="flex:1"></div>${botoSo()}</div>`;
@@ -656,21 +668,34 @@ async function pantallaRanking(){
     $('#surt').onclick=inici;const e=$('#entrar');if(e)e.onclick=async()=>{await SB.auth.signOut();pantallaEntra()};
     return;
   }
-  xpSetmanaActual();
+  xpSetmanaActual();omplXpTema();
   const cls=JO.profe?(JO.classes||[]):[JO.classe];if(JO.profe&&!cls.includes(JO.vista))JO.vista=cls[0];
-  const tabs=JO.profe&&cls.length>1?`<div style="display:flex;gap:8px">${cls.map(c=>`<button class="big ${c===JO.vista?'':'ghost'}" style="font-size:17px;padding:8px" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>`:'';
+  const tipus=JO.rtipus||'setmana';
+  const temes=UNITATS;if(!temes.find(u=>u.id===JO.rtema))JO.rtema=(temes.find(u=>u.id===P.tema)||temes[0]||{}).id;
+  const tema=temes.find(u=>u.id===JO.rtema);
+  const classe=JO.profe?JO.vista:JO.classe;
+  const sub={setmana:'Punts d\'aquesta setmana. Es reinicien cada dilluns.',ratxa:'Dies seguits fent activitats. Si un dia no en fas, torna a zero.',tema:'Punts guanyats dins aquest tema.'}[tipus];
+  const buit={setmana:'Encara no ha puntuat ningú aquesta setmana. Fes una lliçó i sigues el primer!',ratxa:'Ningú no té ratxa ara mateix. Fes una activitat avui i comença la teva!',tema:'Encara no ha puntuat ningú en aquest tema.'}[tipus];
+  const clTabs=JO.profe&&cls.length>1?`<div class="picks">${cls.map(c=>`<button class="pick ${c===JO.vista?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>`:'';
+  const temaTabs=tipus==='tema'&&temes.length>1?`<div class="picks">${temes.map(u=>`<button class="pick ${u.id===JO.rtema?'on':''}" data-tm="${esc(u.id)}">${esc(u.titol)}</button>`).join('')}</div>`:'';
   $('#app').innerHTML=`<div class="lesson">${cap}<div class="rank gut">
-    <div><h2>Rànquing de la setmana</h2><p class="sub">Classe ${esc((JO.profe?JO.vista:JO.classe)||'')} · els punts es reinicien cada dilluns</p></div>${tabs}
+    <div><h2>Rànquing de la classe</h2><p class="sub">Classe ${esc(classe||'')}${tipus==='tema'&&tema?` · ${esc(tema.titol)}`:''}</p></div>${clTabs}
+    <div class="rtabs" role="tablist">${[['setmana','Setmana'],['ratxa','Ratxa'],['tema','Tema']].map(([k,t])=>`<button role="tab" aria-selected="${k===tipus}" class="${k===tipus?'on':''}" data-rt="${k}">${t}</button>`).join('')}</div>
+    ${temaTabs}<p class="sub">${sub}</p>
     <ol class="rlist" id="rlist"><li class="sub">Carregant…</li></ol></div></div>`;
   $('#surt').onclick=inici;
   document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{JO.vista=b.dataset.c;pantallaRanking()});
+  document.querySelectorAll('[data-rt]').forEach(b=>b.onclick=()=>{JO.rtipus=b.dataset.rt;pantallaRanking()});
+  document.querySelectorAll('[data-tm]').forEach(b=>b.onclick=()=>{JO.rtema=b.dataset.tm;pantallaRanking()});
+  const valor=tipus==='setmana'?P.setmana:tipus==='tema'?JO.rtema:'';
+  const unitat=tipus==='ratxa'?(v=>v===1?'dia':'dies'):()=>'';
   try{
     await enviaNuvol();
-    const {data:rows,error}=JO.profe?await SB.rpc('gota_ranking_classe',{p_classe:JO.vista,p_setmana:P.setmana}):await SB.rpc('gota_ranking_meu',{p_setmana:P.setmana});if(error)throw error;
+    const {data:rows,error}=JO.profe?await SB.rpc('gota_classif_classe',{p_classe:JO.vista,p_tipus:tipus,p_valor:valor}):await SB.rpc('gota_classif',{p_tipus:tipus,p_valor:valor});if(error)throw error;
     const el=$('#rlist');if(!el)return;
-    el.innerHTML=rows.length?'':'<li class="sub">Encara no ha puntuat ningú aquesta setmana. Fes una lliçó i sigues el primer!</li>';
+    el.innerHTML=rows.length?'':`<li class="sub">${buit}</li>`;
     rows.forEach((r,i)=>{const li=document.createElement('li');li.className='rrow'+(r.jo?' me':'');li.style.animationDelay=(i*.04)+'s';
-      li.innerHTML=`<span class="rpos">${i+1}</span><span class="rname"></span><span class="rxp">${r.xp}</span>`;
+      li.innerHTML=`<span class="rpos">${i+1}</span><span class="rname"></span><span class="rxp">${r.valor}${unitat(r.valor)?`<small>${unitat(r.valor)}</small>`:''}</span>`;
       li.querySelector('.rname').textContent=r.nom+(r.jo?' (tu)':'');el.appendChild(li)});
   }catch(e){const el=$('#rlist');if(el)el.innerHTML='<li class="msg">No es pot connectar amb el rànquing ara mateix. Prova-ho més tard.</li>'}
 }
