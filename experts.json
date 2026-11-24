@@ -1,0 +1,647 @@
+{
+ "modul": {
+  "id": "valoracio",
+  "titol": "Valoració de la condició física"
+ },
+ "unitat": {
+  "id": "experts",
+  "titol": "Ens convertim en experts: infografies",
+  "seccions": [
+   {
+    "id": "ex-s1",
+    "titol": "El cor, l'oxigen i la resistència",
+    "llicons": [
+     {
+      "id": "ex-l1",
+      "titol": "La variabilitat cardíaca (VFC)",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què mesura la variabilitat de la freqüència cardíaca (VFC)?",
+        "opcions": [
+         "La variació en mil·lisegons entre batecs consecutius",
+         "El nombre de batecs per minut",
+         "La pressió de la sang a les artèries",
+         "El volum d'oxigen que consumim"
+        ],
+        "correcta": 0,
+        "explicacio": "Mesura la variació de temps entre un batec i el següent (l'interval R-R)."
+       },
+       {
+        "tipus": "buit",
+        "frase": "La VFC reflecteix l'estat del sistema nerviós ___.",
+        "opcions": [
+         "autònom",
+         "somàtic",
+         "central",
+         "sensitiu"
+        ],
+        "correcta": 0,
+        "explicacio": "Mostra l'equilibri entre la branca simpàtica i la parasimpàtica."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada branca del sistema nerviós amb el que provoca",
+        "parelles": [
+         [
+          "Branca simpàtica",
+          "Estrès i activació"
+         ],
+         [
+          "Branca parasimpàtica",
+          "Descans i recuperació"
+         ]
+        ]
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Una caiguda persistent de la VFC indica fatiga acumulada i necessitat de descans.",
+        "correcta": true,
+        "explicacio": "Per això la VFC ajuda a controlar el sobreentrenament."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quan s'ha de mesurar la VFC?",
+        "opcions": [
+         "Cada dia en aixecar-se, sempre en la mateixa postura",
+         "Just després d'entrenar",
+         "Una vegada al mes, al vespre",
+         "Durant una sessió de HIIT"
+        ],
+        "correcta": 0,
+        "explicacio": "Mesurar-la sempre igual evita interferències i permet comparar els dies."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Si un dia la VFC surt reduïda, quin entrenament convé?",
+        "opcions": [
+         "Baixa intensitat, aeròbic suau o descans",
+         "Una sessió de HIIT",
+         "Càrregues màximes de força",
+         "Una competició"
+        ],
+        "correcta": 0,
+        "explicacio": "Amb la VFC elevada o estable es pot fer alta intensitat; si baixa, toca suau o descans."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La VFC només reacciona a la fatiga de l'entrenament.",
+        "correcta": false,
+        "explicacio": "També hi influeixen l'estrès psicològic, la falta de son i la mala alimentació."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin d'aquests aparells serveix per registrar la VFC?",
+        "opcions": [
+         "Una banda de pit com la Polar H10",
+         "Un plicòmetre",
+         "Un goniòmetre",
+         "Un dinamòmetre de mà"
+        ],
+        "correcta": 0,
+        "explicacio": "També es pot fer amb un ECG o amb apps validades com HRV4Training o Elite HRV."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Programar els entrenaments segons la VFC pot millorar la potència màxima i el VO2 màx.",
+        "correcta": true
+       }
+      ]
+     },
+     {
+      "id": "ex-l2",
+      "titol": "La VAM",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què és la VAM (velocitat aeròbica màxima)?",
+        "opcions": [
+         "La velocitat mínima a la qual s'assoleix el consum màxim d'oxigen",
+         "La velocitat màxima en un esprint de 100 m",
+         "La velocitat mitjana d'una cursa de 10 km",
+         "La velocitat a la qual començam a suar"
+        ],
+        "correcta": 0,
+        "explicacio": "És la velocitat associada al VO2 màx."
+       },
+       {
+        "tipus": "buit",
+        "frase": "La VAM es pot mantenir aproximadament durant ___ minuts d'esforç.",
+        "opcions": [
+         "sis",
+         "dos",
+         "quinze",
+         "trenta"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada zona de treball amb el seu percentatge de la VAM",
+        "parelles": [
+         [
+          "Potència aeròbica",
+          "Més del 100%"
+         ],
+         [
+          "Capacitat aeròbica",
+          "Del 85 al 100%"
+         ],
+         [
+          "Eficiència aeròbica",
+          "Del 65 al 85%"
+         ]
+        ]
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada zona amb el mètode d'entrenament",
+        "parelles": [
+         [
+          "Potència aeròbica",
+          "Interval intensiu"
+         ],
+         [
+          "Capacitat aeròbica",
+          "Interval extensiu"
+         ],
+         [
+          "Eficiència aeròbica",
+          "Cursa contínua"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin mètode per avaluar la VAM és el més precís?",
+        "opcions": [
+         "La prova de laboratori amb analitzador de gasos",
+         "El Course Navette",
+         "El test de 6 minuts",
+         "El test de 2 km"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El Course Navette és una prova econòmica que es pot fer amb tot el grup alhora.",
+        "correcta": true,
+        "explicacio": "Després cal una taula per calcular la VAM."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per a qui és més adequat el test de 2 km?",
+        "opcions": [
+         "Esportistes amb experiència",
+         "Infants que comencen",
+         "Persones sedentàries",
+         "Gent gran"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Segons la infografia, què aporta energia sostinguda durant els entrenaments?",
+        "opcions": [
+         "Els carbohidrats de qualitat",
+         "Les proteïnes",
+         "L'aigua",
+         "La cafeïna"
+        ],
+        "correcta": 0,
+        "explicacio": "Les proteïnes afavoreixen sobretot la recuperació i el múscul."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La VAM permet programar l'entrenament i avaluar joves talents.",
+        "correcta": true
+       }
+      ]
+     },
+     {
+      "id": "ex-l3",
+      "titol": "El VO2 màx i la salut",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què és el VO2 màx?",
+        "opcions": [
+         "La quantitat màxima d'oxigen que el cos pot utilitzar durant un esforç",
+         "La quantitat d'aire que cap als pulmons",
+         "La freqüència cardíaca màxima",
+         "El temps que aguantam sense respirar"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada part del cos amb el seu paper en el VO2 màx",
+        "parelles": [
+         [
+          "Pulmons i cor",
+          "Captar i repartir l'oxigen"
+         ],
+         [
+          "Sang",
+          "Transportar l'oxigen"
+         ],
+         [
+          "Músculs",
+          "Utilitzar l'oxigen i produir energia"
+         ]
+        ]
+       },
+       {
+        "tipus": "buit",
+        "frase": "El VO2 màx es va començar a estudiar l'any ___.",
+        "opcions": [
+         "1923",
+         "1823",
+         "1963",
+         "2018"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quant baixa aproximadament el VO2 màx amb l'edat?",
+        "opcions": [
+         "Un 10% cada 10 anys",
+         "Un 50% cada 10 anys",
+         "Un 1% cada 10 anys",
+         "No baixa mai"
+        ],
+        "correcta": 0,
+        "explicacio": "Si som actius, aquesta davallada és més lenta."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Un estudi amb més de 750.000 persones va trobar que el 20% amb pitjor condició física tenia 4 vegades més risc de mort que el 2% amb millor condició.",
+        "correcta": true
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada forma d'entrenament amb la seva descripció",
+        "parelles": [
+         [
+          "Zona 2",
+          "Aeròbic suau 45-60 min, pots parlar"
+         ],
+         [
+          "HIIT",
+          "Esforços curts i intensos amb descansos"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "En què consisteix el test de Cooper?",
+        "opcions": [
+         "Córrer la màxima distància possible en 12 minuts",
+         "Córrer 2 km tan aviat com puguis",
+         "Fer anades i tornades de 20 m amb senyal sonor",
+         "Pujar escales durant 6 minuts"
+        ],
+        "correcta": 0,
+        "explicacio": "Amb la distància i unes taules s'estima el VO2 màx."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Els rellotges esportius donen la mesura més precisa del VO2 màx.",
+        "correcta": false,
+        "explicacio": "La manera més precisa és la prova d'esforç; els rellotges només donen una estimació."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Segons la infografia, quin VO2 màx tenen els majors de 80 anys entrenats?",
+        "opcions": [
+         "38 ml/kg/min",
+         "21 ml/kg/min",
+         "60 ml/kg/min",
+         "10 ml/kg/min"
+        ],
+        "correcta": 0,
+        "explicacio": "Els sedentaris de la mateixa edat en tenen uns 21."
+       }
+      ]
+     },
+     {
+      "id": "ex-l4",
+      "titol": "Exercici i hipertensió",
+      "exercicis": [
+       {
+        "tipus": "buit",
+        "frase": "Es considera hipertensió quan la pressió arterial supera els ___ mmHg.",
+        "opcions": [
+         "140/90",
+         "120/80",
+         "100/60",
+         "180/120"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Segons l'ACSM, quant ha d'entrenar una persona hipertensa?",
+        "opcions": [
+         "De 3 a 5 dies per setmana, de 30 a 60 minuts",
+         "Cada dia, 2 hores",
+         "1 dia per setmana, 15 minuts",
+         "Només el cap de setmana"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "A quina intensitat aeròbica es recomana treballar?",
+        "opcions": [
+         "Entre el 46% i el 63% del VO2 màx",
+         "Entre el 85% i el 100% del VO2 màx",
+         "Per damunt del 100% del VO2 màx",
+         "Per davall del 20% del VO2 màx"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com ha de ser el treball de força per a una persona hipertensa?",
+        "opcions": [
+         "Càrregues del 30-50% de l'1RM i 10-20 repeticions",
+         "Càrregues del 90% de l'1RM i 3 repeticions",
+         "Una sola repetició al màxim",
+         "Isomètrics llargs al 70%"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Per a persones hipertenses es recomanen els exercicis isomètrics prolongats.",
+        "correcta": false,
+        "explicacio": "Cal evitar els isomètrics prolongats."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "L'exercici redueix els triglicèrids i el colesterol LDL i augmenta el colesterol protector HDL.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què vol dir l'adaptació vascular que provoca l'exercici?",
+        "opcions": [
+         "Dilata la microcirculació i baixa la resistència perifèrica a la sang",
+         "Engreixa les artèries",
+         "Augmenta la pressió arterial en repòs",
+         "Fa que el cor bategui més ràpid en repòs"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ex-s2",
+    "titol": "La respiració",
+    "llicons": [
+     {
+      "id": "ex-l5",
+      "titol": "La respiració diafragmàtica",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què separa el diafragma?",
+        "opcions": [
+         "La cavitat toràcica de l'abdominal",
+         "Els dos pulmons",
+         "El cor dels pulmons",
+         "La tràquea de l'esòfag"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "El diafragma està innervat pel nervi frènic, que surt de les vèrtebres ___.",
+        "opcions": [
+         "C3-C5",
+         "L1-L3",
+         "T1-T5",
+         "S1-S2"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Quan el diafragma es contreu, la pressió negativa fa entrar l'aire als pulmons.",
+        "correcta": true,
+        "explicacio": "Això s'explica amb la llei de Boyle."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina llei física explica que l'aire entri als pulmons quan el diafragma baixa?",
+        "opcions": [
+         "La llei de Boyle",
+         "La llei de Newton",
+         "El principi d'Arquimedes",
+         "La llei d'Ohm"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada tipus de respiració amb la seva descripció",
+        "parelles": [
+         [
+          "Diafragmàtica",
+          "Treballa sobretot el diafragma"
+         ],
+         [
+          "Intercostal",
+          "Eixampla la caixa toràcica"
+         ],
+         [
+          "Profunda",
+          "Maximitza l'intercanvi de gasos"
+         ],
+         [
+          "Superficial",
+          "Menys eficient i més fatiga"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per què és útil la respiració diafragmàtica en l'esport?",
+        "opcions": [
+         "Estabilitza el core i protegeix la zona lumbar",
+         "Fa créixer els pulmons",
+         "Elimina la necessitat d'escalfar",
+         "Augmenta la freqüència cardíaca"
+        ],
+        "correcta": 0,
+        "explicacio": "També ajuda a la recuperació i redueix la fatiga muscular."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La respiració superficial és la més eficient i la que menys cansa.",
+        "correcta": false,
+        "explicacio": "Ventila menys, és menys eficient i provoca més fatiga."
+       }
+      ]
+     },
+     {
+      "id": "ex-l6",
+      "titol": "Respirar per la boca",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quina d'aquestes pot ser una causa de respirar per la boca?",
+        "opcions": [
+         "La rinitis al·lèrgica",
+         "Beure molta aigua",
+         "Fer exercici aeròbic",
+         "Dormir de costat"
+        ],
+        "correcta": 0,
+        "explicacio": "També la sinusitis, les vegetacions o l'ús continuat del biberó i el xumet."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "En infants, respirar per la boca pot provocar cares allargades i el paladar alt.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin d'aquests instruments serveix per comprovar si les vies nasals estan obstruïdes?",
+        "opcions": [
+         "El mirall de Glatzel",
+         "L'estetoscopi",
+         "El pulsioxímetre",
+         "El plicòmetre"
+        ],
+        "correcta": 0,
+        "explicacio": "També es pot fer amb un cotó o una espelma."
+       },
+       {
+        "tipus": "buit",
+        "frase": "El reflex nasal de Godin consisteix a comprimir el nas durant ___ segons.",
+        "opcions": [
+         "20-30",
+         "2-3",
+         "60-90",
+         "5"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada tractament amb el que fa",
+        "parelles": [
+         [
+          "Reducció d'amígdales",
+          "Allibera el pas de l'aire"
+         ],
+         [
+          "Expansió maxil·lar ràpida",
+          "Eixampla el paladar"
+         ],
+         [
+          "Teràpia miofuncional",
+          "Reeduca la llengua i l'hàbit"
+         ]
+        ]
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La respiració nasal té millor connexió amb la memòria de treball que la bucal.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin és un senyal d'alerta de respiració bucal?",
+        "opcions": [
+         "Dormir amb la boca oberta i roncar",
+         "Tenir set després d'entrenar",
+         "Suar molt a l'estiu",
+         "Tenir rampes"
+        ],
+        "correcta": 0,
+        "explicacio": "També tenir ulleres i una deglució atípica."
+       }
+      ]
+     },
+     {
+      "id": "ex-l7",
+      "titol": "Respiració nocturna i rendiment",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què fa la respiració nasal amb l'aire que entra?",
+        "opcions": [
+         "El filtra i l'humidifica",
+         "L'asseca",
+         "L'escalfa fins a 40 graus",
+         "Hi afegeix oxigen"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "En l'estudi de 2022 amb pacients d'apnea lleu, l'índex d'apnea-hipopnea es va reduir un 47%.",
+        "correcta": true
+       },
+       {
+        "tipus": "buit",
+        "frase": "Segons l'estudi, en una setmana els roncs per hora van passar de 303,8 a ___.",
+        "opcions": [
+         "121,1",
+         "250",
+         "30",
+         "0"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quan s'ha d'evitar la cinta bucal?",
+        "opcions": [
+         "Si hi ha congestió nasal o pòlips",
+         "Si dorms més de 8 hores",
+         "Si has entrenat aquell dia",
+         "Si fa calor"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si tens asma o al·lèrgia, has de consultar el metge abans de tancar la boca per dormir.",
+        "correcta": true
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada producte amb el que fa",
+        "parelles": [
+         [
+          "Tires nasals",
+          "Eixamplen els conductes nasals"
+         ],
+         [
+          "Cinta bucal",
+          "Manté els llavis tancats"
+         ],
+         [
+          "Reductors de so",
+          "Atenuen el soroll"
+         ],
+         [
+          "Ulleres anti llum",
+          "Filtren la llum blava"
+         ]
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
