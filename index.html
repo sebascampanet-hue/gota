@@ -305,7 +305,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 const IMG={contenta:'mascota-contenta.png',celebrant:'mascota-celebrant.png',trista:'mascota-trista.png',pensativa:'mascota-pensativa.png',anim:'gota-celebra.webp'};
 try{new Image().src='gota-celebra.webp'}catch(e){}
 // Per afegir mòduls o temes: afegeix el fitxer JSON a fonts.json (i aquí, per a la versió sense web).
-const FONTS_CONTINGUT=['contingut.json'];
+const FONTS_CONTINGUT=['contingut.json','experts.json','nutricio.json'];
 const MAX_VIDES=5, MIN_PER_VIDA=20, XP_LLICO=10;
 const ICON={
   fire:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.5 5 5.6 5 10.5A5 5 0 0 1 12 22a5 5 0 0 1-5-5.2c0-2.6 1.6-4 2.4-5.6.4 1.6 1.2 2.4 2.2 2.6C10.8 10.7 11 6 12 2z"/></svg>',
@@ -504,8 +504,11 @@ function inici(){
   pantallaTema(u,m);
 }
 const ICON_BACK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg>';
+// Un mòdul amb "classes" només el veuen els alumnes d'aquestes classes (el professor els veu tots)
+const perClasse=c=>u=>!c||!u.modul.classes||u.modul.classes.includes(c);
+const classeAlumne=()=>JO&&!JO.profe?JO.classe:null;
 function moduls(){
-  const ms=[];UNITATS.forEach(u=>{let m=ms.find(x=>x.id===u.modul.id);if(!m){m={...u.modul,temes:[]};ms.push(m)}m.temes.push(u)});return ms;
+  const ms=[];UNITATS.filter(perClasse(classeAlumne())).forEach(u=>{let m=ms.find(x=>x.id===u.modul.id);if(!m){m={...u.modul,temes:[]};ms.push(m)}m.temes.push(u)});return ms;
 }
 function progres(ll){const f=ll.filter(l=>P.fetes[l.id]).length;return{f,t:ll.length,pc:ll.length?Math.round(f/ll.length*100):0}}
 const pline=(p,txt)=>`<div class="pline"><span class="pb"><i style="width:${p.pc}%"></i></span><span>${txt||`${p.f}/${p.t}`}</span></div>`;
@@ -671,7 +674,7 @@ async function pantallaRanking(){
   xpSetmanaActual();omplXpTema();
   const cls=JO.profe?(JO.classes||[]):[JO.classe];if(JO.profe&&!cls.includes(JO.vista))JO.vista=cls[0];
   const tipus=JO.rtipus||'setmana';
-  const temes=UNITATS;if(!temes.find(u=>u.id===JO.rtema))JO.rtema=(temes.find(u=>u.id===P.tema)||temes[0]||{}).id;
+  const temes=UNITATS.filter(perClasse(JO.profe?JO.vista:JO.classe));if(!temes.find(u=>u.id===JO.rtema))JO.rtema=(temes.find(u=>u.id===P.tema)||temes[0]||{}).id;
   const tema=temes.find(u=>u.id===JO.rtema);
   const classe=JO.profe?JO.vista:JO.classe;
   const sub={setmana:'Punts d\'aquesta setmana. Es reinicien cada dilluns.',ratxa:'Dies seguits fent activitats. Si un dia no en fas, torna a zero.',tema:'Punts guanyats dins aquest tema.'}[tipus];
@@ -952,8 +955,9 @@ const DIR_NS=[5,10,15,20];
 function pantallaDirecteNou(){
   window.scrollTo(0,0);
   const cls=JO.classes||[];let cl=cls[0],n=10;const sel=new Set();
-  const temes=UNITATS;
+  let temes=UNITATS;
   const pinta=()=>{
+    temes=UNITATS.filter(perClasse(cl));[...sel].forEach(id=>{if(!temes.some(u=>u.seccions.some(s=>s.id===id)))sel.delete(id)});
     const disp=temes.flatMap(u=>u.seccions).filter(s=>sel.has(s.id)).flatMap(s=>s.llicons.flatMap(l=>l.exercicis)).length;
     $('#app').innerHTML=`<div class="lesson"><div class="lhead gut"><button class="x" id="surt" aria-label="Tornar">${ICON.x}</button><div style="flex:1"></div></div>
     <div class="rank gut"><div><h2>Repte en directe</h2><p class="sub">Tots els alumnes de la classe fan les mateixes preguntes. Tu projectes com avancen.</p></div>

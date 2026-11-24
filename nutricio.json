@@ -1,0 +1,1039 @@
+{
+ "modul": {
+  "id": "nutricio",
+  "titol": "Nutrició",
+  "classes": [
+   "2AFD31"
+  ]
+ },
+ "unitat": {
+  "id": "nu-ut2",
+  "titol": "UT 2 · Els macronutrients",
+  "seccions": [
+   {
+    "id": "nu-s1",
+    "titol": "Els macronutrients",
+    "llicons": [
+     {
+      "id": "nu-l1",
+      "titol": "Energia i macronutrients",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què són els macronutrients?",
+        "opcions": [
+         "Nutrients que necessitam en grans quantitats, de l'ordre de grams al dia",
+         "Nutrients que necessitam en quantitats molt petites",
+         "Els suplements que prenen els esportistes",
+         "Les calories que gastam en un dia"
+        ],
+        "correcta": 0,
+        "explicacio": "Glúcids, lípids i proteïnes: en menjam grams cada dia."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada macronutrient amb l'energia que aporta per gram",
+        "parelles": [
+         [
+          "Glúcids",
+          "4 kcal/g"
+         ],
+         [
+          "Lípids",
+          "9 kcal/g"
+         ],
+         [
+          "Proteïnes",
+          "4 kcal/g (funció secundària)"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin macronutrient aporta més energia per gram?",
+        "opcions": [
+         "Els lípids",
+         "Els glúcids",
+         "Les proteïnes",
+         "Tots en aporten la mateixa"
+        ],
+        "correcta": 0,
+        "explicacio": "9 kcal/g: més del doble que glúcids i proteïnes."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada funció dels macronutrients amb el que fa",
+        "parelles": [
+         [
+          "Energètica",
+          "Aporta energia per a l'activitat"
+         ],
+         [
+          "Plàstica",
+          "Forma i renova els teixits"
+         ],
+         [
+          "Reguladora",
+          "Controla els processos del cos"
+         ]
+        ]
+       },
+       {
+        "tipus": "buit",
+        "frase": "El valor energètic dels aliments s'expressa normalment en ___.",
+        "opcions": [
+         "quilocalories (kcal)",
+         "grams (g)",
+         "mil·lilitres (ml)",
+         "mg/dL"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "A quants kilojoules equival 1 kcal?",
+        "opcions": [
+         "4,184 kJ",
+         "1.000 kJ",
+         "9 kJ",
+         "0,5 kJ"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Un esportista necessita més energia que una persona sedentària.",
+        "correcta": true,
+        "explicacio": "Les necessitats depenen de l'edat, el sexe, l'activitat física i l'estat fisiològic."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "1 cullerada d'oli (10 g) aporta 90 kcal. Quantes n'aporten 10 g de sucre?",
+        "opcions": [
+         "40 kcal",
+         "90 kcal",
+         "10 kcal",
+         "200 kcal"
+        ],
+        "correcta": 0,
+        "explicacio": "10 g × 4 kcal/g = 40 kcal. Per això una mica de greix suma moltes calories."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "nu-s2",
+    "titol": "Els glúcids",
+    "llicons": [
+     {
+      "id": "nu-l2",
+      "titol": "Tipus de carbohidrats",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "De quins àtoms estan fets els glúcids?",
+        "opcions": [
+         "Carboni, hidrogen i oxigen",
+         "Carboni, hidrogen i nitrogen",
+         "Només carboni",
+         "Ferro i calci"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena els carbohidrats de més simple a més complex",
+        "passos": [
+         "Monosacàrids (1 molècula)",
+         "Disacàrids (2 units)",
+         "Polisacàrids (moltes molècules)"
+        ]
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada sucre amb el seu grup",
+        "parelles": [
+         [
+          "Glucosa",
+          "Monosacàrid"
+         ],
+         [
+          "Sacarosa",
+          "Disacàrid"
+         ],
+         [
+          "Midó",
+          "Polisacàrid"
+         ]
+        ]
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada disacàrid amb on el trobam",
+        "parelles": [
+         [
+          "Sacarosa",
+          "Sucre de taula"
+         ],
+         [
+          "Lactosa",
+          "Llet"
+         ],
+         [
+          "Maltosa",
+          "Cervesa i sucre de malta"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "La lactosa de la llet és la unió de…",
+        "opcions": [
+         "Glucosa i galactosa",
+         "Glucosa i fructosa",
+         "Dues glucoses",
+         "Midó i glucosa"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Els carbohidrats complexos es digereixen més a poc a poc i són més recomanables que els simples.",
+        "correcta": true,
+        "explicacio": "Donen energia durant més temps."
+       },
+       {
+        "tipus": "buit",
+        "frase": "El ___ és el polisacàrid del pa, l'arròs, la pasta i la patata.",
+        "opcions": [
+         "midó",
+         "glucogen",
+         "lactosa",
+         "cel·lulosa"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què és la cel·lulosa?",
+        "opcions": [
+         "La fibra de verdures i cereals integrals, que no digerim",
+         "La reserva de glucosa del fetge",
+         "Un sucre de la llet",
+         "Un tipus de greix"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin d'aquests aliments és sobretot un sucre simple refinat?",
+        "opcions": [
+         "Un refresc de cola",
+         "Un plat d'arròs",
+         "Un bol de civada",
+         "Una patata cuita"
+        ],
+        "correcta": 0,
+        "explicacio": "Una llauna de cola duu uns 35 g de sacarosa."
+       }
+      ]
+     },
+     {
+      "id": "nu-l3",
+      "titol": "Digestió i glucèmia",
+      "exercicis": [
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena el camí dels glúcids, del plat a la cèl·lula",
+        "passos": [
+         "Boca: l'amilasa salival comença a digerir el midó",
+         "Intestí: els enzims del pàncrees acaben la feina",
+         "Fetge: tot es transforma en glucosa",
+         "Sang: reparteix la glucosa pels teixits",
+         "Cèl·lules: la glucosa es crema i dona energia"
+        ]
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Com es diu la reserva de glucosa que guardam al fetge i al múscul?",
+        "respostes": [
+         "glucogen"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quant glucogen té guardat, més o manco, una persona d'uns 70 kg?",
+        "opcions": [
+         "Uns 500 g (≈ 2.000 kcal)",
+         "Uns 50 g",
+         "Uns 5 kg",
+         "No en guarda gens"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La major part del glucogen és al fetge.",
+        "correcta": false,
+        "explicacio": "Uns 400 g són al múscul (~80 %) i menys de 100 g al fetge."
+       },
+       {
+        "tipus": "buit",
+        "frase": "La glucòlisi és la reacció que degrada la ___ a les cèl·lules per obtenir energia.",
+        "opcions": [
+         "glucosa",
+         "proteïna",
+         "bilis",
+         "lactosa"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada hormona del pàncrees amb el que fa",
+        "parelles": [
+         [
+          "Insulina",
+          "Baixa la glucèmia"
+         ],
+         [
+          "Glucagó",
+          "Puja la glucèmia"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin és el valor normal de glucosa en sang en dejú?",
+        "opcions": [
+         "70–100 mg/dL",
+         "140–200 mg/dL",
+         "20–40 mg/dL",
+         "Més de 200 mg/dL"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Després de menjar puja la glucèmia. Quina hormona allibera el pàncrees?",
+        "opcions": [
+         "La insulina",
+         "El glucagó",
+         "L'adrenalina",
+         "La testosterona"
+        ],
+        "correcta": 0,
+        "explicacio": "La fan les cèl·lules beta del pàncrees."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Durant el dejuni o l'exercici, el glucagó converteix el glucogen en glucosa.",
+        "correcta": true
+       }
+      ]
+     },
+     {
+      "id": "nu-l4",
+      "titol": "Índex i càrrega glucèmica",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què mesura l'índex glucèmic (IG)?",
+        "opcions": [
+         "La capacitat d'un aliment amb CH d'augmentar la glucèmia",
+         "Les calories d'un aliment",
+         "La quantitat de fibra",
+         "Els grams de proteïna"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada nivell d'IG amb el seu valor",
+        "parelles": [
+         [
+          "IG baix",
+          "Menys de 55"
+         ],
+         [
+          "IG mitjà",
+          "55–69"
+         ],
+         [
+          "IG alt",
+          "70 o més"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin d'aquests aliments té un IG alt?",
+        "opcions": [
+         "Pa blanc",
+         "Llenties",
+         "Fruits secs",
+         "Verdures"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Els aliments rics en fibra, proteïna i greix solen tenir un IG baix.",
+        "correcta": true,
+        "explicacio": "Es digereixen més a poc a poc i la glucèmia puja gradualment."
+       },
+       {
+        "tipus": "buit",
+        "frase": "La càrrega glucèmica es calcula així: CG = IG × ___ ÷ 100.",
+        "opcions": [
+         "grams de CH",
+         "kcal",
+         "grams de greix",
+         "minuts"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Una poma té un IG ≈ 38 i 15 g de CH. Quina CG té?",
+        "opcions": [
+         "≈ 6 (baixa)",
+         "≈ 38 (alta)",
+         "≈ 53 (alta)",
+         "≈ 15 (mitjana)"
+        ],
+        "correcta": 0,
+        "explicacio": "38 × 15 ÷ 100 ≈ 6."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La síndria té un IG alt, però una ració té una càrrega glucèmica baixa.",
+        "correcta": true,
+        "explicacio": "Una ració de 120 g només té uns 6 g de CH."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "A partir de quin valor la càrrega glucèmica és alta?",
+        "opcions": [
+         "20 o més",
+         "10 o més",
+         "55 o més",
+         "70 o més"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "nu-s3",
+    "titol": "Els lípids",
+    "llicons": [
+     {
+      "id": "nu-l5",
+      "titol": "Funcions i triglicèrids",
+      "exercicis": [
+       {
+        "tipus": "vf",
+        "afirmacio": "Els lípids es mesclen bé amb l'aigua.",
+        "correcta": false,
+        "explicacio": "No s'hi mesclen, com l'oli dins un tassó d'aigua."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada funció dels lípids amb un exemple",
+        "parelles": [
+         [
+          "Estructural",
+          "Formen la membrana de les cèl·lules"
+         ],
+         [
+          "Protectora",
+          "Envolten els ronyons i aïllen del fred"
+         ],
+         [
+          "Reguladora",
+          "Hormones i vitamina D"
+         ],
+         [
+          "Transportadora",
+          "Vitamines A, D, E i K"
+         ]
+        ]
+       },
+       {
+        "tipus": "buit",
+        "frase": "Un triglicèrid està format per 1 glicerol i 3 ___.",
+        "opcions": [
+         "àcids grassos",
+         "aminoàcids",
+         "glucoses",
+         "fosfats"
+        ],
+        "correcta": 0,
+        "explicacio": "Com una forquilla: el mànec és el glicerol i les pues, els àcids grassos."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina part del greix que menjam i guardam són triglicèrids?",
+        "opcions": [
+         "Més del 90 %",
+         "Un 10 %",
+         "La meitat",
+         "Gens"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "On guardam el greix de reserva? Al teixit…",
+        "respostes": [
+         "adipós",
+         "adipos"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quines vitamines es dissolen en greix i les transporten els lípids?",
+        "opcions": [
+         "A, D, E i K",
+         "B i C",
+         "Només la C",
+         "Totes les vitamines B"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Amb el colesterol el cos fabrica la vitamina D, la testosterona i els estrògens.",
+        "correcta": true
+       }
+      ]
+     },
+     {
+      "id": "nu-l6",
+      "titol": "El semàfor dels greixos",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Truc: un greix sòlid a temperatura ambient és…",
+        "opcions": [
+         "Saturat",
+         "Monoinsaturat",
+         "Poliinsaturat",
+         "Omega-3"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada tipus de greix amb un aliment",
+        "parelles": [
+         [
+          "Saturat",
+          "Mantega"
+         ],
+         [
+          "Monoinsaturat",
+          "Oli d'oliva"
+         ],
+         [
+          "Poliinsaturat omega-3",
+          "Sardina i nous"
+         ],
+         [
+          "Trans",
+          "Brioixeria industrial"
+         ]
+        ]
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada greix amb el color del semàfor",
+        "parelles": [
+         [
+          "Monoinsaturats",
+          "Verd: prioritari"
+         ],
+         [
+          "Saturats",
+          "Taronja: amb moderació"
+         ],
+         [
+          "Trans",
+          "Vermell: evitar"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per què l'oli d'oliva és líquid i la mantega és sòlida?",
+        "opcions": [
+         "L'oli és ric en greixos insaturats i la mantega en saturats",
+         "L'oli té més calories",
+         "La mantega té més aigua",
+         "L'oli té proteïnes"
+        ],
+        "correcta": 0,
+        "explicacio": "Com més dobles enllaços, més líquid és el greix."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quants dobles enllaços té un àcid gras monoinsaturat?",
+        "opcions": [
+         "Un",
+         "Cap",
+         "Dos o més",
+         "Tres exactament"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "Els greixos trans es formen quan la indústria ___ els olis i el procés queda a mitges.",
+        "opcions": [
+         "hidrogena",
+         "congela",
+         "bull",
+         "filtra"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "escriu",
+        "pregunta": "Quina paraula has de cercar a l'etiqueta per detectar greixos trans? «Greixos parcialment…»",
+        "respostes": [
+         "hidrogenats",
+         "hidrogenat"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin és el màxim recomanat de greixos trans al dia a Espanya?",
+        "opcions": [
+         "Menys de 3 g",
+         "Menys de 30 g",
+         "Uns 50 g",
+         "No hi ha límit"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Menjam massa omega-6 i poc omega-3.",
+        "correcta": true
+       }
+      ]
+     },
+     {
+      "id": "nu-l7",
+      "titol": "Colesterol i lipoproteïnes",
+      "exercicis": [
+       {
+        "tipus": "vf",
+        "afirmacio": "El colesterol és dolent i no el necessitam per a res.",
+        "correcta": false,
+        "explicacio": "El necessitam per a les membranes, les hormones, la vitamina D i la bilis."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Qui fabrica la major part del colesterol del cos?",
+        "opcions": [
+         "El fetge",
+         "L'estómac",
+         "Els músculs",
+         "Els ronyons"
+        ],
+        "correcta": 0,
+        "explicacio": "Unes tres quartes parts; la resta ve de la dieta."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per què el greix necessita lipoproteïnes per viatjar per la sang?",
+        "opcions": [
+         "Perquè no es mescla amb l'aigua de la sang",
+         "Perquè pesa massa",
+         "Perquè és massa calent",
+         "Perquè la sang no en vol"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada lipoproteïna amb el seu paper",
+        "parelles": [
+         [
+          "LDL",
+          "Camió repartidor: del fetge als teixits"
+         ],
+         [
+          "HDL",
+          "Camió d'escombraries: torna el colesterol al fetge"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin «camió» recull el colesterol i el torna al fetge?",
+        "opcions": [
+         "L'HDL",
+         "L'LDL",
+         "El quilomicró",
+         "El glucogen"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Amb el mateix colesterol, tenir més partícules LDL circulant vol dir més risc cardiovascular.",
+        "correcta": true,
+        "explicacio": "Més camions, més embussos a les artèries."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què fa pujar l'HDL («bo»)?",
+        "opcions": [
+         "Exercici aeròbic regular, oli d'oliva i peix blau",
+         "Brioixeria i embotits",
+         "Sedentarisme i tabac",
+         "Refrescs ensucrats"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada paràmetre amb el seu valor òptim (mg/dL)",
+        "parelles": [
+         [
+          "Colesterol total",
+          "Menys de 200"
+         ],
+         [
+          "LDL",
+          "Menys de 100"
+         ],
+         [
+          "HDL",
+          "Més de 60"
+         ],
+         [
+          "Triglicèrids",
+          "Menys de 150"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "La Marta té LDL 165 i HDL 38. Què li passa?",
+        "opcions": [
+         "LDL alt i HDL baix",
+         "Tot és òptim",
+         "LDL baix i HDL alt",
+         "Només té l'HDL massa alt"
+        ],
+        "correcta": 0
+       }
+      ]
+     },
+     {
+      "id": "nu-l8",
+      "titol": "Digestió, energia i recomanacions",
+      "exercicis": [
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena la digestió dels greixos",
+        "passos": [
+         "La bilis trenca el greix en gotetes",
+         "La lipasa el talla en trossos petits",
+         "Les cèl·lules de l'intestí l'empaqueten en quilomicrons",
+         "Els quilomicrons viatgen per la limfa",
+         "Arriben per la sang als músculs i al teixit adipós"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què fa la bilis amb el greix?",
+        "opcions": [
+         "Fa de detergent: el trenca en gotetes",
+         "El converteix en glucosa",
+         "El guarda al fetge",
+         "L'expulsa per l'orina"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin exercici crema més greix?",
+        "opcions": [
+         "Llarg i suau: caminar, córrer suau, bici",
+         "Un esprint",
+         "Una sèrie molt intensa",
+         "Un salt màxim"
+        ],
+        "correcta": 0,
+        "explicacio": "L'exercici intens crema sobretot glucosa."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La «paret» del km 30 de la marató arriba quan s'acaba el glucogen.",
+        "correcta": true,
+        "explicacio": "Aleshores el cos ha de tirar de greix, que dona energia més a poc a poc."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin percentatge de les kcal del dia hauria de venir del greix?",
+        "opcions": [
+         "20–35 %",
+         "50–60 %",
+         "5–10 %",
+         "Més del 70 %"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "Els greixos saturats haurien de ser menys del ___ de les kcal del dia.",
+        "opcions": [
+         "10 %",
+         "50 %",
+         "35 %",
+         "1 %"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quantes vegades per setmana es recomana menjar peix blau?",
+        "opcions": [
+         "2",
+         "Cap",
+         "Només 1 al mes",
+         "Cada àpat"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "nu-s4",
+    "titol": "Les proteïnes",
+    "llicons": [
+     {
+      "id": "nu-l9",
+      "titol": "Aminoàcids i funcions",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quin element tenen les proteïnes que no tenen ni glúcids ni lípids?",
+        "opcions": [
+         "Nitrogen",
+         "Carboni",
+         "Hidrogen",
+         "Oxigen"
+        ],
+        "correcta": 0,
+        "explicacio": "Són l'única font de nitrogen del cos: per això cal menjar-ne."
+       },
+       {
+        "tipus": "buit",
+        "frase": "Les proteïnes són cadenes d'___.",
+        "opcions": [
+         "aminoàcids",
+         "àcids grassos",
+         "glucoses",
+         "vitamines"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quants aminoàcids diferents hi ha i quants són essencials?",
+        "opcions": [
+         "20, dels quals 9 essencials",
+         "9, tots essencials",
+         "20, dels quals 11 essencials",
+         "100, dels quals 20 essencials"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Els aminoàcids essencials els fabrica el cos.",
+        "correcta": false,
+        "explicacio": "Els essencials els hem de menjar; els 11 no essencials sí que els fabrica el cos."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada funció de les proteïnes amb un exemple",
+        "parelles": [
+         [
+          "Transportadora",
+          "Hemoglobina"
+         ],
+         [
+          "Contràctil",
+          "Actina i miosina"
+         ],
+         [
+          "Immunitària",
+          "Anticossos"
+         ],
+         [
+          "Reguladora",
+          "Insulina"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quan fa servir el cos les proteïnes com a energia?",
+        "opcions": [
+         "Només en casos extrems, quan falten glúcids i greixos",
+         "Sempre, abans que els glúcids",
+         "Només durant un esprint",
+         "Mai"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quins són els aminoàcids ramificats (BCAA)?",
+        "opcions": [
+         "Leucina, isoleucina i valina",
+         "Glicina, alanina i serina",
+         "Lisina i metionina",
+         "Glutamina i prolina"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena la digestió de les proteïnes",
+        "passos": [
+         "Estómac: l'àcid i la pepsina les trenquen",
+         "Intestí prim: altres enzims les tallen fins a aminoàcids",
+         "Sang: els aminoàcids hi passen",
+         "Fetge i teixits: s'usen per construir i reparar"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "nu-l10",
+      "titol": "Completes, incompletes i quantes en necessit",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què és una proteïna completa?",
+        "opcions": [
+         "La que té tots els aminoàcids essencials",
+         "La que té més de 20 g per ració",
+         "La que no té greix",
+         "La que ve dels cereals"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Classifica cada aliment",
+        "parelles": [
+         [
+          "Ou",
+          "Proteïna completa"
+         ],
+         [
+          "Llenties",
+          "Incompleta: hi falta metionina"
+         ],
+         [
+          "Arròs",
+          "Incompleta: hi falta lisina"
+         ]
+        ]
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La soja i la quinoa són proteïnes completes, encara que siguin vegetals.",
+        "correcta": true
+       },
+       {
+        "tipus": "buit",
+        "frase": "Combinant llegum i ___ obtens una proteïna completa.",
+        "opcions": [
+         "cereal",
+         "fruita",
+         "oli",
+         "sucre"
+        ],
+        "correcta": 0,
+        "explicacio": "Llenties amb arròs, hummus amb pa, cigrons amb cuscús."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Per complementar la proteïna, el llegum i el cereal s'han de menjar al mateix plat.",
+        "correcta": false,
+        "explicacio": "N'hi ha prou que sigui el mateix dia."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quanta proteïna necessita al dia una persona sedentària?",
+        "opcions": [
+         "0,8 g per kg de pes",
+         "2 g per kg de pes",
+         "100 g sempre",
+         "0,1 g per kg de pes"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Un futbolista de 70 kg: entre quants grams de proteïna necessita al dia?",
+        "opcions": [
+         "Entre 84 i 140 g",
+         "Entre 20 i 30 g",
+         "Uns 56 g",
+         "Més de 300 g"
+        ],
+        "correcta": 0,
+        "explicacio": "70 × 1,2 = 84 g i 70 × 2 = 140 g."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada aliment amb la proteïna que aporta",
+        "parelles": [
+         [
+          "Pit de pollastre (100 g)",
+          "≈ 25 g"
+         ],
+         [
+          "Plat de llenties (150 g)",
+          "≈ 13 g"
+         ],
+         [
+          "Un ou",
+          "≈ 6 g"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com es recomana repartir la proteïna d'un esportista?",
+        "opcions": [
+         "En 4–5 menjades de 20–30 g",
+         "Tota al sopar",
+         "Tota a l'esmorzar",
+         "Només després d'entrenar"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
