@@ -1,7 +1,10 @@
 {
  "modul": {
   "id": "valoracio",
-  "titol": "Valoració de la condició física"
+  "titol": "Valoració de la condició física",
+  "classes": [
+   "1AFD31"
+  ]
  },
  "unitat": {
   "id": "uf3-part1",

@@ -1,0 +1,975 @@
+{
+ "modul": {
+  "id": "operacions",
+  "titol": "Operacions bàsiques",
+  "classes": [
+   "2AFD11"
+  ]
+ },
+ "unitat": {
+  "id": "ob-ra4",
+  "titol": "RA4 · Intervenció en conats d'incendi",
+  "seccions": [
+   {
+    "id": "ob-s1",
+    "titol": "El foc",
+    "llicons": [
+     {
+      "id": "ob-l1",
+      "titol": "El tetraedre del foc",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Què necessita el foc per cremar?",
+        "opcions": [
+         "Combustible, comburent, calor i reacció en cadena",
+         "Només aigua i aire",
+         "Només fusta",
+         "Fum i cendra"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada element del foc amb un exemple",
+        "parelles": [
+         [
+          "Combustible",
+          "Fusta o gasolina"
+         ],
+         [
+          "Comburent",
+          "Oxigen de l'aire"
+         ],
+         [
+          "Calor",
+          "Una espurna"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin és el comburent més habitual?",
+        "opcions": [
+         "L'oxigen de l'aire",
+         "L'aigua",
+         "La pols",
+         "El fum"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El triangle del foc té 3 elements i el tetraedre en té 4.",
+        "correcta": true,
+        "explicacio": "El tetraedre hi afegeix la reacció en cadena."
+       },
+       {
+        "tipus": "buit",
+        "frase": "El quart element del tetraedre és la reacció en ___.",
+        "opcions": [
+         "cadena",
+         "aigua",
+         "fusta",
+         "pols"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si llevam un sol element del tetraedre, el foc s'apaga.",
+        "correcta": true,
+        "explicacio": "Aquest és el principi de l'extinció."
+       }
+      ]
+     },
+     {
+      "id": "ob-l2",
+      "titol": "Les classes de foc",
+      "exercicis": [
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada classe de foc amb el que crema",
+        "parelles": [
+         [
+          "Classe A",
+          "Sòlids: fusta, paper, roba"
+         ],
+         [
+          "Classe B",
+          "Líquids: gasolina, olis"
+         ],
+         [
+          "Classe C",
+          "Gasos: butà, propà"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Les graderies de fusta cremen. Quina classe de foc és?",
+        "opcions": [
+         "Classe A",
+         "Classe B",
+         "Classe C",
+         "Classe F"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Crema la gasolina del taller. Quina classe de foc és?",
+        "opcions": [
+         "Classe B",
+         "Classe A",
+         "Classe D",
+         "Classe F"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Crema l'oli de la fregidora del bar. Quina classe de foc és?",
+        "opcions": [
+         "Classe F",
+         "Classe A",
+         "Classe C",
+         "Classe D"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "Els focs de metalls (sodi, magnesi) són de classe ___.",
+        "opcions": [
+         "D",
+         "A",
+         "B",
+         "C"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Els focs elèctrics tenen la seva pròpia classe.",
+        "correcta": false,
+        "explicacio": "No en tenen, però s'han d'apagar amb un extintor que no condueixi: CO₂ o pols."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Una bombona de butà de la cuina crema. Quina classe de foc és?",
+        "opcions": [
+         "Classe C",
+         "Classe A",
+         "Classe B",
+         "Classe D"
+        ],
+        "correcta": 0
+       }
+      ]
+     },
+     {
+      "id": "ob-l3",
+      "titol": "Com s'apaga un foc",
+      "exercicis": [
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada mètode amb el que lleva al foc",
+        "parelles": [
+         [
+          "Refredament",
+          "La calor"
+         ],
+         [
+          "Sofocació",
+          "L'oxigen"
+         ],
+         [
+          "Inhibició",
+          "La reacció en cadena"
+         ],
+         [
+          "Aïllament",
+          "El combustible"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Llançam aigua al foc. Quin mètode és?",
+        "opcions": [
+         "Refredament",
+         "Sofocació",
+         "Inhibició",
+         "Aïllament"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Tapam una paella amb una manta ignífuga. Quin mètode és?",
+        "opcions": [
+         "Sofocació",
+         "Refredament",
+         "Inhibició",
+         "Aïllament"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Tancam la vàlvula del gas. Quin mètode és?",
+        "opcions": [
+         "Aïllament",
+         "Refredament",
+         "Sofocació",
+         "Inhibició"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "La pols química apaga el foc per ___.",
+        "opcions": [
+         "inhibició",
+         "refredament",
+         "aïllament",
+         "aigua"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El CO₂ apaga el foc perquè lleva l'oxigen.",
+        "correcta": true,
+        "explicacio": "És sofocació."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ob-s2",
+    "titol": "Plans d'emergència",
+    "llicons": [
+     {
+      "id": "ob-l4",
+      "titol": "El pla i els equips",
+      "exercicis": [
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada part del pla d'emergència amb el que diu",
+        "parelles": [
+         [
+          "Pla d'alerta",
+          "Com avisar i a qui"
+         ],
+         [
+          "Pla d'extinció",
+          "Com apagar el conat"
+         ],
+         [
+          "Pla d'evacuació",
+          "Com sortir amb seguretat"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin telèfon d'emergència cridam?",
+        "opcions": [
+         "112",
+         "010",
+         "091",
+         "123"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada equip amb la seva feina",
+        "parelles": [
+         [
+          "EPI",
+          "Apaga conats amb extintors"
+         ],
+         [
+          "ESI",
+          "Usa les BIE i ajuda els bombers"
+         ],
+         [
+          "EAE",
+          "Dona l'alarma i guia l'evacuació"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Qui decideix si s'ha d'evacuar?",
+        "opcions": [
+         "El cap d'emergència",
+         "Qualsevol alumne",
+         "El primer que veu el foc",
+         "Ningú"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Al pla d'emergència hi ha plànols amb les sortides d'emergència.",
+        "correcta": true
+       },
+       {
+        "tipus": "buit",
+        "frase": "EPI vol dir Equip de Primera ___.",
+        "opcions": [
+         "Intervenció",
+         "Evacuació",
+         "Alarma",
+         "Ajuda"
+        ],
+        "correcta": 0
+       }
+      ]
+     },
+     {
+      "id": "ob-l5",
+      "titol": "Què faig si veig foc?",
+      "exercicis": [
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena què has de fer quan veus un foc",
+        "passos": [
+         "Detectar el foc o el fum",
+         "Alertar el centre de control",
+         "Avaluar si és un conat petit",
+         "Actuar amb l'extintor si és segur",
+         "Evacuar si el foc és massa gran"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què és el primer que fas quan veus fum?",
+        "opcions": [
+         "Avisar (alertar)",
+         "Anar-te'n a casa",
+         "Fer-hi una foto",
+         "Obrir les finestres"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si el foc és massa gran, cal evacuar i esperar els bombers.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "A qui has d'informar en tot moment?",
+        "opcions": [
+         "Al cap d'emergència",
+         "Als teus amics",
+         "A ningú",
+         "Al primer que passa"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Un conat és un foc petit que encara es pot apagar amb un extintor.",
+        "correcta": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ob-s3",
+    "titol": "Tallar el gas i la llum",
+    "llicons": [
+     {
+      "id": "ob-l6",
+      "titol": "Gas, electricitat i aigua",
+      "exercicis": [
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena què tallam primer en una emergència",
+        "passos": [
+         "Gas",
+         "Electricitat",
+         "Aigua"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per què tallam primer el gas?",
+        "opcions": [
+         "Perquè pot explotar",
+         "Perquè és més barat",
+         "Perquè fa olor",
+         "Perquè ho diu el cartell"
+        ],
+        "correcta": 0,
+        "explicacio": "El gas és el perill més immediat."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com sabem que una vàlvula de gas està tancada?",
+        "opcions": [
+         "La maneta està perpendicular a la canonada",
+         "La maneta està paral·lela a la canonada",
+         "Fa renou",
+         "Té un llum verd"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "Per tancar la vàlvula de gas giram la maneta ___ graus.",
+        "opcions": [
+         "90",
+         "180",
+         "45",
+         "360"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "On és l'interruptor general de la llum?",
+        "opcions": [
+         "Al quadre elèctric general",
+         "Dins el vestidor",
+         "A la piscina",
+         "A la grada"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Podem tocar el quadre elèctric amb les mans mullades.",
+        "correcta": false,
+        "explicacio": "Mai! L'aigua condueix l'electricitat."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quan tallam l'aigua?",
+        "opcions": [
+         "Només si hi ha fuites que poden mullar els quadres elèctrics",
+         "Sempre, la primera",
+         "Mai",
+         "Abans del gas"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ob-s4",
+    "titol": "Triar l'extintor",
+    "llicons": [
+     {
+      "id": "ob-l7",
+      "titol": "Els tipus d'extintors",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quin extintor és el recomanat a les instal·lacions esportives?",
+        "opcions": [
+         "Pols ABC",
+         "Aigua",
+         "CO₂",
+         "Escuma"
+        ],
+        "correcta": 0,
+        "explicacio": "És el més versàtil: apaga A, B i C."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin extintor és millor per a un quadre elèctric o els ordinadors?",
+        "opcions": [
+         "CO₂",
+         "Aigua",
+         "Escuma",
+         "Cap"
+        ],
+        "correcta": 0,
+        "explicacio": "No deixa residu i no condueix l'electricitat."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "L'extintor d'aigua es pot fer servir en un foc elèctric.",
+        "correcta": false,
+        "explicacio": "L'aigua condueix l'electricitat: perill d'electrocució."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada extintor amb on s'usa",
+        "parelles": [
+         [
+          "Aigua",
+          "Oficines i vestidors"
+         ],
+         [
+          "Escuma",
+          "Tallers amb líquids"
+         ],
+         [
+          "Pols BC",
+          "Cuines i zones amb gas"
+         ],
+         [
+          "CO₂",
+          "Quadres elèctrics"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quins focs apaga l'extintor de pols ABC?",
+        "opcions": [
+         "Sòlids, líquids i gasos (A, B i C)",
+         "Només sòlids",
+         "Només elèctrics",
+         "Només gasos"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin problema té la pols?",
+        "opcions": [
+         "Redueix la visibilitat i embruta molt",
+         "Condueix l'electricitat",
+         "No apaga res",
+         "Fa explotar el foc"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin perill té el CO₂ en un lloc tancat?",
+        "opcions": [
+         "Pots quedar sense aire (asfíxia)",
+         "Mulla tot",
+         "Fa molta pols",
+         "Crema"
+        ],
+        "correcta": 0
+       }
+      ]
+     },
+     {
+      "id": "ob-l8",
+      "titol": "Fum, vent i distància",
+      "exercicis": [
+       {
+        "tipus": "vf",
+        "afirmacio": "Hem d'apagar el foc amb el vent a l'esquena.",
+        "correcta": true,
+        "explicacio": "El vent ha de bufar de la teva esquena cap al foc. Mai en contra."
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada extintor amb la distància al foc",
+        "parelles": [
+         [
+          "CO₂",
+          "1-2 metres"
+         ],
+         [
+          "Pols",
+          "2-3 metres"
+         ],
+         [
+          "Aigua o escuma",
+          "3-5 metres"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Hi ha molt de fum i no es veu bé. Quin extintor és millor?",
+        "opcions": [
+         "CO₂ o pols",
+         "Aigua",
+         "Cap",
+         "Escuma sempre"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "En un espai petit i tancat, quins extintors hem d'evitar?",
+        "opcions": [
+         "CO₂ i pols",
+         "Aigua i escuma",
+         "Tots",
+         "Cap"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "Ens hem d'acostar al foc amb el vent a ___.",
+        "opcions": [
+         "favor",
+         "contra",
+         "la cara",
+         "un costat"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ob-s5",
+    "titol": "Primera intervenció",
+    "llicons": [
+     {
+      "id": "ob-l9",
+      "titol": "El protocol PAS",
+      "exercicis": [
+       {
+        "tipus": "parelles",
+        "pregunta": "Què vol dir PAS?",
+        "parelles": [
+         [
+          "P",
+          "Protegir"
+         ],
+         [
+          "A",
+          "Alertar"
+         ],
+         [
+          "S",
+          "Socórrer"
+         ]
+        ]
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena el protocol PAS",
+        "passos": [
+         "Protegir",
+         "Alertar",
+         "Socórrer"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què fas a «Protegir»?",
+        "opcions": [
+         "Assegurar que tu i els altres estau a salvo",
+         "Cridar els amics",
+         "Fer fotos",
+         "Córrer cap al foc"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què fas a «Alertar»?",
+        "opcions": [
+         "Avisar el centre de control o el 112",
+         "Apagar el foc tot sol",
+         "Tancar la porta amb clau",
+         "Esperar"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Ajudam els ferits només si és segur per a nosaltres.",
+        "correcta": true
+       }
+      ]
+     },
+     {
+      "id": "ob-l10",
+      "titol": "Com s'usa un extintor",
+      "exercicis": [
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena com s'usa un extintor",
+        "passos": [
+         "Despenjar l'extintor",
+         "Llevar el precinte (l'anella)",
+         "Fer una prova a terra",
+         "Acostar-se amb el vent a favor",
+         "Apuntar a la base de les flames",
+         "Prémer la maneta i moure en zig-zag"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "On hem d'apuntar amb l'extintor?",
+        "opcions": [
+         "A la base de les flames",
+         "A dalt de tot de les flames",
+         "Al fum",
+         "Al sostre"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com movem el doll de l'extintor?",
+        "opcions": [
+         "En zig-zag, d'esquerra a dreta",
+         "En cercles",
+         "Quiet en un punt",
+         "Amunt i avall"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com ha d'estar l'agulla del manòmetre?",
+        "opcions": [
+         "A la zona verda",
+         "A la zona vermella",
+         "A zero",
+         "No importa"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Quan acabes, te'n vas d'esquena al foc.",
+        "correcta": false,
+        "explicacio": "Retira't sense donar l'esquena al foc: es pot tornar a encendre."
+       },
+       {
+        "tipus": "buit",
+        "frase": "Abans d'usar l'extintor fem una petita prova a ___.",
+        "opcions": [
+         "terra",
+         "la paret",
+         "la cara",
+         "l'aire"
+        ],
+        "correcta": 0
+       }
+      ]
+     },
+     {
+      "id": "ob-l11",
+      "titol": "Quan NO he d'intervenir",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "A partir de quina alçada de flames NO hem d'intervenir?",
+        "opcions": [
+         "Més d'1,5 metres",
+         "Més de 10 cm",
+         "Més de 5 metres",
+         "Sempre intervenim"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si no tenc un camí per escapar, no he d'apagar el foc.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quant de temps intentam apagar un foc amb l'extintor?",
+        "opcions": [
+         "30-60 segons; si no s'apaga, fora",
+         "10 minuts",
+         "Fins que arribin els bombers",
+         "Una hora"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si hi ha bombones de gas a prop, és perillós intervenir.",
+        "correcta": true,
+        "explicacio": "Hi ha risc d'explosió."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què fas si hi ha tant de fum que no veus res?",
+        "opcions": [
+         "No intervenir i evacuar",
+         "Entrar igualment",
+         "Obrir totes les portes",
+         "Apagar el llum"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ob-s6",
+    "titol": "Ajudar els bombers",
+    "llicons": [
+     {
+      "id": "ob-l12",
+      "titol": "BIE, ESI i bombers",
+      "exercicis": [
+       {
+        "tipus": "buit",
+        "frase": "Una BIE és una Boca d'Incendi ___.",
+        "opcions": [
+         "Equipada",
+         "Elèctrica",
+         "Especial",
+         "Escolar"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què és una BIE?",
+        "opcions": [
+         "Una mànega connectada a l'aigua, dins un armari",
+         "Un extintor petit",
+         "Una alarma",
+         "Una porta d'emergència"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quantes persones aguanten la mànega de la BIE?",
+        "opcions": [
+         "Dues",
+         "Una",
+         "Cap",
+         "Deu"
+        ],
+        "correcta": 0,
+        "explicacio": "La pressió la pot fer botar."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "La BIE es pot usar en un foc elèctric amb corrent.",
+        "correcta": false,
+        "explicacio": "L'aigua condueix l'electricitat."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què fas quan arriben els bombers?",
+        "opcions": [
+         "Els guies fins al foc i els expliques què passa",
+         "Te'n vas a casa",
+         "Et quedes davant mirant",
+         "No els dius res"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina informació és important donar als bombers?",
+        "opcions": [
+         "Si hi ha persones atrapades i si s'ha tallat el gas",
+         "El teu horari",
+         "El resultat del partit",
+         "Quina hora és"
+        ],
+        "correcta": 0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ob-s7",
+    "titol": "Evacuació",
+    "llicons": [
+     {
+      "id": "ob-l13",
+      "titol": "Revisar i senyalitzar",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Quins llocs no podem oblidar de revisar?",
+        "opcions": [
+         "Lavabos i vestidors",
+         "Només la pista",
+         "Només l'aparcament",
+         "Cap"
+        ],
+        "correcta": 0,
+        "explicacio": "Hi pot haver gent dins que no sent l'alarma."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Quan una sala està buida, tancam la porta.",
+        "correcta": true,
+        "explicacio": "Així el fum no s'escampa."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què posam a la porta d'una sala ja revisada?",
+        "opcions": [
+         "Un senyal: «REVISAT - BUIT»",
+         "Res",
+         "Una clau",
+         "Un extintor"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què és el punt de trobada?",
+        "opcions": [
+         "Un lloc segur a fora on es reuneix tothom per comptar-se",
+         "El bar",
+         "El vestidor",
+         "La sala del foc"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada material amb el que fa",
+        "parelles": [
+         [
+          "Cinta vermella i blanca",
+          "Marca la zona de perill"
+         ],
+         [
+          "Cons",
+          "Tallen el pas"
+         ],
+         [
+          "Cartell «Punt de trobada»",
+          "Indica on anar"
+         ]
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per a un foc petit (extintor), quina distància de seguretat marcam?",
+        "opcions": [
+         "5-10 metres",
+         "1 metre",
+         "100 metres",
+         "Cap"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si hi ha una emergència gran, els bombers decideixen el perímetre.",
+        "correcta": true
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
