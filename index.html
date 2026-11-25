@@ -12,7 +12,8 @@
 <meta name="apple-mobile-web-app-title" content="Xop">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<style>*,*::before,*::after{box-sizing:border-box}html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>*,*::before,*::after{box-sizing:border-box}html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.regal{position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:60;background:#14C8C8;color:#06302F;font-weight:700;padding:12px 18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:calc(100% - 32px);text-align:center}
+</style>
 </head>
 <body>
 <title>Xop · Cicles Artà</title>
@@ -311,7 +312,6 @@ let MAX_VIDES=5, MIN_PER_VIDA=20; const XP_LLICO=10;
 const VIDES_CLASSE={'2AFD11':[10,10]};
 function aplicaVides(classe){
   const v=VIDES_CLASSE[classe]||[5,20];MAX_VIDES=v[0];MIN_PER_VIDA=v[1];
-  if(P.vides>MAX_VIDES)P.vides=MAX_VIDES;
   if(VIDES_CLASSE[classe]&&P.videsClasse!==classe){P.vides=MAX_VIDES;P.vidaTs=Date.now();P.videsClasse=classe;desa()}
 }
 const ICON={
@@ -582,7 +582,18 @@ async function miraDirecte(){
     }
   }catch(e){}
 }
-function vigilaDirecte(){clearInterval(directeT);miraDirecte();directeT=setInterval(()=>{if(!document.hidden)miraDirecte()},10000)}
+function vigilaDirecte(){clearInterval(directeT);miraDirecte();recullRegals();directeT=setInterval(()=>{if(!document.hidden){miraDirecte();recullRegals()}},10000)}
+// Vides extra que regala el professor: se sumen per sobre del màxim i es gasten com les altres.
+async function recullRegals(){
+  if(!SB||!JO||JO.profe)return;
+  const {data,error}=await SB.rpc('gota_recull_regals');
+  if(error||!data)return;
+  P.vides+=data;desa();
+  document.querySelectorAll('.st-lives').forEach(e=>e.innerHTML=ICON.heart+P.vides);
+  const av=document.createElement('div');av.className='regal';av.setAttribute('role','status');
+  av.textContent=`El professor t'ha regalat ${data} ${data===1?'vida':'vides'}!`;
+  document.body.appendChild(av);setTimeout(()=>av.remove(),4000);fx('ok');
+}
 function pantallaModuls(){
   window.scrollTo(0,0);
   let html=topbar()+`<main class="gut">${bannerDirecte()}<div class="hero"><img src="${IMG.contenta}" alt="En Xop, mascota dels Cicles"><div class="bubble">${salutacio()}Quin mòdul vols practicar?</div></div>`;
