@@ -306,7 +306,14 @@ const IMG={contenta:'mascota-contenta.png',celebrant:'mascota-celebrant.png',tri
 try{new Image().src='gota-celebra.webp'}catch(e){}
 // Per afegir mòduls o temes: afegeix el fitxer JSON a fonts.json (i aquí, per a la versió sense web).
 const FONTS_CONTINGUT=['contingut.json','experts.json','nutricio.json','operacions.json'];
-const MAX_VIDES=5, MIN_PER_VIDA=20, XP_LLICO=10;
+let MAX_VIDES=5, MIN_PER_VIDA=20; const XP_LLICO=10;
+// Vides per classe: [vides màximes, minuts per recuperar-ne una]. Les classes que no hi són tenen 5 i 20.
+const VIDES_CLASSE={'2AFD11':[10,10]};
+function aplicaVides(classe){
+  const v=VIDES_CLASSE[classe]||[5,20];MAX_VIDES=v[0];MIN_PER_VIDA=v[1];
+  if(P.vides>MAX_VIDES)P.vides=MAX_VIDES;
+  if(VIDES_CLASSE[classe]&&P.videsClasse!==classe){P.vides=MAX_VIDES;P.vidaTs=Date.now();P.videsClasse=classe;desa()}
+}
 const ICON={
   fire:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.5 5 5.6 5 10.5A5 5 0 0 1 12 22a5 5 0 0 1-5-5.2c0-2.6 1.6-4 2.4-5.6.4 1.6 1.2 2.4 2.2 2.6C10.8 10.7 11 6 12 2z"/></svg>',
   bolt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>',
@@ -1048,7 +1055,7 @@ async function arrenca(){
   if(!data)return pantallaNoAlumne(session.user.email);
   if(data.profe){JO={profe:true,classes:data.classes||[],email:session.user.email};inici();return vigilaDirecte()}
   JO={nom:data.nom,cognoms:data.cognoms,classe:data.classe,email:session.user.email};
-  fusiona(data.dades);inici();vigilaDirecte();
+  fusiona(data.dades);aplicaVides(data.classe);inici();vigilaDirecte();
 }
 arrenca().catch(()=>{$('#app').innerHTML='<p class="gut" style="padding-block:40px">No s\'ha pogut carregar Xop. Torna a obrir la pàgina.</p>'});
 if('serviceWorker' in navigator&&WEB)navigator.serviceWorker.register('sw.js').catch(()=>{});
