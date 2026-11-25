@@ -344,18 +344,39 @@ function nota(f,t,d,tipus,vol){
   g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);
   o.connect(g);g.connect(SO.master);o.start(t);o.stop(t+d+.05);
 }
-const PROG=[[48,60,64,67],[45,57,60,64],[41,53,57,60],[43,55,59,62]];
-const MEL=[[76,0,79,0,81,79,76,0],[72,0,76,0,79,0,76,74],[72,0,77,0,81,0,79,77],[74,0,79,0,83,81,79,0]];
+// Instruments "acústics": marimba (melodia), ukulele (acords), contrabaix pizzicato i shaker.
+function marimba(f,t,d,vol){nota(f,t,d,'sine',vol);nota(f*4,t,d*.18,'sine',vol*.25)}
+function uke(f,t,vol){
+  const c=SO.ctx,o=c.createOscillator(),fl=c.createBiquadFilter(),g=c.createGain();
+  o.type='triangle';o.frequency.value=f;fl.type='lowpass';fl.frequency.setValueAtTime(f*6,t);fl.frequency.exponentialRampToValueAtTime(f*1.5,t+.25);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+.35);
+  o.connect(fl);fl.connect(g);g.connect(SO.master);o.start(t);o.stop(t+.4);
+}
+function baix(f,t,vol){nota(f,t,.38,'sine',vol);nota(f*2,t,.12,'sine',vol*.3)}
+let SOROLL=null;
+function shaker(t,vol){
+  const c=SO.ctx;
+  if(!SOROLL){SOROLL=c.createBuffer(1,c.sampleRate*.08,c.sampleRate);const d=SOROLL.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length)}
+  const s=c.createBufferSource(),fl=c.createBiquadFilter(),g=c.createGain();
+  s.buffer=SOROLL;fl.type='highpass';fl.frequency.value=6000;g.gain.value=vol;
+  s.connect(fl);fl.connect(g);g.connect(SO.master);s.start(t);
+}
+// Do, La7, Rem, Sol7 (dues voltes). Baix caminant, acords a contratemps i melodia juganera.
+const BAIX=[[48,52,55,57],[45,49,52,55],[50,53,57,55],[43,47,50,53],[48,52,55,57],[45,49,52,55],[50,53,57,55],[43,47,50,53]];
+const ACORD=[[60,64,67],[61,64,67],[62,65,69],[59,62,65],[60,64,67],[61,64,67],[62,65,69],[59,62,65]];
+const MEL=[[72,0,76,79,0,76,72,0],[73,0,76,79,81,0,79,76],[74,0,77,81,0,77,74,0],[79,77,76,74,0,71,74,0],
+  [76,0,79,84,0,79,76,0],[81,0,79,76,73,0,76,0],[77,0,74,77,81,0,77,0],[79,0,77,74,71,0,67,0]];
 function musicaOn(){
   if(!SO.on||SO.music||!audio())return;
-  const pas=60/112/2;let n=0,t=SO.ctx.currentTime+.1;
+  const pas=60/116/2;let n=0,t=SO.ctx.currentTime+.1;
   SO.music=setInterval(()=>{
     if(t<SO.ctx.currentTime)t=SO.ctx.currentTime+.05;
     while(t<SO.ctx.currentTime+.3){
-      const c=Math.floor(n/8)%4,s=n%8,ch=PROG[c];
-      if(s%4===0)nota(hz(ch[0]),t,pas*3,'triangle',.12);
-      nota(hz(ch[1+(s%3)]),t,pas*.8,'square',.022);
-      const m=MEL[c][s];if(m)nota(hz(m),t,pas*1.6,'triangle',.07);
+      const c=Math.floor(n/8)%8,s=n%8,ta=t+(s%2?pas*.33:0);
+      if(s%2===0)baix(hz(BAIX[c][s/2]),ta,.16);
+      if(s===2||s===6)ACORD[c].forEach((m,i)=>uke(hz(m),ta+i*.012,.05));
+      shaker(ta,s%2?.05:.025);
+      const m=MEL[c][s];if(m)marimba(hz(m),ta,pas*2.2,.09);
       n++;t+=pas;
     }
   },100);
@@ -380,9 +401,9 @@ function confeti(){
 }
 function fx(k){
   if(!SO.on||!audio())return;const t=SO.ctx.currentTime;
-  if(k==='ok'){nota(hz(79),t,.12,'square',.08);nota(hz(84),t+.1,.28,'square',.08)}
-  else if(k==='bad'){nota(hz(52),t,.18,'sawtooth',.06);nota(hz(48),t+.16,.32,'sawtooth',.06)}
-  else if(k==='fi'){[72,76,79,84,88].forEach((m,i)=>nota(hz(m),t+i*.1,.4,'square',.07))}
+  if(k==='ok'){marimba(hz(79),t,.25,.16);marimba(hz(84),t+.1,.45,.16)}
+  else if(k==='bad'){marimba(hz(55),t,.3,.15);marimba(hz(51),t+.18,.5,.15)}
+  else if(k==='fi'){[72,76,79,84,88].forEach((m,i)=>marimba(hz(m),t+i*.1,.6,.14));[60,64,67].forEach((m,i)=>uke(hz(m),t+.5+i*.015,.07))}
 }
 const ICON_SO={on:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   off:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'};
