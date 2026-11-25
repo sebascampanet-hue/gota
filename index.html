@@ -512,7 +512,7 @@ function topbar(){
     <div class="stats">
       <span class="stat st-streak" title="Dies seguits">${ICON.fire}${ratxaActual()}</span>
       <span class="stat st-xp" title="Punts">${ICON.bolt}${P.xp}</span>
-      <span class="stat st-lives" title="Vides">${ICON.heart}${P.vides}</span>
+      <span class="stat st-lives" title="Vides">${ICON.heart}${txtVides()}</span>
       <button class="rankbtn" id="rank" aria-label="Rànquing de la classe" title="Rànquing">${ICON2.trophy}</button>${botoSo()}
     </div></div></header>`;
 }
@@ -583,16 +583,21 @@ async function miraDirecte(){
   }catch(e){}
 }
 function vigilaDirecte(){clearInterval(directeT);miraDirecte();recullRegals();directeT=setInterval(()=>{if(!document.hidden){miraDirecte();recullRegals()}},10000)}
-// Vides extra que regala el professor: se sumen per sobre del màxim i es gasten com les altres.
+// Vides que regala el professor (se sumen per sobre del màxim) i vides il·limitades per classe.
+let VIDES_INF=false;
+const txtVides=()=>VIDES_INF?'∞':P.vides;
+function avisa(text){
+  const av=document.createElement('div');av.className='regal';av.setAttribute('role','status');av.textContent=text;
+  document.body.appendChild(av);setTimeout(()=>av.remove(),4000);fx('ok');
+}
 async function recullRegals(){
   if(!SB||!JO||JO.profe)return;
-  const {data,error}=await SB.rpc('gota_recull_regals');
+  const {data,error}=await SB.rpc('gota_estat_vides');
   if(error||!data)return;
-  P.vides+=data;desa();
-  document.querySelectorAll('.st-lives').forEach(e=>e.innerHTML=ICON.heart+P.vides);
-  const av=document.createElement('div');av.className='regal';av.setAttribute('role','status');
-  av.textContent=`El professor t'ha regalat ${data} ${data===1?'vida':'vides'}!`;
-  document.body.appendChild(av);setTimeout(()=>av.remove(),4000);fx('ok');
+  const inf=!!data.il_limitades,canvi=inf!==VIDES_INF;VIDES_INF=inf;
+  if(data.regals>0){P.vides+=data.regals;desa();avisa(`El professor t'ha regalat ${data.regals} ${data.regals===1?'vida':'vides'}!`)}
+  else if(canvi&&inf)avisa('Vides il·limitades activades!');
+  document.querySelectorAll('.st-lives').forEach(e=>e.innerHTML=ICON.heart+txtVides());
 }
 function pantallaModuls(){
   window.scrollTo(0,0);
@@ -750,7 +755,7 @@ function comença(mode,titol,items,extra){
 }
 function obreLlico(llico){
   recuperaVides();
-  if(P.vides<=0){senseVides();return}
+  if(!VIDES_INF&&P.vides<=0){senseVides();return}
   comença('llico',llico.titol,llico.exercicis.map((e,i)=>({e,key:llico.id+'#'+i})),{llico});
 }
 function obreRepas(){
@@ -777,7 +782,7 @@ function capçal(){
   let dreta='';
   if(L.directe)dreta=`<span class="stat st-live"><span class="livedot" style="width:10px;height:10px" aria-hidden="true"></span>${L.total-L.cua.length}/${L.total}</span>`;
   else if(L.mode==='repte'){const t=Math.max(0,Math.ceil((L.fi-Date.now())/1000));dreta=`<span class="stat st-clock" id="clock">${ICON2.clock}${t}</span>`}
-  else if(L.mode==='llico')dreta=`<span class="stat st-lives">${ICON.heart}${P.vides}</span>`;
+  else if(L.mode==='llico')dreta=`<span class="stat st-lives">${ICON.heart}${txtVides()}</span>`;
   else dreta=`<span class="stat st-redo">${ICON2.redo}${L.cua.length}</span>`;
   return `<div class="lhead gut"><button class="x" id="surt" aria-label="Sortir">${ICON.x}</button>
       <div class="bar ${L.mode}"><i style="width:${pct}%"></i></div>${dreta}${botoSo()}</div>`;
@@ -895,7 +900,7 @@ function resol(ok,detall){
   if(ok){L.encerts++; if(!L.intents[idx])L.primers++;}
   else L.intents[idx]=1;
   if(L.mode==='llico'){
-    if(!ok){P.fallades[key]=(P.fallades[key]||0)+1;L.cua.push(idx);P.errors[key]=1;P.vides=Math.max(0,P.vides-1);if(P.vides===MAX_VIDES-1)P.vidaTs=Date.now();}
+    if(!ok){P.fallades[key]=(P.fallades[key]||0)+1;L.cua.push(idx);P.errors[key]=1;if(!VIDES_INF){P.vides=Math.max(0,P.vides-1);if(P.vides===MAX_VIDES-1)P.vidaTs=Date.now();}}
     else if(L.intents[idx])P.errors[key]=1;
   }else if(L.mode==='repas'){
     if(ok&&!L.intents[idx])delete P.errors[key];
@@ -915,12 +920,12 @@ function resol(ok,detall){
   if(L.directe){const sl=document.querySelector('.lhead .st-live');if(sl)sl.lastChild.textContent=(L.total-L.cua.length)+'/'+L.total;
     enviaDirecte(false);}
   const lv=document.querySelector('.lhead .st-lives');
-  if(lv){lv.innerHTML=ICON.heart+P.vides;if(!ok)lv.classList.add('lost')}
+  if(lv){lv.innerHTML=ICON.heart+txtVides();if(!ok)lv.classList.add('lost')}
   const rd=document.querySelector('.lhead .st-redo');if(rd)rd.innerHTML=ICON2.redo+L.cua.length;
 }
 function seguent(){
   if(L.cua.length===0)return L.directe?fiDirecte():L.mode==='repte'?fiRepte(false):final();
-  if(L.mode==='llico'&&P.vides<=0)return senseVides();
+  if(L.mode==='llico'&&!VIDES_INF&&P.vides<=0)return senseVides();
   exercici();
 }
 function pantallaFinal(img,titol,sub,tiles,extra='',next=inici){
