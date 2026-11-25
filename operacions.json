@@ -687,12 +687,206 @@
         "tipus": "vf",
         "afirmacio": "Ajudam els ferits només si és segur per a nosaltres.",
         "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "A «Protegir», què fas primer?",
+        "opcions": [
+         "Tallar la llum i el gas",
+         "Fer una foto",
+         "Obrir totes les finestres",
+         "Cridar ben fort"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "A «Protegir» apartam els materials que cremen de la zona de calor.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "A «Alertar», a quin número telefonam?",
+        "opcions": [
+         "112",
+         "010",
+         "100",
+         "123"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si tenim pressa, ens podem saltar l'ordre del protocol PAS.",
+        "correcta": false,
+        "explicacio": "És la regla d'or: mai no et saltis l'ordre."
+       }
+      ]
+     },
+     {
+      "id": "ob-l14",
+      "titol": "Les 3 fases. Preparar l'extintor",
+      "exercicis": [
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena les fases de la intervenció",
+        "passos": [
+         "Preparació",
+         "Atac",
+         "Retirada"
+        ]
+       },
+       {
+        "tipus": "parelles",
+        "pregunta": "Relaciona cada fase amb què vol dir",
+        "parelles": [
+         [
+          "Preparació",
+          "L'extintor està llest?"
+         ],
+         [
+          "Atac",
+          "Apagar el foc"
+         ],
+         [
+          "Retirada",
+          "Sortir amb seguretat"
+         ]
+        ]
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena com prepares l'extintor",
+        "passos": [
+         "Comprovar que serveix per a aquest foc",
+         "Despenjar-lo del suport",
+         "Mirar el manòmetre",
+         "Llevar l'anella",
+         "Fer una prova a terra"
+        ]
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Què comproves al pas 1?",
+        "opcions": [
+         "Si l'extintor serveix per a aquest foc",
+         "Si és bonic",
+         "Si pesa poc",
+         "De quin color és"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "L'agulla del manòmetre ha d'estar a la zona ___.",
+        "opcions": [
+         "verda",
+         "vermella",
+         "blava",
+         "negra"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El precinte de l'extintor ha d'estar intacte abans d'usar-lo.",
+        "correcta": true
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per què fem una prova a terra?",
+        "opcions": [
+         "Per veure que funciona",
+         "Per gastar-lo",
+         "Per fer net el terra",
+         "Per jugar"
+        ],
+        "correcta": 0
+       }
+      ]
+     },
+     {
+      "id": "ob-l15",
+      "titol": "Atacar el foc i retirar-se",
+      "exercicis": [
+       {
+        "tipus": "test",
+        "pregunta": "Com t'acostes al foc?",
+        "opcions": [
+         "Amb el vent a l'esquena (a favor)",
+         "Amb el vent a la cara",
+         "Corrent molt",
+         "D'esquena al foc"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "El vent t'ha de donar a la cara.",
+        "correcta": false,
+        "explicacio": "El vent t'ha d'empènyer per darrere, mai donar-te a la cara."
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quin és l'error més greu quan dispares l'extintor?",
+        "opcions": [
+         "Apuntar a les flames de dalt",
+         "Apuntar a la base",
+         "Moure'l en zig-zag",
+         "Prémer la maneta a fons"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "buit",
+        "frase": "Prem la maneta a fons i fes un moviment en ___.",
+        "opcions": [
+         "zig-zag",
+         "cercle",
+         "línia recta",
+         "espiral"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quan el foc s'ha apagat, què fas amb l'extintor?",
+        "opcions": [
+         "El descarregues del tot",
+         "El deixes a mitges",
+         "El llances",
+         "El tornes a penjar"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Com et retires del foc?",
+        "opcions": [
+         "Reculant i mirant el foc",
+         "Corrent d'esquena",
+         "Girant-te d'esquena",
+         "Assegut a terra"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "ordre",
+        "pregunta": "Ordena l'atac i la retirada",
+        "passos": [
+         "Acostar-se amb el vent a favor",
+         "Apuntar a la base",
+         "Prémer la maneta",
+         "Moure en zig-zag",
+         "Descarregar-lo del tot",
+         "Recular mirant el foc"
+        ]
        }
       ]
      },
      {
       "id": "ob-l10",
-      "titol": "Com s'usa un extintor",
+      "titol": "Repàs: com s'usa un extintor",
       "exercicis": [
        {
         "tipus": "ordre",
@@ -805,6 +999,40 @@
          "Apagar el llum"
         ],
         "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Per a què serveix un extintor?",
+        "opcions": [
+         "Per a conats (focs petits que comencen)",
+         "Per a incendis grans",
+         "Per a qualsevol foc",
+         "Per refrescar-se"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "test",
+        "pregunta": "Quina d'aquestes és una raó per fugir sense intervenir?",
+        "opcions": [
+         "Quadres elèctrics en tensió o bombones",
+         "Un foc dins una paperera",
+         "Tenir l'extintor a prop",
+         "Tenir el vent a favor"
+        ],
+        "correcta": 0
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Si en 60 segons el foc no està controlat, abandones l'edifici.",
+        "correcta": true,
+        "explicacio": "La teva vida és més important que el protocol."
+       },
+       {
+        "tipus": "vf",
+        "afirmacio": "Amb un extintor pots apagar un incendi gran.",
+        "correcta": false,
+        "explicacio": "L'extintor només serveix per a conats. Un incendi real és massa perillós."
        }
       ]
      }
